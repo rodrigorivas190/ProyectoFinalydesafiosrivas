@@ -1,10 +1,31 @@
+<nav class="navbar navbar-expand-sm bg-info">
+    <div class="container-fluid">
+        <a href="./">
+            <img src="./static/assets/images/logo.jpg" width="80px" alt="logo"
+                class="d-inline-block align-text-top me-3 header__img" />
+        </a>
+    </div>
+    <div class="d-flex collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav align-items-center header__lista">
+            <li class="nav-item ms-3 header__item">
+                <a class="nav-link" href="./">Inicio</a>
+            </li>
+            <li class="nav-item ms-3 header__item">
+                <a class="nav-link" href="./realTimeProducts">RealTime Carga de productos</a>
+            </li>
+            <li class="nav-item ms-3 header__item">
+                <a class="nav-link active" href="./form">Cargar nuevo Producto</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
 <br>
-<a href="/products">Product List</a>
-<a href="./">Inicio</a>
-<h1 class="text-center">Carga de producto</h1>
+
+<h1 class="text-center">Carga de producto asincrono</h1>
 
 <div style="display: flex; flex-direction: column; align-items: center;">
-    <form action="/form-products" method="post">
+    <form action="./form" method="post">
         <label class="form-label m-0">Title:</label>
         <input class="form-control" type="text" name="title" id="title" required>
         <label class="form-label m-0">Description:</label>

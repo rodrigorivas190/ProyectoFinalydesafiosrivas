@@ -1,0 +1,27 @@
+::-webkit-scrollbar {
+  background-color: #d3d3d3;
+  width: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 50px;
+  background: #ffd700;
+}
+body {
+  background: linear-gradient(rgba(225, 227, 231, 0.5),rgba(225, 227, 231, 0.5)), url(/src/public/assets/images/fondo.jpg) no-repeat center center fixed;
+  background-size: cover;
+}
+
+body {
+  margin: 0;
+  font-family: var(--bs-body-font-family);
+  font-size: var(--bs-body-font-size);
+  font-weight: var(--bs-body-font-weight);
+  line-height: var(--bs-body-line-height);
+  color: var(--bs-body-color);
+  text-align: var(--bs-body-text-align);
+  background-color: #c85f5f;;
+  -webkit-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: transparent;
+}
+

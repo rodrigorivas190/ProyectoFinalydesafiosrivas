@@ -1,0 +1,1 @@
+[{"id":1,"title":"libro 1","description":"libro","price":125,"thumbnail":["https://picsum.photos/200"],"code":"125","stock":12,"category":"general","status":false},{"id":2,"title":"la otra","description":"libro","price":356,"thumbnail":["https://picsum.photos/200"],"code":"254","stock":1,"category":"general","status":true}]
