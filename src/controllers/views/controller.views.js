@@ -24,7 +24,9 @@ router.post("/form", async (req, res) => {
       Number(stock),
       category
     );
-    res.redirect("/");
+   
+    res.redirect("/home");
+   
   } catch (err) {
     if (err.message.includes("The product with")) {
       res.status(409).json({ error409: err.message });
@@ -32,7 +34,8 @@ router.post("/form", async (req, res) => {
   }
 });
 
-router.get("/", async (req, res) => {
+
+router.get("/home", async (req, res) => {
   const { limit } = req.query;
   try {
     const products = await productManager.getProducts();
@@ -40,15 +43,24 @@ router.get("/", async (req, res) => {
       res.render("home", {
         products: products,
       });
+    
     } else {
       const limitedProducts = products.slice(0, limit);
       res.render("home", {
         products: limitedProducts,
       });
+      
     }
   } catch (err) {
     res.status(400).json({ error400: "Bad Request" });
   }
+});
+
+
+router.get("/realtimeproducts", async (req, res) => {
+  const products = await productManager.getProducts();
+  res.render("realTimeProducts", { products: products });
+  
 });
 
 router.get("/form", (req, res) => {

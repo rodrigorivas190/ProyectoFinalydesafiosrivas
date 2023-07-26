@@ -156,10 +156,8 @@ class ProductManager {
 
       if (productIndex === -1) {
         console.log("Product does not exist");
-        throw new Error("Product does not exist");
+    
       }
-
-      products[productIndex].status = false;
 
       await fs.promises.writeFile(
         ProductManager.#path,

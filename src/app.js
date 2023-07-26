@@ -36,20 +36,31 @@ io.on("connection", (socket) => {
     const thumbnail = Array.isArray(data.thumbnail)
       ? data.thumbnail
       : [data.thumbnail];
-
+  
     if (!title || !description || !price || !code || !stock || !category) {
+     
       console.log("All fields are required");
     }
-
-    const postProducts = await productManager.addProduct(
-      title,
-      description,
-      price,
-      thumbnail,
-      code,
-      stock,
-      category
-    );
+  
+    try {
+      await productManager.addProduct(
+        title,
+        description,
+        Number(price),
+        thumbnail,
+        code,
+        Number(stock),
+        category
+      );
+     
+      res.redirect("/home");
+     
+    } 
+    catch (err) {
+      if (err.message.includes("The product with")) {
+        console.log("All fields are required");
+      }
+    }
 
     // Envia el back
     const products = await productManager.getProducts();
@@ -63,6 +74,17 @@ io.on("connection", (socket) => {
     const id = data;
 
     const logicalDeleteProduct = await productManager.logicalDeleteProduct(id);
+
+    try {
+      let status = await productManager.deleteProduct(Number(id));
+  
+      res.status(200).json(`Product with id: ${id} was removed`);
+    } catch (err) {
+      if (err.message.includes("Product does")) {
+        console.log("All fields are required");
+      }
+    }
+
 
     // Envia el back
     const products = await productManager.getProducts();

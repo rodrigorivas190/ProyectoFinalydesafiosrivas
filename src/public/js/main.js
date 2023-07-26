@@ -24,11 +24,14 @@ formCreate.addEventListener("submit", (e) => {
     stock,
     category,
   };
-
+  
+ 
   socket.emit("client:newProduct", product);
 
+
   formCreate.reset();
-  
+
+   
 });
 
 //Envia el front
@@ -40,6 +43,7 @@ formDelete.addEventListener("submit", (e) => {
   socket.emit("cliente:deleteProduct", id);
 
   formDelete.reset();
+  
 });
 
 //Respuesta del back
@@ -59,4 +63,5 @@ socket.on("server:list", (data) => {
   });
 
   divList.innerHTML = cards;
+  location.reload();
 });
