@@ -66,17 +66,17 @@ router.get("/realtimeproducts", async (req, res) => {
 router.get("/form", (req, res) => {
   res.render("form", {});
 });
-// router.delete("/:pid", async (req, res) => {
-//   const { pid } = req.params;
-//   try {
-//     let status = await productManager.deleteProduct(Number(pid));
+router.delete("/:pid", async (req, res) => {
+  const { pid } = req.params;
+  try {
+    let status = await productManager.deleteProduct(Number(pid));
 
-//     res.status(200).json(`Product with id: ${pid} was removed`);
-//   } catch (err) {
-//     if (err.message.includes("Product does")) {
-//       res.status(404).json({ error400: err.message });
-//     }
-//   }
-// });
+    res.status(200).json(`Product with id: ${pid} was removed`);
+  } catch (err) {
+    if (err.message.includes("Product does")) {
+      res.status(404).json({ error400: err.message });
+    }
+  }
+});
 
 export default router;

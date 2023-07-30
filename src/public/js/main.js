@@ -38,15 +38,16 @@ formCreate.addEventListener("submit", (e) => {
 // Envia el front
 formDelete.addEventListener("submit", (e) => {
   e.preventDefault();
-
+  
   const id = document.querySelector("input[name=id]").value;
 
   console.log("mainjs", id);
 
-  socket.emit("cliente:deleteProduct", id);
+  socket.emit("cliente:deleteProduct", { id }); 
 
   formDelete.reset();
 });
+
 
 
 //Respuesta del back

@@ -8,12 +8,12 @@ import __dirname from './utils.js'
 import mongoose from "mongoose";
 import ChatManager from "./dao/remote/managers/chat/chatManager.js";
 const chatManager = new ChatManager()
-
+import { MongoClient, ObjectId } from "mongodb";
 
 
 const app = express();
 const productManager = new ProductManager();
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT || 8080;  
 app.engine('handlebars', handlebars.engine())
 app.set('views', __dirname + '/views')
 app.use("/static", express.static("./src/public"));
@@ -34,6 +34,7 @@ const hbs = handlebars.create({
 });
 
 app.engine("handlebars", hbs.engine);
+
 
 const httpServer = app.listen(PORT, (req, res) => {
   console.log(`Server running at port: ${PORT}`);
@@ -58,6 +59,31 @@ mongoose
 
 
 const io = new Server(httpServer);
+// Función para eliminar un producto por su ID
+async function eliminarProducto(productId) {
+  try {
+    const client = await MongoClient.connect(URL);
+    const db = client.db("libreriaLea");
+
+    const collection = db.collection("products");
+
+    // Convierte el ID del producto a un ObjectId
+    const objectId = new ObjectId(productId);
+
+    // Realiza la eliminación del producto por su ID
+    const result = await collection.deleteOne({ _id: objectId });
+
+    if (result.deletedCount === 1) {
+      console.log("Producto eliminado exitosamente.");
+    } else {
+      console.log("Producto no encontrado o no eliminado.");
+    }
+
+    client.close();
+  } catch (error) {
+    console.log("Error al eliminar el producto:", error);
+  }
+}
 
 io.on("connection", (socket) => {
   console.log(`New user ${socket.id} joined`);
@@ -95,9 +121,10 @@ io.on("connection", (socket) => {
 
   // Recibe del front
   socket.on("cliente:deleteProduct", async (data) => {
-    const id = data;
+    const id = data.id; 
 
     const logicalDeleteProduct = await productManager.deleteProduct(id);
+   
 
     //Envia el back
     const products = await productManager.getProducts();
@@ -107,6 +134,7 @@ io.on("connection", (socket) => {
 
     io.emit("server:list", listProducts);
   });
+ 
 
 
   //Recibe del front

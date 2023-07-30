@@ -73,8 +73,8 @@ class ProductManager {
       const productDeleted = await ProductModel.findByIdAndDelete(id);
 
       if (productDeleted === null) {
-        console.log("Product does not exist");
-        throw new Error("Product does not exist");
+        console.log(`Product with id: ${id} does not exist`);
+        // throw new Error("Product does not exist");
       }
 
       return "Product removed successfully";
