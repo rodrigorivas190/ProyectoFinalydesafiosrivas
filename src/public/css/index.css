@@ -7,12 +7,11 @@
   border-radius: 50px;
   background: #ffd700;
 }
-body {
-  background: linear-gradient(rgba(225, 227, 231, 0.5),rgba(225, 227, 231, 0.5)), url(/src/public/assets/images/fondo.jpg) no-repeat center center fixed;
-  background-size: cover;
-}
+
 
 body {
+  background: linear-gradient(rgba(225, 227, 231, 0.5),rgba(225, 227, 231, 0.5)), url('../assets/images/fondo.jpg') no-repeat center center fixed !important; 
+  background-size: cover !important;
   margin: 0;
   font-family: var(--bs-body-font-family);
   font-size: var(--bs-body-font-size);
@@ -20,8 +19,13 @@ body {
   line-height: var(--bs-body-line-height);
   color: var(--bs-body-color);
   text-align: var(--bs-body-text-align);
-  background-color: #c85f5f;;
+  
+
   -webkit-text-size-adjust: 100%;
-  -webkit-tap-highlight-color: transparent;
+  -webkit-tap-highlight-color: transparent !important;
+}
+.bg-info {
+    --bs-bg-opacity: 1;
+    background-color: rgba(var(--bs-info-rgb),var(--bs-bg-opacity))!important;
 }
 

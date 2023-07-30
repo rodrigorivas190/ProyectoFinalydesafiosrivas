@@ -16,6 +16,9 @@
             <li class="nav-item ms-3 header__item">
                 <a class="nav-link" href="./form">Cargar nuevo Producto</a>
             </li>
+             <li class="nav-item ms-3 header__item">
+                <a class="nav-link active" href="./chat">Chat</a>
+            </li>
         </ul>
     </div>
 </nav>
@@ -28,7 +31,7 @@
     <div style="display:flex; flex-wrap: wrap; justify-content: center; ">
         {{#each products}}
         {{#if status}}
-        <div class="card" style="margin: 10px 100px">
+        <div class="card" style="margin: 10px 80px">
             <img src={{thumbnail}} width="200px" alt="img - {{thumbnail}}">
             <div class="card-body">
                 <p class="card-title">{{category}} - {{title}}</p>

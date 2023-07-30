@@ -1,5 +1,6 @@
 const socket = io();
 
+
 const formCreate = document.getElementById("realTimeFormCreate");
 const formDelete = document.getElementById("realTimeFormDelete");
 
@@ -34,17 +35,19 @@ formCreate.addEventListener("submit", (e) => {
    
 });
 
-//Envia el front
+// Envia el front
 formDelete.addEventListener("submit", (e) => {
   e.preventDefault();
 
-  const id = Number(document.querySelector("input[name=id]").value);
+  const id = document.querySelector("input[name=id]").value;
+
+  console.log("mainjs", id);
 
   socket.emit("cliente:deleteProduct", id);
 
   formDelete.reset();
-  
 });
+
 
 //Respuesta del back
 socket.on("server:list", (data) => {

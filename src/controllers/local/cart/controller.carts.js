@@ -1,5 +1,7 @@
 import { Router } from "express";
-import CartManager from "../../managers/cart/cartManager.js";
+
+import CartManager from "../../../dao/local/managers/cart/cartManager.js";
+
 
 const cartManager = new CartManager();
 const router = Router();
@@ -65,5 +67,6 @@ router.delete("/:cid", async (req, res) => {
     }
   }
 });
+
 
 export default router;

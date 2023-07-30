@@ -1,11 +1,11 @@
 import { Router } from "express";
-
-import ProductManager from "../../managers/product/productManager.js";
+import ProductManager from "../../dao/remote/managers/product/productManager.js";
 const productManager = new ProductManager();
 const router = Router();
 
 router.post("/form", async (req, res) => {
   const { title, description, price, code, stock, category } = req.body;
+  console.log("controllerviews", req.body);
   const thumbnail = Array.isArray(req.body.thumbnail)
     ? req.body.thumbnail
     : [req.body.thumbnail];
@@ -15,16 +15,16 @@ router.post("/form", async (req, res) => {
   }
 
   try {
-    await productManager.addProduct(
+    const product = {
       title,
       description,
-      Number(price),
+      price: Number(price),
       thumbnail,
       code,
-      Number(stock),
+      stock: Number(stock),
       category
-    );
-   
+    };
+    await productManager.addProduct(product)
     res.redirect("/home");
    
   } catch (err) {
@@ -66,17 +66,17 @@ router.get("/realtimeproducts", async (req, res) => {
 router.get("/form", (req, res) => {
   res.render("form", {});
 });
-router.delete("/:pid", async (req, res) => {
-  const { pid } = req.params;
-  try {
-    let status = await productManager.deleteProduct(Number(pid));
+// router.delete("/:pid", async (req, res) => {
+//   const { pid } = req.params;
+//   try {
+//     let status = await productManager.deleteProduct(Number(pid));
 
-    res.status(200).json(`Product with id: ${pid} was removed`);
-  } catch (err) {
-    if (err.message.includes("Product does")) {
-      res.status(404).json({ error400: err.message });
-    }
-  }
-});
+//     res.status(200).json(`Product with id: ${pid} was removed`);
+//   } catch (err) {
+//     if (err.message.includes("Product does")) {
+//       res.status(404).json({ error400: err.message });
+//     }
+//   }
+// });
 
 export default router;
