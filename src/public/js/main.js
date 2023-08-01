@@ -35,19 +35,35 @@ formCreate.addEventListener("submit", (e) => {
    
 });
 
-// Envia el front
-formDelete.addEventListener("submit", (e) => {
+formDelete.addEventListener("submit", async (e) => {
   e.preventDefault();
-  
+
   const id = document.querySelector("input[name=id]").value;
-
-  console.log("mainjs", id);
-
   socket.emit("cliente:deleteProduct", { id }); 
+  try {
+   
+    if (!isValidObjectId(id)) {
+      console.log("Invalid ID format");
+      return;
+    }
 
+    // Intenta eliminar el producto por su ID
+    const productDeleted = await ProductModel.findByIdAndDelete(id);
+    
+    if (!productDeleted) {
+      console.log("Product does not exist");
+      return;
+    }
+
+    console.log("Product removed successfully");
+    formDelete.reset();
+  } catch (err) {
+    console.error("Error deleting product:", err.message);
+  }
+  console.log("mainjs", id);
+  socket.emit("cliente:deleteProduct", { id }); 
   formDelete.reset();
 });
-
 
 
 //Respuesta del back

@@ -147,7 +147,7 @@ class ProductManager {
     }
   };
 
-  logicalDeleteProduct = async (id) => {
+  logicalDeleteProduct = async (_id) => {
     let products = await this.getProducts();
     try {
       const productIndex = Object.values(products).findIndex(

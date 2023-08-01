@@ -67,6 +67,7 @@ async function eliminarProducto(productId) {
 
     const collection = db.collection("products");
 
+
     // Convierte el ID del producto a un ObjectId
     const objectId = new ObjectId(productId);
 
@@ -119,23 +120,32 @@ io.on("connection", (socket) => {
     io.emit("server:list", listProducts);
   });
 
-  // Recibe del front
-  socket.on("cliente:deleteProduct", async (data) => {
-    const id = data.id; 
+ 
+// Recibe del front
+socket.on("cliente:deleteProduct", async (data) => {
+  const productId = data.id;
 
-    const logicalDeleteProduct = await productManager.deleteProduct(id);
-   
+  try {
+    // Verificar que el ID tenga el formato adecuado de ObjectId
+    if (!mongoose.Types.ObjectId.isValid(productId)) {
+      console.log("Invalid ID format");
+      return;
+    }
 
-    //Envia el back
+    // Eliminar físicamente el producto por su ID
+    await eliminarProducto(productId);
+
+    // Envía el back
     const products = await productManager.getProducts();
 
-    //Solo para mostrar los productos con status true
+    // Solo para mostrar los productos con status true
     const listProducts = products.filter((product) => product.status === true);
 
     io.emit("server:list", listProducts);
-  });
- 
-
+  } catch (error) {
+    console.error("Error deleting product:", error.message);
+  }
+});
 
   //Recibe del front
   socket.on("client:message", async (data) => {
