@@ -7,4 +7,5 @@ selectSort.addEventListener("change", () => {
 
   const url = `/productsList?limit=${limit}&page=${page}&sort=${sort}`;
   window.location.href = url;
+  location.reload();
 });

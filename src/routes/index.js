@@ -7,16 +7,6 @@ import cartsRemoteController from "../controllers/remote/cart/controller.carts.j
 import viewsControllerChat from "../controllers/views/chat/controller.chats.js";
 import viewsControllerCartAsinc from "../controllers/views/cart/controller.views.js" 
 
-// const router = (app) => {
-//   app.use("/api/remote/products", productsRemoteController);
-//   app.use("/api/remote/carts", cartsRemoteController);
-//   app.use("/", viewsControllerAsinc);
-//   app.use("/realTimeProducts", viewsControllerSinc);
-//   app.use("/api/local/products", productsController);
-//   app.use("/api/local/carts", cartsController);
-//   app.use("/chat", chatController)
-//   app.use("/cart", viewsControllerCart);
-// };
 
 const router = (app) => {
   //Backend

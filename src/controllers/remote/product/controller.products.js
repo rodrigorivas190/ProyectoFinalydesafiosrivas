@@ -85,18 +85,13 @@ router.put("/:pid", async (req, res) => {
 router.delete("/:pid", async (req, res) => {
   const { pid } = req.params;
   try {
-    // Convertir el pid a un objeto ObjectId
-    const productId = mongoose.Types.ObjectId(pid);
-    
-    const productDeleted = await productManager.deleteProduct(productId);
+    let status = await productManager.deleteProduct(pid);
 
-    if (productDeleted) {
-      res.status(200).json(`Product with id: ${pid} was removed`);
-    } else {
-      res.status(404).json({ error400: "Product does not exist" });
-    }
+    res.status(200).json(`Product with id: ${pid} was removed`);
   } catch (err) {
-    res.status(500).json({ error500: "Internal Server Error" });
+    if (err.message.includes("Product does")) {
+      res.status(404).json({ error400: err.message });
+    }
   }
 });
 

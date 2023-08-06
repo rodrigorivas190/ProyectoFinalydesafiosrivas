@@ -1,10 +1,8 @@
-import mongoose from "mongoose";
 import { Router } from "express";
 import ProductManager from "../../../dao/remote/managers/product/productManager.js";
 import ProductModel from "../../../dao/models/model.product.js";
 const productManager = new ProductManager();
 const router = Router();
-
 
 router.post("/form", async (req, res) => {
   const { title, description, price, code, stock, category } = req.body;
@@ -25,18 +23,16 @@ router.post("/form", async (req, res) => {
       thumbnail,
       code,
       stock: Number(stock),
-      category
+      category,
     };
-    await productManager.addProduct(product)
+    await productManager.addProduct(product);
     res.redirect("/home");
-   
   } catch (err) {
     if (err.message.includes("The product with")) {
       res.status(409).json({ error409: err.message });
     }
   }
 });
-
 
 router.get("/home", async (req, res) => {
   const { limit } = req.query;
@@ -46,19 +42,16 @@ router.get("/home", async (req, res) => {
       res.render("home", {
         products: products,
       });
-    
     } else {
       const limitedProducts = products.slice(0, limit);
       res.render("home", {
         products: limitedProducts,
       });
-      
     }
   } catch (err) {
     res.status(400).json({ error400: "Bad Request" });
   }
 });
-
 
 router.get("/productsList", async (req, res) => {
   try {
@@ -93,10 +86,18 @@ router.get("/productsList", async (req, res) => {
       lean: true,
     });
 
-    result.nextLink = result.hasNextPage ? `/productsList?page=${result.nextPage}&limit=${limit}` : "";
-    result.prevLink = result.hasPrevPage ? `/productsList?page=${result.prevPage}&limit=${limit}` : "";
-    result.nextPagee = result.hasNextPage ? `/productsList?page=${result.nextPage}&limit=${limit}` : "";
-    result.prevPagee = result.hasPrevPage ? `/productsList?page=${result.prevPage}&limit=${limit}` : "";
+    result.nextLink = result.hasNextPage
+      ? `/productsList?page=${result.nextPage}&limit=${limit}`
+      : "";
+    result.prevLink = result.hasPrevPage
+      ? `/productsList?page=${result.prevPage}&limit=${limit}`
+      : "";
+    result.nextPagee = result.hasNextPage
+      ? `/productsList?page=${result.nextPage}&limit=${limit}`
+      : "";
+    result.prevPagee = result.hasPrevPage
+      ? `/productsList?page=${result.prevPage}&limit=${limit}`
+      : "";
 
     res.render("productsList", result);
   } catch (err) {
@@ -104,34 +105,8 @@ router.get("/productsList", async (req, res) => {
   }
 });
 
-
-// router.get("/realtimeproducts", async (req, res) => {
-//   const products = await productManager.getProducts();
-//   res.render("realTimeProducts", { products: products });
-  
-// });
-
-
 router.get("/form", (req, res) => {
   res.render("form", {});
 });
-
-// router.delete("/:pid", async (req, res) => {
-//   const { pid } = req.params;
-//   try {
-//     // Convertir el pid a un objeto ObjectId
-//     const productId = mongoose.Types.ObjectId(pid);
-
-//     const productDeleted = await productManager.deleteProduct(productId);
-
-//     if (productDeleted) {
-//       res.status(200).json(`Product with id: ${pid} was removed`);
-//     } else {
-//       res.status(404).json({ error400: "Product does not exist" });
-//     }
-//   } catch (err) {
-//     res.status(500).json({ error500: "Internal Server Error" });
-//   }
-// });
 
 export default router;

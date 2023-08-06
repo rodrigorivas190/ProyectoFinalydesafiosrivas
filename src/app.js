@@ -1,30 +1,25 @@
-
 import express from "express";
 import handlebars from "express-handlebars";
 import { Server } from "socket.io";
 import ProductManager from "./dao/remote/managers/product/productManager.js";
 import router from "./routes/index.js";
-import __dirname from './utils.js'
+import __dirname from "./utils.js";
 import mongoose from "mongoose";
 import ChatManager from "./dao/remote/managers/chat/chatManager.js";
 import { MongoClient, ObjectId } from "mongodb";
-const chatManager = new ChatManager()
-
-
+const chatManager = new ChatManager();
 
 const app = express();
 const productManager = new ProductManager();
 
-const PORT = process.env.PORT || 8080;  
+const PORT = process.env.PORT || 8080;
 app.use("/static", express.static("./src/public"));
-
-
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.engine('handlebars', handlebars.engine())
-app.set('views', __dirname + '/views')
+app.engine("handlebars", handlebars.engine());
+app.set("views", __dirname + "/views");
 
 app.set("views", "./src/views");
 app.set("view engine", "handlebars");
@@ -39,7 +34,6 @@ const hbs = handlebars.create({
 });
 
 app.engine("handlebars", hbs.engine);
-
 
 const httpServer = app.listen(PORT, (req, res) => {
   console.log(`Server running at port: ${PORT}`);
@@ -61,8 +55,6 @@ mongoose
     console.log("Can't connect to DB");
   });
 
-
-
 const io = new Server(httpServer);
 // Función para eliminar un producto por su ID
 async function eliminarProducto(productId) {
@@ -71,7 +63,6 @@ async function eliminarProducto(productId) {
     const db = client.db("libreriaLea");
 
     const collection = db.collection("products");
-
 
     // Convierte el ID del producto a un ObjectId
     const objectId = new ObjectId(productId);
@@ -125,41 +116,41 @@ io.on("connection", (socket) => {
     io.emit("server:list", listProducts);
   });
 
- 
-// Recibe del front
-socket.on("cliente:deleteProduct", async (data) => {
-  const productId = data.id;
+  // Recibe del front
+  socket.on("cliente:deleteProduct", async (data) => {
+    const productId = data.id;
 
-  try {
-    // Verificar que el ID tenga el formato adecuado de ObjectId
-    if (!mongoose.Types.ObjectId.isValid(productId)) {
-      console.log("Invalid ID format");
-      return;
+    try {
+      // Verificar que el ID tenga el formato adecuado de ObjectId
+      if (!mongoose.Types.ObjectId.isValid(productId)) {
+        console.log("Invalid ID format");
+        return;
+      }
+
+      // Eliminar físicamente el producto por su ID
+      await eliminarProducto(productId);
+
+      // Envía el back
+      const products = await productManager.getProducts();
+
+      // Solo para mostrar los productos con status true
+      const listProducts = products.filter(
+        (product) => product.status === true
+      );
+
+      io.emit("server:list", listProducts);
+    } catch (error) {
+      console.error("Error deleting product:", error.message);
     }
-
-    // Eliminar físicamente el producto por su ID
-    await eliminarProducto(productId);
-
-    // Envía el back
-    const products = await productManager.getProducts();
-
-    // Solo para mostrar los productos con status true
-    const listProducts = products.filter((product) => product.status === true);
-
-    io.emit("server:list", listProducts);
-  } catch (error) {
-    console.error("Error deleting product:", error.message);
-  }
-});
+  });
 
   //Recibe del front
   socket.on("client:message", async (data) => {
-    await chatManager.saveMessage(data)
+    await chatManager.saveMessage(data);
     //Envia el back
-    const messages = await chatManager.getMessages()
-    io.emit("server:messages", messages)
-  })
-
+    const messages = await chatManager.getMessages();
+    io.emit("server:messages", messages);
+  });
 
   socket.on("disconnect", () => {
     console.log(`User ${socket.id} disconnected`);

@@ -1,5 +1,5 @@
 import { Router } from "express";
-import mongoose from "mongoose";
+// import mongoose from "mongoose";
 import ProductManager from "../../../dao/remote/managers/product/productManager.js";
 const productManager = new ProductManager();
 const router = Router();
@@ -83,18 +83,13 @@ router.put("/:pid", async (req, res) => {
 router.delete("/:pid", async (req, res) => {
   const { pid } = req.params;
   try {
-   
-    const productId = mongoose.Types.ObjectId(pid);
-    
-    const productDeleted = await productManager.deleteProduct(productId);
+    let status = await productManager.deleteProduct(Number(pid));
 
-    if (productDeleted) {
-      res.status(200).json(`Product with id: ${pid} was removed`);
-    } else {
-      res.status(404).json({ error400: "Product does not exist" });
-    }
+    res.status(200).json(`Product with id: ${pid} was removed`);
   } catch (err) {
-    res.status(500).json({ error500: "Internal Server Error" });
+    if (err.message.includes("Product does")) {
+      res.status(404).json({ error400: err.message });
+    }
   }
 });
 

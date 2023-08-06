@@ -1,7 +1,6 @@
 import fs from "fs";
 
 class ProductManager {
-  
   static #path = "./public/products.json";
 
   constructor() {
@@ -147,7 +146,7 @@ class ProductManager {
     }
   };
 
-  logicalDeleteProduct = async (_id) => {
+  logicalDeleteProduct = async (id) => {
     let products = await this.getProducts();
     try {
       const productIndex = Object.values(products).findIndex(
@@ -156,8 +155,10 @@ class ProductManager {
 
       if (productIndex === -1) {
         console.log("Product does not exist");
-    
+        throw new Error("Product does not exist");
       }
+
+      products[productIndex].status = false;
 
       await fs.promises.writeFile(
         ProductManager.#path,
@@ -172,6 +173,5 @@ class ProductManager {
     }
   };
 }
-
 
 export default ProductManager;

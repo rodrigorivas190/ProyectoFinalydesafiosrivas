@@ -4,39 +4,16 @@ import mongoosePaginate from "mongoose-paginate-v2";
 const productsCollection = "products";
 
 const productSchema = new mongoose.Schema({
-  title: {
-    type: String,
-    required: true
-  },
-  description: {
-    type: String,
-    required: true
-  },
-  price: {
-    type: Number,
-    required: true
-  },
-  thumbnail: {
-    type: Array,
-    default: [] 
-  },
-  code: {
-    type: String,
-    required: true
-  },
-  stock: {
-    type: Number,
-    required: true
-  },
-  category: {
-    type: String,
-    required: true
-  },
-  status: {
-    type: Boolean,
-    default: true 
-  }
+  title: String,
+  description: String,
+  price: Number,
+  thumbnail: Array,
+  code: String,
+  stock: Number,
+  category: String,
+  status: Boolean,
 });
+
 productSchema.plugin(mongoosePaginate);
 
 mongoose.set("strictQuery", false);

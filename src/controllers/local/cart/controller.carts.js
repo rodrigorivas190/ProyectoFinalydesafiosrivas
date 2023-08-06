@@ -2,10 +2,8 @@ import { Router } from "express";
 
 import CartManager from "../../../dao/local/managers/cart/cartManager.js";
 
-
 const cartManager = new CartManager();
 const router = Router();
-
 router.post("/", async (req, res) => {
   try {
     const newCart = await cartManager.createCart();
@@ -67,6 +65,5 @@ router.delete("/:cid", async (req, res) => {
     }
   }
 });
-
 
 export default router;

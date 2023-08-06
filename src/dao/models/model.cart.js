@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const cartsCollection = "cart";
+const cartsCollection = "carts";
 
 const cartSchema = new mongoose.Schema({
   products: {
@@ -26,5 +26,6 @@ cartSchema.pre("findOne", function () {
 });
 
 const CartModel = mongoose.model(cartsCollection, cartSchema);
+
 
 export default CartModel;

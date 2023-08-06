@@ -13,7 +13,9 @@ class ProductManager {
       const validate = await ProductModel.findOne({ code: product.code });
       if (validate) {
         console.log(`The product with code: ${product.code} already exists`);
-        
+        throw new Error(
+          `The product with code: ${product.code} already exists`
+        );
       } else {
         product.status = true;
 
@@ -36,7 +38,7 @@ class ProductManager {
     }
   };
 
-getProductById = async (id) => {
+  getProductById = async (id) => {
     try {
       const product = await ProductModel.findById(id);
 
@@ -44,102 +46,61 @@ getProductById = async (id) => {
     } catch (err) {
       throw err;
     }
-};
+  };
 
-updateProduct = async (id, props) => {
+  updateProduct = async (id, props) => {
     try {
       const validate = await ProductModel.findByIdAndUpdate(id, props);
 
       if (props.hasOwnProperty("id") || props.hasOwnProperty("code")) {
         console.log("Cannot update 'id' or 'code' property");
-        return false;
+        throw new Error("Cannot update 'id' or 'code' property");
       }
 
       if (validate === null) {
-        return true; 
+        console.log(`Product with id: ${id} does not exist`);
         throw new Error(`Product with id: ${id} does not exist`);
       }
 
-      
-      console.log(`Updated product successfully `);
-      return true; 
+      return "Updated product successfully";
     } catch (err) {
       throw err;
     }
-};
+  };
 
+  deleteProduct = async (id) => {
+    try {
+      const productDeleted = await ProductModel.findByIdAndDelete(id);
 
-// deleteProduct = async (id) => {
-//   try {
-//     const productDeleted = await ProductModel.findByIdAndDelete(id);
-    
+      if (productDeleted === null) {
+        console.log("Product does not exist");
+        throw new Error("Product does not exist");
+      }
 
-//     if (!productDeleted) {
-//       console.log(`Product with id: ${id} does not exist`);
-//       return false;
-//     }
-
-//     console.log(`Product with id: ${id} removed `);
-//     return true; 
-//   } catch (err) {
-//     throw err;
-//   }
-// };
-
-// logicalDeleteProduct = async (id) => {
-//   try {
-//     const product = await ProductModel.findById(id);
-
-//     if (!product) { 
-//       console.log(`Product with id: ${id} does not exist`);
-//       return false;
-//     }
-
-//     product.status = false;
-
-//     await product.save();
-
-//     console.log(`Product with id: ${id} removed `);
-//     return true; 
-//   } catch (err) {
-//     throw err;
-//   }
-// };
-// }
-
-deleteProduct = async (id) => {
-  try {
-    const productDeleted = await ProductModel.findByIdAndDelete(id);
-
-    if (productDeleted === null) {
-      console.log("Product does not exist");
-      throw new Error("Product does not exist");
+      return "Product removed successfully";
+    } catch (err) {
+      throw err;
     }
+  };
 
-    return "Product removed successfully";
-  } catch (err) {
-    throw err;
-  }
-};
+  logicalDeleteProduct = async (id) => {
+    try {
+      const product = await ProductModel.findById(id);
 
-logicalDeleteProduct = async (id) => {
-  try {
-    const product = await ProductModel.findById(id);
+      if (!product) {
+        console.log("Product does not exist");
+        throw new Error("Product does not exist");
+      }
 
-    if (!product) {
-      console.log("Product does not exist");
-      throw new Error("Product does not exist");
+      product.status = false;
+
+      await product.save();
+
+      console.log("Product status updated successfully");
+      return "Product status updated successfully";
+    } catch (err) {
+      throw err;
     }
-
-    product.status = false;
-
-    await product.save();
-
-    console.log("Product status updated successfully");
-    return "Product status updated successfully";
-  } catch (err) {
-    throw err;
-  }
-};
+  };
 }
 export default ProductManager;
