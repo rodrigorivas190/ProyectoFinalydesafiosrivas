@@ -1,5 +1,5 @@
 import { Router } from "express";
-import mongoose from "mongoose";
+
 import ProductManager from "../../../dao/remote/managers/product/productManager.js";
 
 const productManager = new ProductManager();

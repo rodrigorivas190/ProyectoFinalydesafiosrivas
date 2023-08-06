@@ -5,7 +5,8 @@ const chatsCollection = "messages"
 
 const chatSchema = new mongoose.Schema({
     user: String,
-    message: String
+    message: String,
+    hour: String
 })
 
 mongoose.set("strictQuery", false);

@@ -29,9 +29,15 @@ chatbox.addEventListener("keyup", (event) => {
     const msn = chatbox.value.trim();
 
     if (msn.length > 0) {
+      const date = new Date();
+      const hourDate = date.getHours();
+      const minuteDate = date.getMinutes();
+      const hour = `${hourDate}:${minuteDate}`;
+
       socket.emit("client:message", {
         user,
         message: msn,
+        hour: hour,
       });
 
       chatbox.value = "";
@@ -43,8 +49,11 @@ chatbox.addEventListener("keyup", (event) => {
 socket.on("server:messages", (data) => {
   const divLogs = document.getElementById("logs");
   let messages = "";
+
   data.forEach((message) => {
-    messages = `<p><b>${message.user}:</b> ${message.message}</p>` + messages;
+    messages =
+      `<p><b>${message.user}:</b> ${message.message}<i style="font-size: x-small; margin-left: 5px;">${message.hour}</i></p>` +
+      messages;
   });
 
   divLogs.innerHTML = messages;

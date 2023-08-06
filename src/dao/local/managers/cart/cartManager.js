@@ -1,5 +1,6 @@
 import fs from "fs";
 
+const path = "./public/carts.json";
 class CartManager {
   static #path = "./public/carts.json";
 

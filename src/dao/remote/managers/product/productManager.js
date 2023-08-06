@@ -69,18 +69,54 @@ updateProduct = async (id, props) => {
 };
 
 
+// deleteProduct = async (id) => {
+//   try {
+//     const productDeleted = await ProductModel.findByIdAndDelete(id);
+    
+
+//     if (!productDeleted) {
+//       console.log(`Product with id: ${id} does not exist`);
+//       return false;
+//     }
+
+//     console.log(`Product with id: ${id} removed `);
+//     return true; 
+//   } catch (err) {
+//     throw err;
+//   }
+// };
+
+// logicalDeleteProduct = async (id) => {
+//   try {
+//     const product = await ProductModel.findById(id);
+
+//     if (!product) { 
+//       console.log(`Product with id: ${id} does not exist`);
+//       return false;
+//     }
+
+//     product.status = false;
+
+//     await product.save();
+
+//     console.log(`Product with id: ${id} removed `);
+//     return true; 
+//   } catch (err) {
+//     throw err;
+//   }
+// };
+// }
+
 deleteProduct = async (id) => {
   try {
     const productDeleted = await ProductModel.findByIdAndDelete(id);
-    
 
-    if (!productDeleted) {
-      console.log(`Product with id: ${id} does not exist`);
-      return false;
+    if (productDeleted === null) {
+      console.log("Product does not exist");
+      throw new Error("Product does not exist");
     }
 
-    console.log(`Product with id: ${id} removed `);
-    return true; 
+    return "Product removed successfully";
   } catch (err) {
     throw err;
   }
@@ -90,21 +126,20 @@ logicalDeleteProduct = async (id) => {
   try {
     const product = await ProductModel.findById(id);
 
-    if (!product) { 
-      console.log(`Product with id: ${id} does not exist`);
-      return false;
+    if (!product) {
+      console.log("Product does not exist");
+      throw new Error("Product does not exist");
     }
 
     product.status = false;
 
     await product.save();
 
-    console.log(`Product with id: ${id} removed `);
-    return true; 
+    console.log("Product status updated successfully");
+    return "Product status updated successfully";
   } catch (err) {
     throw err;
   }
 };
 }
-
 export default ProductManager;

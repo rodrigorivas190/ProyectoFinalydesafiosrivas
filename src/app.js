@@ -7,19 +7,24 @@ import router from "./routes/index.js";
 import __dirname from './utils.js'
 import mongoose from "mongoose";
 import ChatManager from "./dao/remote/managers/chat/chatManager.js";
-const chatManager = new ChatManager()
 import { MongoClient, ObjectId } from "mongodb";
+const chatManager = new ChatManager()
+
 
 
 const app = express();
 const productManager = new ProductManager();
+
 const PORT = process.env.PORT || 8080;  
-app.engine('handlebars', handlebars.engine())
-app.set('views', __dirname + '/views')
 app.use("/static", express.static("./src/public"));
+
+
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+app.engine('handlebars', handlebars.engine())
+app.set('views', __dirname + '/views')
 
 app.set("views", "./src/views");
 app.set("view engine", "handlebars");

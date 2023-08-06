@@ -1,0 +1,38 @@
+<br>
+
+<h1 class="text-center"><b id="username"></b>Cart</h1>
+
+<div style="display: flex; justify-content: center;">
+    <div class="card" style="width: 1200px;">
+        <ul class="list-group list-group-flush">
+            {{#each products}}
+            <li class="list-group-item p-0">
+                <div style="display: flex;">
+                    <div style="width: 10px; background-color: #ffd700">
+                    </div>
+                    <div style="display: flex;">
+                        <img src={{product.thumbnail}} alt="img - {{product.thumbnail}}" width="150px">
+                        <div style="display: flex; justify-content: space-between">
+                            <div style="display: flex; flex-direction: column">
+                                <h5 class="m-0">{{product.category}} - {{product.title}}</h5>
+                                <h6 class="m-0">Price: {{product.price}}U$D</h6>
+                                <h6 class="m-0">Quantity: {{quantity}}</h6>
+                            </div>
+                            <div style="position: absolute; right: 0px;">
+                                <button id="delete" class="btn" onclick="deleteProduct('{{{product._id}}}')"><img src="https://i.ibb.co/xHNqGxR/delete.png" alt="img - trash" width="20px"></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            {{/each}}
+        </ul>
+    </div>
+</div>
+
+
+
+
+
+<script src="/static/js/list.js"></script>
+<script src="/static/js/cart.js"></script>

@@ -70,13 +70,13 @@ formDelete.addEventListener("submit", async (e) => {
 socket.on("server:list", (data) => {
   const divList = document.getElementById("list");
   let cards = "";
-  data.forEach((card) => {
+  data.forEach((content) => {
     cards += `
     <div class="card" style="margin: 10px 100px">
-        <img src=${thumbnail} width="200px" alt="img - ${thumbnail}">
+        <img src=${content.thumbnail} width="200px" alt="img - ${content.thumbnail}">
         <div class="card-body">
-            <p class="card-title">${category} - ${title}</p>
-            <p class="card-text">${description}</p>
+            <p class="card-title">${content.category} - ${content.title}</p>
+            <p class="card-text">${content.description}</p>
             <button type="button" class="btn btn-primary">Info</button>
         </div>
     </div>`;
