@@ -1,5 +1,4 @@
 import { Router } from "express";
-
 import ProductManager from "../../../dao/remote/managers/product/productManager.js";
 
 const productManager = new ProductManager();

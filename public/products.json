@@ -25,19 +25,7 @@
 		"category": "general",
 		"status": true
 	},
-	{
-		"id": 3,
-		"title": "dadcsc",
-		"description": "zxz ",
-		"price": 1,
-		"thumbnail": [
-			"https://picsum.photos/200"
-		],
-		"code": "5",
-		"stock": 1,
-		"category": "general",
-		"status": true
-	},
+	
 	{
 		"id": 4,
 		"title": "zdcdasc",

@@ -112,8 +112,8 @@ class CartManager {
       const productDelete = await CartModel.findByIdAndUpdate(idCart, {
         products: newCart,
       });
-
-      return "Product removed successfully";
+      console.log(`Product with id: ${idProduct} removed successfully`);
+      return `Product ${idProduct} removed successfully`;
     } catch (err) {
       throw err;
     }
@@ -124,8 +124,8 @@ class CartManager {
       const cart = await CartModel.findById(idCart);
 
       if (cart === null) {
-        console.log("Cart does not exist");
-        throw new Error("Cart does not exist");
+        console.log(`Cart ${idCart} does not exist`);
+        throw new Error(`Cart ${idCart} does not exist`);
       }
 
       cart.products.splice(0);
@@ -135,9 +135,22 @@ class CartManager {
         products: newCart,
       });
 
-      return "Cart removed successfully";
+      return `Cart ${idCart} removed successfully`;
     } catch (err) {
       throw err;
+    }
+  };
+  actualizarCarritoById = async (cid) => {
+    try {
+      let cart = await CartModel.findById(cid);
+      if (cart) {
+        await CartModel.updateOne({ _id: cid }, { $set: { products: [] } });
+        return { message: "Cart update succes", status: 200 };
+      } else {
+        return { message: "No existe el carrito", status: 404 };
+      }
+    } catch (e) {
+      throw e;
     }
   };
 }

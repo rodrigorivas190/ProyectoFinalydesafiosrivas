@@ -1,6 +1,7 @@
 import { Router } from "express";
 import ProductManager from "../../../dao/remote/managers/product/productManager.js";
 import ProductModel from "../../../dao/models/model.product.js";
+import CartModel from "../../../dao/models/model.cart.js";
 const productManager = new ProductManager();
 const router = Router();
 
@@ -104,9 +105,34 @@ router.get("/productsList", async (req, res) => {
     res.status(400).json({ error400: err });
   }
 });
+//vista detail products
+router.get("/detail/:_id", async (req, res) => {
+  const id = req.params._id;
+
+  const product = await ProductModel.findById(id).lean().exec();
+  console.log(product);
+
+  try {
+    res.render("detail", product)
+  } catch (error) {
+    console.log("error al obtener el producto", error);   
+  }
+})
+
+router.get("/cart/count", async (req, res) => {
+  try {
+    const cartCount = await CartModel.findById("64c9d325f54c08f61e2cde00");
+    res.json({ count: cartCount.products.length });
+  } catch (error) {
+    console.error("Error al obtener el número de productos en el carrito:", error);
+    res.status(500).json({ error: "Error al obtener el número de productos en el carrito" });
+  }
+});
 
 router.get("/form", (req, res) => {
   res.render("form", {});
 });
+
+
 
 export default router;

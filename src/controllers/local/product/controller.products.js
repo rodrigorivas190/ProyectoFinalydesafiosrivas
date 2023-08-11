@@ -88,7 +88,7 @@ router.delete("/:pid", async (req, res) => {
     res.status(200).json(`Product with id: ${pid} was removed`);
   } catch (err) {
     if (err.message.includes("Product does")) {
-      res.status(404).json({ error400: err.message });
+      res.status(404).json({ error404: err.message });
     }
   }
 });

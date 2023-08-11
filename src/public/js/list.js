@@ -6,6 +6,7 @@ selectSort.addEventListener("change", () => {
   const sort = selectSort.value;
 
   const url = `/productsList?limit=${limit}&page=${page}&sort=${sort}`;
+  
+  // Cambiar la ubicación de la página
   window.location.href = url;
-  location.reload();
 });

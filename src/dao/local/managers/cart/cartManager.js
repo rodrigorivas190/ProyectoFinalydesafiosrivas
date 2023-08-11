@@ -110,7 +110,7 @@ class CartManager {
 
       if (!cart) {
         console.log("Cart does not exist");
-        throw new Error("Cart does not exist");
+        throw new Error(`Cart ${idCart} does not exist`);
       }
 
       carts = carts.filter((item) => item.id !== idCart);

@@ -1,4 +1,4 @@
-const addProduct = (id) => {
+const addProduct = async  (id) => {
   const cid = "64c9d325f54c08f61e2cde00";
   const pid = id;
 
@@ -10,18 +10,18 @@ const addProduct = (id) => {
     body: JSON.stringify({ quantity: 1 }),
   };
 
-  fetch(`/api/remote/carts/${cid}/product/${pid}`, request)
+  await fetch(`/api/remote/carts/${cid}/product/${pid}`, request)
     .then((response) => response.json())
     .then((data) => {
       console.log(data);
     })
     .catch((err) => {
-      console.error("Error adding product to cart:", err);
+      console.error(`Error adding product to cart: ${cid}` , err);
     });
     location.reload();
 };
 
-const deleteProduct = (id) => {
+const deleteProduct = async (id) => {
   const cid = "64c9d325f54c08f61e2cde00";
   const pid = id;
 
@@ -32,21 +32,23 @@ const deleteProduct = (id) => {
     },
   };
 
-  fetch(`/api/remote/carts/${cid}/products/${pid}`, request)
+  await fetch(`/api/remote/carts/${cid}/products/${pid}`, request)
     .then((response) => {
       if (response.status === 204) {
-        console.log("Product successfully removed");
+        console.log(`Product ${pid} removed successfully`);
       } else {
         console.error(
-          "Error deleting the product. Status code:",
+          `Error deleting the product ${pid}`,
           response.status
         );
       }
     })
     .catch((err) => {
-      console.error("Error deleting product:", err);
+      console.error(`Error deleting product: ${pid}` , err);
     });
     location.reload();
 };
+
+
 
   
