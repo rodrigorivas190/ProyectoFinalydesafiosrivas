@@ -1,6 +1,6 @@
 import { Router } from "express";
-// import mongoose from "mongoose";
 import ProductManager from "../../../dao/remote/managers/product/productManager.js";
+
 const productManager = new ProductManager();
 const router = Router();
 
@@ -32,10 +32,21 @@ router.post("/", async (req, res) => {
   }
 });
 
+
 router.get("/", async (req, res) => {
-  const { limit } = req.query;
+  const { limit, title, description, stock, status, price } = req.query;
   try {
-    const products = await productManager.getProducts();
+    let query = {};
+
+    
+    if (title) query.title = title;
+    if (description) query.description = description;
+    if (stock) query.stock = stock;
+    if (status) query.status = status;
+    if (price) query.price = price;
+
+    const products = await productManager.getProducts(query);
+
     if (!limit || limit < 1) {
       res.status(200).json(products);
     } else {

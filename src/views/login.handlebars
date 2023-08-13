@@ -1,0 +1,43 @@
+ <nav class="navbar navbar-expand-sm bg-info">
+    <div class="container-fluid">
+        <a href="#">
+           <img src="../static/assets/images/logo.jpg" width="80px" alt="logo"
+                class="d-inline-block align-text-top me-3 header__img" />
+        </a>
+    </div>
+    <div class="d-flex collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav align-items-center header__lista">
+            <li class="nav-item ms-3 header__item">
+                <a class="nav-link" href="/register">
+                    <img src="https://i.ibb.co/rF8cB4W/register.png" alt="register" width="30px">
+                </a>
+            </li>
+            <li class="nav-item ms-3 header__item" style="margin-right: 24px;">
+                <a class="nav-link" href="#">
+                    <img src="https://i.ibb.co/3WdFcqG/profile.png" alt="profile" width="30px">
+                </a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<br>
+
+<h1 class="text-center">Login</h1>
+
+<br>
+
+<div style="display: flex; flex-wrap: wrap; justify-content: center;">
+    <form action="/api/session/login" method="post">
+        <label class="form-label">Email address</label>
+        <input class="form-control" type="email" name="email" required>
+        <br>
+        <label class="form-label">Password</label>
+        <input class="form-control" type="password" name="password" required>
+        <br>
+        <button class="btn btn-primary" style="width: 100%;" type="submit">Log</button>
+        <hr>
+        <a class="btn btn-primary" style="width: 100%;" href="/register">Register</a>
+    </form>
+</div>
+

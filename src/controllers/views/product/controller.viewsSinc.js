@@ -5,8 +5,10 @@ const router = Router();
 
 router.get("/", async (req, res) => {
   const products = await productManager.getProducts();
-  res.render("realTimeProducts", { products: products });
-  
+  const user = req.session.user;
+
+  res.render("realTimeProducts", { products, user });
 });
+
 
 export default router;

@@ -87,26 +87,47 @@ router.get("/productsList", async (req, res) => {
       lean: true,
     });
 
-    result.nextLink = result.hasNextPage
-      ? `/productsList?page=${result.nextPage}&limit=${limit}`
-      : "";
-    result.prevLink = result.hasPrevPage
-      ? `/productsList?page=${result.prevPage}&limit=${limit}`
-      : "";
-    result.nextPagee = result.hasNextPage
-      ? `/productsList?page=${result.nextPage}&limit=${limit}`
-      : "";
-    result.prevPagee = result.hasPrevPage
-      ? `/productsList?page=${result.prevPage}&limit=${limit}`
-      : "";
+    let prevLink;
+    let nextLink;
 
-    res.render("productsList", result);
+    if(result.hasPrevPage == false) {
+      prevLink = null;
+    } else {
+      prevLink = `/productsList?page=${result.prevPage}&limit=${limit}`
+    }
+
+    if(result.hasNextPage == false) {
+      nextLink = null;
+    } else {
+      nextLink = `/productsList?page=${result.nextPage}&limit=${limit}`
+    }
+
+    result.nextLink = result.hasNextPage ? `/productsList?page=${result.nextPage}&limit=${limit}` : "";
+    result.prevLink = result.hasPrevPage ? `/productsList?page=${result.prevPage}&limit=${limit}` : "";
+
+    const format = {
+      status: 'success',
+      payload: result.docs,
+      totalPages: result.totalDocs,
+      prevPage: result.prevPage,
+      nextPage: result.nextPage,
+      page: result.page,
+      hasPrevPage: result.hasPrevPage,
+      hasNextPage: result.hasNextPage,
+      prevLink: prevLink,
+      nextLink: nextLink,
+      limit
+    };
+
+    console.log(format);
+
+    res.render("productsList", {result: format});
   } catch (err) {
     res.status(400).json({ error400: err });
   }
 });
 //vista detail products
-router.get("/detail/:_id", async (req, res) => {
+router.get("/productsList/detail/:_id", async (req, res) => {
   const id = req.params._id;
 
   const product = await ProductModel.findById(id).lean().exec();
@@ -119,15 +140,15 @@ router.get("/detail/:_id", async (req, res) => {
   }
 })
 
-router.get("/cart/count", async (req, res) => {
-  try {
-    const cartCount = await CartModel.findById("64c9d325f54c08f61e2cde00");
-    res.json({ count: cartCount.products.length });
-  } catch (error) {
-    console.error("Error al obtener el número de productos en el carrito:", error);
-    res.status(500).json({ error: "Error al obtener el número de productos en el carrito" });
-  }
-});
+// router.get("/cart/count", async (req, res) => {
+//   try {
+//     const cartCount = await CartModel.findById("64c9d325f54c08f61e2cde00");
+//     res.json({ count: cartCount.products.length });
+//   } catch (error) {
+//     console.error("Error al obtener el número de productos en el carrito:", error);
+//     res.status(500).json({ error: "Error al obtener el número de productos en el carrito" });
+//   }
+// });
 
 router.get("/form", (req, res) => {
   res.render("form", {});

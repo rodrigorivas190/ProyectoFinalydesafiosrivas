@@ -5,6 +5,8 @@ import ProductManager from "./dao/remote/managers/product/productManager.js";
 import router from "./routes/index.js";
 import __dirname from "./utils.js";
 import mongoose from "mongoose";
+import session from "express-session";
+import MongoStore from "connect-mongo";
 import ChatManager from "./dao/remote/managers/chat/chatManager.js";
 import { MongoClient, ObjectId } from "mongodb";
 const chatManager = new ChatManager();
@@ -24,6 +26,27 @@ app.set("views", __dirname + "/views");
 app.set("views", "./src/views");
 app.set("view engine", "handlebars");
 
+const URL =
+  "mongodb+srv://rodrigorivas190:Maxi7774@cluster0.rp3vhne.mongodb.net/?retryWrites=true&w=majority";
+
+
+app.use(
+  session({
+    store: MongoStore.create({
+      mongoUrl: URL,
+      dbName: "libreriaLea",
+      mongoOptions: {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+      },
+      ttl: 1000,
+    }),
+    secret: "secret",
+    resave: true,
+    saveUninitialized: true,
+  })
+);
+
 router(app);
 
 const hbs = handlebars.create({
@@ -36,11 +59,9 @@ const hbs = handlebars.create({
 app.engine("handlebars", hbs.engine);
 
 const httpServer = app.listen(PORT, (req, res) => {
-  console.log(`Server running at port: ${PORT}`);
+  console.log(` ✅ Server running at port: ${PORT}`);
 });
 
-const URL =
-  "mongodb+srv://rodrigorivas190:Maxi7774@cluster0.rp3vhne.mongodb.net/?retryWrites=true&w=majority";
 
 mongoose
   .connect(URL, {
