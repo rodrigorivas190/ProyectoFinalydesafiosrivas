@@ -17,6 +17,7 @@ const router = (app) => {
   app.use("/api/local/products", productsLocalController);
   app.use("/api/local/carts", cartsLocalController);
   app.use("/api/session", sessionRemoteController);
+  
   //Frontend
   app.use("/chat", viewsControllerChat);
   app.use("/productsList", viewsControllerList);

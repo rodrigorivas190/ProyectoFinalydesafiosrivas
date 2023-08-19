@@ -1,4 +1,5 @@
 import { Router } from "express";
+import {isGuest } from "../../../public/middleware/auth.middleware.js";
 const router = Router();
 
 router.get("/", (req, res) => {
@@ -7,6 +8,14 @@ router.get("/", (req, res) => {
   }
 
   res.render("login", {});
+});
+
+router.get('/login', isGuest, async (req, res) => {
+	try {
+		res.render('login');
+	} catch (error) {
+		res.status(400).send(error);
+	}
 });
 
 router.get("/register", (req, res) => {
