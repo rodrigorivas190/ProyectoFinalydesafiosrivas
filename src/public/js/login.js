@@ -21,7 +21,7 @@ btnLogin.addEventListener("click", async () => {
 	})
 		.then((response) => response.json())
 		.then((data) => {
-			if (data.status === "sucess") {
+			if (data.status === "success") {
 				//Si tengo sucess en la respuesta redirijo a la vista productos
 				window.location.replace("/realTimeProducts");
 			}

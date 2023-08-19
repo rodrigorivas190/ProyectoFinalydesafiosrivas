@@ -19,14 +19,16 @@ router.post("/login", async (req, res) => {
     const user = await userService.getByEmail(email);
 
     if (!user) {
-      //Existe el usuario?
+      
+     
       res.json({ status: "error", message: "user doesn´t exist" });
     }
     if (user.password !== password) {
+    
       res.json({ status: "error", message: "incorrect pasword" });
     }
     req.session.user = user;
-    return res.redirect("/realTimeProducts");
+  
     res.json({ status: "success", message: "user login authorized" });
   } catch (error) {
     //res.status(400).send(error);

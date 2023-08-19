@@ -27,25 +27,48 @@
 
 <br>
 
-<div style="display: flex; flex-wrap: wrap; justify-content: center;">
-    <form action="/api/session/login" method="post">
-        <label for="InputEmail" class="form-label">Email address</label>
-        <input class="form-control" type="email"id="InputEmail" name="email" placeholder="Ingresa tu email" required>
-        <br>
-        <label  for="InputPassword" class="form-label">Password</label>
-        <input class="form-control" type="password" name="password"  placeholder="Ingresa tu contraseña" id="InputPassword" required>
-        <a href="" id="emailHelp" class="form-text text-muted text-decoration-none ">¿Has olvidado tu
-         contraseña?</a>
-        <br>
-        <button class="btn btn-primary" style="width: 100%;" id="btnLogin">Log</button>
-        <hr>
-        <a class="btn btn-primary" style="width: 100%;" href="/register">Register</a>
-         <div id="loginError"></div>
-    </form>
-    
-</div>
+
+<section action="/api/session/login" method="post">
+    <div style="display: flex; flex-wrap: wrap; justify-content: center;">
+       
+        <div class="col-lg-5 d-flex flex-column align-items-end vh-100">
+            <div class="align-self-center w-100 px-lg-5 py-lg-4 p-4">
+                <h1 class="font-weight-bold text-center justify-content: center">Bienvenido a LibreriaLea!</h1>
+                <form class="mb-5" >
+                    <div class="mb-4 ">
+                        <label for="InputEmail" class="form-label font-weight-bold">Email</label>
+                        <input type="email" class="form-control bg-dark-x border-0 inputPlaceholder" id="InputEmail"
+                            placeholder="Ingresa tu email" aria-describedby="emailHelp" name="email">
+                    </div>
+                    <div class="mb-4 ">
+                        <label for="InputPassword" class="form-label font-weight-bold ">Contraseña</label>
+                        <input type="password" class="form-control bg-dark-x border-0 mb-2 inputPlaceholder"
+                            placeholder="Ingresa tu contraseña" id="InputPassword" name="password">
+                        <a href="" id="emailHelp" class="form-text text-muted text-decoration-none text-light">¿Has olvidado tu
+                            contraseña?</a>
+                    </div>
+                    <div id="loginError"></div>
+                    <button type="button" class="btn btn-primary w-100" id="btnLogin">Iniciar sesión</button>
+                </form>
+
+                <p class="font-weight-bold text-center text-muted">O inicia sesión con</p>
+                <div class="d-flex justify-content-around">
+                    <button type="button" class="btn btn-outline flex-grow-1 mx-2" disabled><i
+                            class="fab fa-google lead" ></i> Google</button>
+                    <button type="button" class="btn btn-outline flex-grow-1 mx-2" disabled><i
+                            class="fab fa-facebook-f lead" ></i> Facebook</button>
+                </div>
+            </div>
+            <div class="text-center px-lg-5 pt-lg-3 pb-lg-4 p-4 mt-auto w-100 d-flex flex-column">
+                <p class="d-inline-block mb-0 ">¿Todavia no tienes una cuenta?</p> 
+                <a class="btn btn-primary" style="width: 100%;" href="/register">Crea una ahora</a>
+                
+            </div>
 
 
+    </div>
+</section>
 
-<script src="/js/login.js"></script>
+
+<script src="/static/js/login.js"></script>
 
