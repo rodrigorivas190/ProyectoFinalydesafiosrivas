@@ -10,9 +10,9 @@ router.get("/", (req, res) => {
   res.render("login", {});
 });
 
-router.get('/login', isGuest, async (req, res) => {
+router.get("/login", isGuest, async (req, res) => {
 	try {
-		res.render('login');
+		res.render("login");
 	} catch (error) {
 		res.status(400).send(error);
 	}

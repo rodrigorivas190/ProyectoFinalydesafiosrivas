@@ -29,17 +29,23 @@
 
 <div style="display: flex; flex-wrap: wrap; justify-content: center;">
     <form action="/api/session/login" method="post">
-        <label class="form-label">Email address</label>
-        <input class="form-control" type="email" name="email" required>
+        <label for="InputEmail" class="form-label">Email address</label>
+        <input class="form-control" type="email"id="InputEmail" name="email" placeholder="Ingresa tu email" required>
         <br>
-        <label class="form-label">Password</label>
-        <input class="form-control" type="password" name="password" required>
+        <label  for="InputPassword" class="form-label">Password</label>
+        <input class="form-control" type="password" name="password"  placeholder="Ingresa tu contraseña" id="InputPassword" required>
+        <a href="" id="emailHelp" class="form-text text-muted text-decoration-none ">¿Has olvidado tu
+         contraseña?</a>
         <br>
         <button class="btn btn-primary" style="width: 100%;" id="btnLogin">Log</button>
         <hr>
         <a class="btn btn-primary" style="width: 100%;" href="/register">Register</a>
          <div id="loginError"></div>
     </form>
+    
 </div>
 
+
+
+<script src="/js/login.js"></script>
 
