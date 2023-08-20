@@ -1,74 +1,70 @@
-import express from "express";
-import handlebars from "express-handlebars";
-import { Server } from "socket.io";
-import passport from "passport";
-import cookieParser from "cookie-parser";
-import ProductManager from "./dao/remote/managers/product/productManager.js";
-import router from "./routes/index.js";
-import __dirname from "./utils.js";
-import mongoose from "mongoose";
-import session from "express-session";
-import initializePassport from "./config/passport.config.js";
-import MongoStore from "connect-mongo";
-import ChatManager from "./dao/remote/managers/chat/chatManager.js";
-import { MongoClient, ObjectId } from "mongodb";
-const chatManager = new ChatManager();
+import MongoStore from 'connect-mongo';
+import path from 'path';
+import { Server } from 'socket.io';
+import mongoose from 'mongoose';
+import session from 'express-session';
+import passport from 'passport';
+import cookieParser from 'cookie-parser';
+import express from 'express';
 
+import { productsRouter } from './routers/products.router.js';
+import { cartRouter } from './routers/carts.router.js';
+import handlebars from 'express-handlebars';
+import __dirname from './dirname.util.js';
+import { viewsRouter } from './routers/views.router.js';
+import ProductListDb from './dao/service/Product.service.js';
+import MessageListDb from './dao/service/Message.service.js';
+import { messagesRouter } from './routers/message.router.js';
+import usersRouter from './routers/user.router.js';
+import initializePassport from './config/passport.config.js';
+import { sessionRouter } from './routers/sessions.router.js';
+// import config from './config/config.js';
+
+//Inicializo Express
 const app = express();
-const productManager = new ProductManager();
 
 const PORT = process.env.PORT || 8080;
-app.use("/static", express.static("./src/public"));
+const httpServer = app.listen(PORT, (req, res) => {
+	console.log(` ✅ Server running at port: ${PORT}`);
+  });
 
-app.use(express.json());
+
+app.engine('handlebars', handlebars.engine()); 
+app.set('views', path.join(__dirname, 'views')); 
+app.set('view engine', 'handlebars'); 
+
+
+app.use(express.static(path.join(__dirname, 'public')));
+
+
+app.use(express.json()); 
 app.use(express.urlencoded({ extended: true }));
-
-app.engine("handlebars", handlebars.engine());
-app.set("views", __dirname + "/views");
-
-app.set("views", "./src/views");
-app.set("view engine", "handlebars");
+app.use("/static", express.static("../src/public")); 
 
 const URL =
   "mongodb+srv://rodrigorivas190:Maxi7774@cluster0.rp3vhne.mongodb.net/?retryWrites=true&w=majority";
 
-
 app.use(
-  session({
-    store: MongoStore.create({
-      mongoUrl: URL,
-      dbName: "libreriaLea",
-      mongoOptions: {
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
-      },
-      ttl: 1000,
-    }),
-    secret: "secret",
-    resave: true,
-    saveUninitialized: true,
-  })
-);
+	session({
+	  store: MongoStore.create({
+		mongoUrl: URL,
+		dbName: "libreriaLea",
+		mongoOptions: {
+		  useNewUrlParser: true,
+		  useUnifiedTopology: true,
+		},
+		ttl: 1000,
+	  }),
+	  secret: "secret",
+	  resave: true,
+	  saveUninitialized: true,
+	})
+  );
+
 app.use(cookieParser('B2zdY3B$pHmxW%'));
 initializePassport();
 app.use(passport.initialize());
 app.use(passport.session());
-
-router(app);
-
-const hbs = handlebars.create({
-  runtimeOptions: {
-    allowProtoPropertiesByDefault: true,
-    allowProtoMethodsByDefault: true,
-  },
-});
-
-app.engine("handlebars", hbs.engine);
-
-const httpServer = app.listen(PORT, (req, res) => {
-  console.log(` ✅ Server running at port: ${PORT}`);
-});
-
 
 mongoose
   .connect(URL, {
@@ -82,105 +78,45 @@ mongoose
   .catch((e) => {
     console.log("Can't connect to DB");
   });
+//Definición de rutas
+app.use('/api/products', productsRouter);
+app.use('/api/carts', cartRouter);
+app.use('/api/sessions', sessionRouter);
+app.use('/api/users', usersRouter);
+app.use('/', viewsRouter);
+app.use('/messages', messagesRouter);
+
+const messages = [];
+
 
 const io = new Server(httpServer);
-// Función para eliminar un producto por su ID
-async function eliminarProducto(productId) {
-  try {
-    const client = await MongoClient.connect(URL);
-    const db = client.db("libreriaLea");
 
-    const collection = db.collection("products");
 
-    // Convierte el ID del producto a un ObjectId
-    const objectId = new ObjectId(productId);
+const newMessage = {
+	user: '',
+	message: '',
+};
 
-    // Realiza la eliminación del producto por su ID
-    const result = await collection.deleteOne({ _id: objectId });
 
-    if (result.deletedCount === 1) {
-      console.log("Producto eliminado exitosamente.");
-    } else {
-      console.log("Producto no encontrado o no eliminado.");
-    }
+io.on('connection', async (socket) => {
+	//cuando se conecta un cliente le envío el listado de productos
+	socket.emit('real_time_products', await ProductListDb.getProducts());
+	
+	socket.emit('messages', messages);
 
-    client.close();
-  } catch (error) {
-    console.log("Error al eliminar el producto:", error);
-  }
-}
-
-io.on("connection", (socket) => {
-  console.log(`New user ${socket.id} joined`);
-
-  //Recibe del front
-  socket.on("client:newProduct", async (data) => {
-    const { title, description, price, code, stock, category } = data;
-
-    const thumbnail = Array.isArray(data.thumbnail)
-      ? data.thumbnail
-      : [data.thumbnail];
-
-    if (!title || !description || !price || !code || !stock || !category) {
-      console.log("All fields are required");
-    }
-
-    const product = {
-      title,
-      description,
-      price: Number(price),
-      thumbnail,
-      code,
-      stock: Number(stock),
-      category,
-    };
-
-    await productManager.addProduct(product);
-
-    //Envia el back
-    const products = await productManager.getProducts();
-    const listProducts = products.filter((product) => product.status === true);
-
-    io.emit("server:list", listProducts);
-  });
-
-  // Recibe del front
-  socket.on("cliente:deleteProduct", async (data) => {
-    const productId = data.id;
-
-    try {
-      // Verificar que el ID tenga el formato adecuado de ObjectId
-      if (!mongoose.Types.ObjectId.isValid(productId)) {
-        console.log("Invalid ID format");
-        return;
-      }
-
-      // Eliminar físicamente el producto por su ID
-      await eliminarProducto(productId);
-
-      // Envía el back
-      const products = await productManager.getProducts();
-
-      // Solo para mostrar los productos con status true
-      const listProducts = products.filter(
-        (product) => product.status === true
-      );
-
-      io.emit("server:list", listProducts);
-    } catch (error) {
-      console.error("Error deleting product:", error.message);
-    }
-  });
-
-  //Recibe del front
-  socket.on("client:message", async (data) => {
-    await chatManager.saveMessage(data);
-    //Envia el back
-    const messages = await chatManager.getMessages();
-    io.emit("server:messages", messages);
-  });
-
-  socket.on("disconnect", () => {
-    console.log(`User ${socket.id} disconnected`);
-  });
+	
+	socket.on('message', async (message) => {
+		newMessage.user = message.user; 
+		newMessage.message = message.msj;
+		await MessageListDb.addMessage(newMessage); 
+		
+		messages.push(message);
+		
+		io.emit('messages', messages);
+	});
 });
+
+
+
+export { io };
+

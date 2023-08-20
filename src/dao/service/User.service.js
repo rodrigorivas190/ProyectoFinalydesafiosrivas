@@ -1,4 +1,4 @@
-import userModel from "../../../src/dao/models/model.user.js";
+import userModel from '../models/user.model.js';
 
 class UserService {
 	constructor() {
@@ -12,6 +12,11 @@ class UserService {
 	//método para encontrar un usuario por mail
 	async getByEmail(email) {
 		return await this.model.findOne({ email: email });
+	}
+
+	//método para encontrar un usuario por id
+	async getById(userId) {
+		return await this.model.findById(userId);
 	}
 
 	//método para registrar un usuario

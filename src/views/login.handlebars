@@ -1,64 +1,26 @@
- <nav class="navbar navbar-expand-sm bg-info">
-    <div class="container-fluid">
-        <a href="#">
-           <img src="../static/assets/images/logo.jpg" width="80px" alt="logo"
-                class="d-inline-block align-text-top me-3 header__img" />
-        </a>
-    </div>
-    <div class="d-flex collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav align-items-center header__lista">
-            <li class="nav-item ms-3 header__item">
-                <a class="nav-link" href="/register">
-                    <img src="https://i.ibb.co/rF8cB4W/register.png" alt="register" width="30px">
-                </a>
-            </li>
-            <li class="nav-item ms-3 header__item" style="margin-right: 24px;">
-                <a class="nav-link" href="#">
-                    <img src="https://i.ibb.co/3WdFcqG/profile.png" alt="profile" width="30px">
-                </a>
-            </li>
-        </ul>
-    </div>
-</nav>
-
-<br>
-
-<h1 class="text-center">Login</h1>
-
-<br>
-
-
-<section action="/api/session/login" method="post">
-    <div style="display: flex; flex-wrap: wrap; justify-content: center;">
-       
-        <div class="col-lg-5 d-flex flex-column align-items-end vh-100">
+<section class=".loginBody">
+    <div class="row g-0">
+        <div class="col-lg-5  d-flex flex-column align-items-end ">
             <div class="align-self-center w-100 px-lg-5 py-lg-4 p-4">
-                <h1 class="font-weight-bold text-center justify-content: center">Bienvenido a LibreriaLea!</h1>
-                <form class="mb-5" >
+                <h1 class="font-weight-bold mb-4 fs-3 justify-content: center">Bienvenido a LibreriaLea! Login</h1>
+                <div class="mb-5">
                     <div class="mb-4 ">
                         <label for="InputEmail" class="form-label font-weight-bold">Email</label>
-                        <input type="email" class="form-control bg-dark-x border-0 inputPlaceholder" id="InputEmail"
+                        <input type="email" class="text-light form-control  border-0 inputPlaceholder" id="loginEmail"
                             placeholder="Ingresa tu email" aria-describedby="emailHelp" name="email">
                     </div>
                     <div class="mb-4 ">
                         <label for="InputPassword" class="form-label font-weight-bold ">Contraseña</label>
-                        <input type="password" class="form-control bg-dark-x border-0 mb-2 inputPlaceholder"
-                            placeholder="Ingresa tu contraseña" id="InputPassword" name="password">
+                        <input type="password" class="text-light form-control  border-0 mb-2 inputPlaceholder"
+                            placeholder="Ingresa tu contraseña" id="loginPassword" name="password">
                         <a href="" id="emailHelp" class="form-text text-muted text-decoration-none text-light">¿Has olvidado tu
                             contraseña?</a>
                     </div>
                     <div id="loginError"></div>
-                    <button type="button" class="btn btn-primary w-100" id="btnLogin">Iniciar sesión</button>
-                </form>
+                    <button onclick="login()" class="btn btn-primary w-100" id="btnLogin">Iniciar sesión</button>
+                </div>
 
-                {{!-- <p class="font-weight-bold text-center text-muted">O inicia sesión con</p>
-                <div class="d-flex justify-content-around">
-                    <button type="button" class="btn btn-outline flex-grow-1 mx-2" disabled><i
-                            class="fab fa-google lead" ></i> Google</button>
-                    <button type="button" class="btn btn-outline flex-grow-1 mx-2" disabled><i
-                            class="fab fa-facebook-f lead" ></i> Facebook</button>
-                </div> --}}
-                <p class="font-weight-bold text-center text-muted text-light">O inicia sesión con</p>
+                <p class="font-weight-bold text-center text-muted ">O inicia sesión con</p>
                 <div class="d-flex justify-content-center align-item-center m-0">
                     <button type="button" class="btn btn-outline-light flex-grow-1 mx-2" disabled hidden><i
                             class="fab fa-google lead" ></i> Google</button>
@@ -66,23 +28,21 @@
                             class="fab fa-facebook-f lead" ></i> Facebook</button>
                     <div>
                         <a href="api/sessions/github">
-                            <button type="button" class="btn btn-outline-light flex-grow-1 mx-2" id="btnGitHub">
+                            <button type="button" class="btn btn-primary flex-grow-1 mx-2" id="btnGitHub">
                                 <i class="fab fa-github"></i> GitHub</button>
                         </a>
                     </div>
                 </div>
             </div>
-            {{!-- <div class="text-center px-lg-5 pt-lg-3 pb-lg-4 p-4 mt-auto w-100 d-flex flex-column">
-                <p class="d-inline-block mb-0 ">¿Todavia no tienes una cuenta?</p> 
-                <a class="btn btn-primary" style="width: 100%;" href="/register">Crea una ahora</a>
-                
-            </div> --}}
             <div class="text-center px-lg-5 pt-lg-3 pb-lg-4 p-4 mt-auto w-100 d-flex flex-column">
                 <p class="d-inline-block mb-0 text-light">¿Todavia no tienes una cuenta?</p> 
                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
                     Crea una ahora
                 </button>
             </div>
+
+
+            <!-- Modal con formilario de registro -->
             <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
                 aria-labelledby="staticBackdropLabel" aria-hidden="true">
                 <div class="modal-dialog">
@@ -123,11 +83,7 @@
                     </div>
                 </div>
             </div>
-
-
-    </div>
+        </div>
+    </>
 </section>
-
-
-<script src="/static/js/login.js"></script>
-
+<script src="/js/login.js"></script>

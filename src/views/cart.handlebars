@@ -1,73 +1,20 @@
- <nav class="navbar navbar-expand-sm bg-info">
-    <div class="container-fluid">
-        <a href="../../realTimeProducts">
-             <img src="../static/assets/images/logo.jpg" width="80px" alt="logo"
-                class="d-inline-block align-text-top me-3 header__img" />
-        </a>
+{{!-- Listado de productos de un carrito --}}
+<h2 class="center">Listado de productos de cart ID: {{cartId}}</h2>
+<div class="row m1">
+    <!-- Por cada producto imprimo una card con los datos-->
+    {{#each products}}
+    <div class="card card_producto h-100 col-4 p-0 m-1">
+        <div class="card-header py-0 h-auto">
+            <h5 class="m-0 fw-semibold fs-5 text-center">{{this.product.code}}</h5>
+        </div>
+        <div class="d-flex flex-column justify-content-between align-items-center p-2 h-auto">
+            <img class="card-img my-0" src="{{this.product.thumbnail}} " alt="{{this.product.thumbnail}}">
+            <p class="fw-bold fst-italic fs-6 text-center my-0">{{this.product.title}}</p>
+            <p class="fw-lighter my-0">{{this.product.description}}</p>
+            <p class="fw-bold fst-italic fs-5 my-0">{{this.product.price}} $ </p>
+            <footer class="blockquote-footer my-0">quantity: {{this.quantity}}</footer>
+        </div>
         
     </div>
-    <div class="d-flex collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav align-items-center header__lista">
-            <li class="nav-item ms-3 header__item">
-                <a class="nav-link" href="../../realTimeProducts">Products</a>
-            </li>
-            <li class="nav-item ms-3 header__item">
-                <a class="nav-link" href="../../productsList">List</a>
-            </li>
-            <li class="nav-item ms-3 header__item">
-                <a class="nav-link" href="../../chat">Chat</a>
-            </li>
-            <li class="nav-item ms-3 header__item">
-                <a class="nav-link active" href="#">Cart</a>
-            </li>
-            <li class="nav-item ms-3 header__item">
-                <a class="nav-link" href="/api/session/logout">
-                    <img src="https://i.ibb.co/j8FWHKq/switch-off.png" alt="shut-down" width="30px">
-                </a>
-            </li>
-            <li class="nav-item ms-3 header__item" style="margin-right: 24px;">
-                <a class="nav-link" href="../../profile">
-                    <img src="https://i.ibb.co/3WdFcqG/profile.png" alt="profile" width="30px">
-                </a>
-            </li>
-        </ul>
-    </div>
-</nav>
-<br>
-
-<h1 class="text-center"><b id="username"></b>Cart</h1>
-
-<div style="display: flex; justify-content: center;">
-    <div class="card" style="width: 1200px;">
-        <ul class="list-group list-group-flush">
-            {{#each products}}
-            <li class="list-group-item p-0">
-                <div style="display: flex;">
-                    <div style="width: 10px; background-color: #ffd700">
-                    </div>
-                    <div style="display: flex;">
-                        <img src={{product.thumbnail}} alt="img - {{product.thumbnail}}" width="150px">
-                        <div style="display: flex; justify-content: space-between">
-                            <div style="display: flex; flex-direction: column">
-                                <h5 class="m-0">{{product.category}} - {{product.title}}</h5>
-                                <h6 class="m-0">Price: {{product.price}}$</h6>
-                                <h6 class="m-0">Quantity: {{quantity}}</h6>
-                            </div>
-                            <div style="position: absolute; right: 0px;">
-                                <button id="delete" class="btn" onclick="deleteProduct('{{{product._id}}}')"><img src="https://i.ibb.co/xHNqGxR/delete.png" alt="img - trash" width="20px"></button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </li>
-            {{/each}}
-        </ul>
-    </div>
+    {{/each}}
 </div>
-
-
-
-
-
-
-<script src="/static/js/cart.js"></script>

@@ -1,63 +1,18 @@
- <nav class="navbar navbar-expand-sm bg-info">
-    <div class="container-fluid">
-        <a href="../../realTimeProducts">
-           <img src="../static/assets/images/logo.jpg" width="80px" alt="logo"
-                class="d-inline-block align-text-top me-3 header__img" />
-        </a>
-    </div>
-    <div class="d-flex collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav align-items-center header__lista">
-            <li class="nav-item ms-3 header__item">
-                <a class="nav-link" href="../../realTimeProducts">Products</a>
-            </li>
-            <li class="nav-item ms-3 header__item">
-                <a class="nav-link" href="../../productsList">List</a>
-            </li>
-            <li class="nav-item ms-3 header__item">
-                <a class="nav-link active" href="#">Chat</a>
-            </li>
-            <li class="nav-item ms-3 header__item">
-                <a class="nav-link" href="../../cart/64c9d325f54c08f61e2cde00">Cart</a>
-            </li>
-            <li class="nav-item ms-3 header__item">
-                <a class="nav-link" href="/api/session/logout">
-                    <img src="https://i.ibb.co/j8FWHKq/switch-off.png" alt="shut-down" width="30px">
-                </a>
-            </li>
-            <li class="nav-item ms-3 header__item" style="margin-right: 24px;">
-                <a class="nav-link" href="../../profile">
-                    <img src="https://i.ibb.co/3WdFcqG/profile.png" alt="profile" width="30px">
-                </a>
-            </li>
-        </ul>
-    </div>
-</nav>
+<section>
 
-<br>
-
-<h1 class="text-center"><b id="username"></b> Chat</h1>
-
-<div style="display: flex; flex-direction: row; justify-content: space-around;">
+    <div id='Title'>Ingrese su mensaje</div>
+    <!-- Sección en donde se insertan los mensajes -->
+    <div id='messages'></div> 
+    <!--Input para escribir el mensaje -->
     <div>
-        <b>Escribe algo:</b>
-        <input id="chatbox">
+        <input type='text' id='msj' />
     </div>
-    <div class="card" style="box-shadow: 0px 0px 10px #969696">
-        <div><p class="text-center m-0"><b>Historial</b></p></div>
-        <hr style="margin: 2px 0 2px 0;">
-        <div id="logs" style="margin: 5px; width: 400px; height: 300px; overflow: auto;">
-            {{#each messages}}
-            <p><b>{{user}}:</b> {{message}}<i style="font-size: x-small; margin-left: 5px;">{{hour}}</i></p>
-            {{/each}}
-        </div>
-    </div>
-</div>
 
+</section>
 
+<!-- Script de sweetalert -->
+<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11.7.5/dist/sweetalert2.all.min.js'></script>
 
-{{!-- SweetAlert --}}
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-{{!-- Socket.io --}}
+<!-- Incluimos el script de Socket.IO -->
 <script src="/socket.io/socket.io.js"></script>
-{{!-- Logica de Socket.io --}}
-<script src="/static/js/chat.js"></script>
+<script src="/js/index.js"></script>

@@ -1,38 +1,138 @@
-@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap");
-.name {
-  font-family: 'Bebas Neue', sans-serif;
+/*Estilos de los titulos de pantalla productos y real time products*/
+/* h1,
+h2 {
+	color: brown;
+	text-align: center;
+} */
+
+/*h2 {
+	color: black;
+
+	font-size: 1rem;
+}*/
+
+.productsBody {
+	background: linear-gradient(rgba(27, 44, 79, 0.5),rgba(225, 227, 231, 0.5)), url('../assets/images/fondo.jpg') no-repeat center center fixed !important; 
+	background-size: cover !important;
+	margin: 0;
+	font-family: var(--bs-body-font-family);
+	font-size: var(--bs-body-font-size);
+	font-weight: var(--bs-body-font-weight);
+	line-height: var(--bs-body-line-height);
+	color: var(--bs-body-color);
+	text-align: var(--bs-body-text-align);
+	-webkit-text-size-adjust: 100%;
+	-webkit-tap-highlight-color: transparent !important;
 }
 
-
-
-::-webkit-scrollbar {
-  background-color: #d3d3d3;
-  width: 5px;
+:root {
+	--dark: #16191c;
+	--dark-x: #1e2126;
+	--light: #ffffff;
 }
 
-::-webkit-scrollbar-thumb {
-  border-radius: 50px;
-  background: #ffd700;
+.grid {
+	display: -ms-grid;
+	display: grid;
+	-ms-grid-columns: (minmax(12rem, 1fr)) [auto-fill];
+	grid-template-columns: repeat(auto-fill, minmax(12rem, 1fr));
+	grid-gap: 2.5rem 2.5rem;
+	-webkit-box-align: end;
+	-ms-flex-align: end;
+	align-items: end;
+	width: 100%;
 }
 
+.card {
+	height: 374px;
+	padding: 0.5rem;
+	background-color: white;
+	border-radius: 1rem;
+}
 
-body {
-  background: linear-gradient(rgba(225, 227, 231, 0.5),rgba(225, 227, 231, 0.5)), url('../assets/images/fondo.jpg') no-repeat center center fixed !important; 
-  background-size: cover !important;
-  margin: 0;
-  font-family: var(--bs-body-font-family);
-  font-size: var(--bs-body-font-size);
-  font-weight: var(--bs-body-font-weight);
-  line-height: var(--bs-body-line-height);
-  color: var(--bs-body-color);
-  text-align: var(--bs-body-text-align);
-  
+/*Estilos de la pantalla de mensajes*/
+input {
+	width: 100%;
+	height: 40px;
+	border: 1px solid #00b658;
+	border-radius: 5px;
+	padding: 0 10px;
+	font-size: 16px;
+	box-sizing: border-box;
+	margin-bottom: 10px;
+}
 
-  -webkit-text-size-adjust: 100%;
-  -webkit-tap-highlight-color: transparent !important;
+#messages {
+	width: 100%;
+	height: calc(100vh - 140px);
+	border: 1px solid #00b658;
+	border-radius: 5px;
+	padding: 0 10px;
+	font-size: 16px;
+	box-sizing: border-box;
+	margin-bottom: 10px;
+	overflow-y: scroll;
+}
+
+/*LOGIN*/
+
+.loginBody {
+	
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	font-family: 'League Spartan', sans-serif;
+	font-weight: 300;
+	color: var(--light);
+	
+}
+
+.inputPlaceholder::placeholder {
+	color: grey;
+}
+
+.text-light {
+	color: var(--light) !important;
+}
+
+.bg-dark {
+	background-color: var(--dark) !important;
+}
+
+.bg-light {
+	background-color: var(--light) !important;
+}
+
+.bg-dark-x {
+	background-color: var(--dark-x);
+}
+
+.form-control:focus {
+	background-color: var(--dark-x);
+	outline: none;
+}
+
+.card-header {
+	height: 30px;
+}
+
+.text-justify {
+	text-align: justify;
+}
+
+.dropDownFontsize {
+	font-size: x-small;
+}
+
+.tittleFontSize {
+	font-size: small;
+}
+
+.cardImgSize {
+	max-width: 180px;
+	max-height: 200px;
 }
 .bg-info {
     --bs-bg-opacity: 1;
     background-color: rgba(var(--bs-info-rgb),var(--bs-bg-opacity))!important;
 }
-
