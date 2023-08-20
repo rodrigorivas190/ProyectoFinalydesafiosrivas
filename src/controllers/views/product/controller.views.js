@@ -1,7 +1,8 @@
 import { Router } from "express";
 import ProductManager from "../../../dao/remote/managers/product/productManager.js";
 import ProductModel from "../../../dao/models/model.product.js";
-import CartModel from "../../../dao/models/model.cart.js";
+// import CartModel from "../../../dao/models/model.cart.js";
+import { middlewarePassportJWT } from "../../../public/middleware/auth.middleware.js";
 const productManager = new ProductManager();
 const router = Router();
 
@@ -54,7 +55,7 @@ router.get("/home", async (req, res) => {
   }
 });
 
-router.get("/productsList", async (req, res) => {
+router.get("/productsList", middlewarePassportJWT, async (req, res) => {
   try {
     const page = Number(req.query?.page) || 1;
     const limit = Number(req.query?.limit) || 5;

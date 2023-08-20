@@ -1,6 +1,7 @@
 import productsLocalController from "../controllers/local/product/controller.products.js";
 import cartsLocalController from "../controllers/local/cart/controller.carts.js";
 import sessionRemoteController from "../controllers/remote/session/controller.session.js"
+// import sessionRemoteController2 from "../controllers/remote/session/sessions.router.js"
 import viewsControllerProductsSinc from "../controllers/views/product/controller.viewsSinc.js";
 import productsRemoteController from "../controllers/remote/product/controller.products.js";
 import cartsRemoteController from "../controllers/remote/cart/controller.carts.js";

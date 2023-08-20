@@ -10,6 +10,16 @@ router.get("/", (req, res) => {
   res.render("login", {});
 });
 
+router.get("/registerok", async (req, res) => {
+	try {
+		res.render("registerok", {
+			title: "Registro correcto",
+		});
+	} catch (error) {
+		res.status(400).send(error);
+	}
+});
+
 router.get("/login", isGuest, async (req, res) => {
 	try {
 		res.render("login");

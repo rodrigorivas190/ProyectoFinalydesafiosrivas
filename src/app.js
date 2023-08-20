@@ -1,11 +1,14 @@
 import express from "express";
 import handlebars from "express-handlebars";
 import { Server } from "socket.io";
+import passport from "passport";
+import cookieParser from "cookie-parser";
 import ProductManager from "./dao/remote/managers/product/productManager.js";
 import router from "./routes/index.js";
 import __dirname from "./utils.js";
 import mongoose from "mongoose";
 import session from "express-session";
+import initializePassport from "./config/passport.config.js";
 import MongoStore from "connect-mongo";
 import ChatManager from "./dao/remote/managers/chat/chatManager.js";
 import { MongoClient, ObjectId } from "mongodb";
@@ -46,6 +49,10 @@ app.use(
     saveUninitialized: true,
   })
 );
+app.use(cookieParser('B2zdY3B$pHmxW%'));
+initializePassport();
+app.use(passport.initialize());
+app.use(passport.session());
 
 router(app);
 
