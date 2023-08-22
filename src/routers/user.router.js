@@ -46,6 +46,7 @@ usersRouter.post('/auth', async (req, res) => {
 	} catch (error) {
 		console.error(error);
 		res.status(500).json({ status: 'error', message: 'Internal server error' });
+		
 	}
 	//res.json({ status: 'success', message: 'user login authorized' });
 });
@@ -60,5 +61,7 @@ usersRouter.get('/faillogin', async (req, res) => {
 usersRouter.post('/logout', (req, res) => {
 	return res.clearCookie('token').redirect('/login');
 });
+
+
 
 export default usersRouter;

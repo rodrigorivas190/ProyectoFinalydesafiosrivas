@@ -19,6 +19,7 @@ const middlewarePassportJWT = async (req, res, next) => {
 		req.user = usr;
 		next();
 	})(req, res, next);
+	
 };
 
 export { generateToken, middlewarePassportJWT };

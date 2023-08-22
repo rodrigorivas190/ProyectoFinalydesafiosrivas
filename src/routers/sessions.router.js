@@ -7,14 +7,22 @@ const sessionRouter = Router();
 //Endopoint para autenticar con Github
 sessionRouter.get('/github', passport.authenticate('github', { scope: ['user:email'] }), async (req, res) => {});
 
-sessionRouter.get('/githubcallback', passport.authenticate('github', { failureRedirect: 'faillogin' }), (req, res) => {
-	const token = generateToken(req.user);
-	res.cookie('token', token, {
-		httpOnly: true,
-		maxAge: 60000,
-	});
-	// Redireccionar a '/products'
-	return res.redirect('/products');
+
+sessionRouter.get('/githubcallback', (req, res, next) => {
+    passport.authenticate('github', (err, user, info) => {
+        if (err) {
+            return res.redirect('/login');
+        }
+        if (!user) {
+            return res.redirect('/login');
+        }
+        const token = generateToken(user);
+        res.cookie('token', token, {
+            httpOnly: true,
+            maxAge: 60000,
+        });
+        return res.redirect('/products');
+    })(req, res, next);
 });
 
 //Endpoint que muestra todos los productos
