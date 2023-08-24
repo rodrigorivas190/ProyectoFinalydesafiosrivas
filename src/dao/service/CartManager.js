@@ -49,7 +49,10 @@ export default class CartManager {
 	async getCarts() {
 		const actualCarts = await fs.promises.readFile(`${this.path}`, 'utf-8');
 		return JSON.parse(actualCarts);
+		
 	}
+
+
 
 	//Método para adquirir un producto especifico por ID
 	async getCartById(idBuscado) {
@@ -75,7 +78,7 @@ export default class CartManager {
 
 		let cartsId = productCarts.map((element) => element.id); // me quedo con todos los códigos del array productos
 		const result = cartsId.find((element) => element === cartId); // busco el elemento que coincida con el ID indicado
-		if (result === undefined) return { error: `Error: Cart ID=${cartId} not found` }; //si no lo encuentra retorno error
+		if (result === undefined) return { error: `Error: Carrito no existe o no encontrado` }; //si no lo encuentra retorno error
 
 		productCarts.map((cart) => {
 			//recorro el array buscando el ID del carrito indicado
@@ -96,6 +99,7 @@ export default class CartManager {
 			}
 		});
 		await fs.promises.writeFile(`${this.path}`, JSON.stringify(productCarts));
-		return { status: 'sucess', message: `product ID=${productId} added to cart ID=${cartId}` };
+		// return { status: 'sucess', message: `product ID=${productId} added to cart ID=${cartId}` };
+		return { status: 'success', message: `Producto agregado al carrito correctamente.` };
 	}
 }

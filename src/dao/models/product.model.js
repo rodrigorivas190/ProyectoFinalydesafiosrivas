@@ -1,7 +1,7 @@
 //Modelo de productos para guardar en la base de datos
 import mongoose from 'mongoose';
 import mongoosePaginate from 'mongoose-paginate-v2';
-
+const productsCollection = "products";
 const productSchema = new mongoose.Schema({
 	title: {
 		type: String,
@@ -40,4 +40,5 @@ const productSchema = new mongoose.Schema({
 	},
 });
 productSchema.plugin(mongoosePaginate);
-export const ProductModel = mongoose.model('products', productSchema);
+mongoose.set("strictQuery", false);
+export const ProductModel = mongoose.model('products' , productSchema, productsCollection);

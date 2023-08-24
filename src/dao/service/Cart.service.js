@@ -12,6 +12,16 @@ class CartService {
 		};
 		this.model.create(newCart); //agrego el nuevo carrito al archivo
 	}
+	getCarts = async () => {
+		try {
+		  const carts = CartModel.find();
+	  
+		  return carts;
+		} catch {
+		  console.log("Carts not found");
+		  return [];
+		}
+	  };
 
 	//Método para adquirir un carrito especifico por ID
 	async getCartById(idBuscado) {
@@ -32,16 +42,17 @@ class CartService {
 		};
 		const cart = await this.model.findById(cartId); //me quedo con el carrito a modificar
 		const prod = cart.products.find((element) => element.product.toString() === productId); // busco el elemento que coincida con el ID indicado
+		
 		if (prod) {
-			//Si existe sumo una unidad
 			prod.quantity += 1;
+			await cart.save(); // Guardo los cambios en el carrito
+			return { status: 'success', message: `Producto actualizado correctamente.` };
 		} else {
-			//Si no axiste el producto lo agrego
 			cart.products.push(newProduct);
+			await cart.save(); // Guardo los cambios en el carrito
+			return { status: 'success', message: `Producto agregado al carrito correctamente.` };
 		}
 
-		await cart.save(); //guardo cambios
-		return { status: 'sucess', message: `product ID=${productId} added to cart ID=${cartId}` }; // retorno el carrito con el producto agregado
 	}
 
 	//Método para borrar un producto del carrito
@@ -54,13 +65,28 @@ class CartService {
 		cart.products.splice(index, 1); //Elimino elemento del array
 
 		await cart.save(); //guardo cambios
-		return { status: 'sucess', message: `product ID=${productId} deleted from cart ID=${cartId}` }; // retorno el carrito con el producto agregado
+		return { status: 'sucess', message: `producto eliminado del carrito` }; // retorno el carrito con el producto agregado
 	}
+
 
 	//Método para actualizar todo el array de productos
 	async updateAllProducts(cartId, newArray) {
-		await this.model.findOneAndUpdate({ _id: cartId }, { products: newArray.products }); //busco el carrito y modifico el campo
-		return { status: 'sucess', message: `prdocuts from cart ID=${cartId} updated` }; // retorno el carrito con el producto agregado
+		const updateResult = await this.model.updateOne({ _id: cartId }, { products: newArray.products });
+	
+		if (updateResult.nModified > 0) {
+			return { status: 'success', message: `Productos actualizados.` };
+		} else {
+			return { status: 'error', message: 'Carrito no existe.' };
+		}
+	}
+	async deleteCart(cartId) {
+		const deleteResult = await this.model.deleteOne({ _id: cartId });
+
+		if (deleteResult.deletedCount > 0) {
+			return { status: 'success', message: `Carrito eliminado correctamente.` };
+		} else {
+			return { status: 'error', message: 'Carrito no existente.' };
+		}
 	}
 
 	//metodo para modificar la cantidad de productos de un elemento del array de productos
@@ -71,17 +97,18 @@ class CartService {
 			//Si existe sumo una unidad
 			prod.quantity = newQuantity.quantity;
 		} else {
-			return { status: 'error', message: `product ID=${productId} is not valid in cart ID=${cartId}` };
+			return { status: 'error', message: `producto no valido para el carrito` };
 		}
 		await cart.save(); //guardo cambios
-		return { status: 'sucess', message: `product ID=${productId} added to cart ID=${cartId}` }; // retorno el carrito con el producto agregado
+		return { status: 'sucess', message: `producto agregado correctamente al carrito` }; // retorno el carrito con el producto agregado
 	}
 
 	//Metodo para borrar todos los productos de un carrito determinado
 	async deleteAllProducts(cartId) {
 		await this.model.findOneAndUpdate({ _id: cartId }, { products: [] }); //busco el carrito e inserto un array vacio
-		return { status: 'sucess', message: `products deleted from cart ID=${cartId}` }; // retorno el carrito con el producto agregado
+		return { status: 'sucess', message: `producto eliminado del carrito` }; // retorno el carrito con el producto agregado
 	}
+	
 }
 
 //Instancio una nueva clase de Cart Manager con el archivo ya creado
