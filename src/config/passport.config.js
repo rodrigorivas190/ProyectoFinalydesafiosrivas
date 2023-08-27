@@ -2,11 +2,12 @@ import passport from 'passport';
 import local from 'passport-local';
 import { Strategy, ExtractJwt } from 'passport-jwt';
 import GitHubStrategy from 'passport-github2';
+import userModel from '../dao/models/user.model.js';
 
 import userService from '../dao/service/User.service.js';
 import { hashPassword, comparePassword } from '../utils/encrypt.util.js';
 
-const jwtStrategy = Strategy;
+const jwtStrategy = Strategy;	
 const jwtExtract = ExtractJwt;
 const LocalStrategy = local.Strategy;
 
@@ -85,6 +86,7 @@ const initializePassport = () => {
 				callbackURL: 'http://localhost:8080/api/sessions/githubcallback',
 			},
 			async (accessToken, refreshToken, profile, done) => {
+				console.log(profile)
 				try {
 					let user = await userService.getByEmail(profile._json.email);
 					if (!user) {

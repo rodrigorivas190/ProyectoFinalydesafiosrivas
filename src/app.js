@@ -18,15 +18,16 @@ import { messagesRouter } from './routers/message.router.js';
 import usersRouter from './routers/user.router.js';
 import initializePassport from './config/passport.config.js';
 import { sessionRouter } from './routers/sessions.router.js';
-// import config from './config/config.js';
+import config from './config/config.js';
 
 //Inicializo Express
 const app = express();
 
-const PORT = process.env.PORT || 8080;
-const httpServer = app.listen(PORT, (req, res) => {
-	console.log(` ✅ Server running at port: ${PORT}`);
-  });
+//Monto el servidor en el puerto 8080
+
+const webServer = app.listen(config.port, () => {
+	console.log(`✅ Server running at port ${config.port}`);
+});
 
 
 app.engine('handlebars', handlebars.engine()); 
@@ -41,43 +42,28 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use("/static", express.static("../src/public")); 
 
-const URL =
-  "mongodb+srv://rodrigorivas190:Maxi7774@cluster0.rp3vhne.mongodb.net/?retryWrites=true&w=majority";
-
+// Session
 app.use(
 	session({
-	  store: MongoStore.create({
-		mongoUrl: URL,
-		dbName: "libreriaLea",
-		mongoOptions: {
-		  useNewUrlParser: true,
-		  useUnifiedTopology: true,
-		},
-		ttl: 1000,
-	  }),
-	  secret: "secret",
-	  resave: true,
-	  saveUninitialized: true,
+		store: MongoStore.create({
+			mongoUrl: config.mongoUrl,
+			dbName: config.dbName,
+			mongoOptions: { useNewUrlParser: true, useUnifiedTopology: true },
+			
+			ttl: 1000,
+		}),
+		secret: 'secret',
+		resave: true,
+		saveUninitialized: true,
 	})
-  );
+);
 
 app.use(cookieParser('B2zdY3B$pHmxW%'));
 initializePassport();
 app.use(passport.initialize());
 app.use(passport.session());
 
-mongoose
-  .connect(URL, {
-    dbName: "libreriaLea",
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
-  .then(() => {
-    console.log("DB connected");
-  })
-  .catch((e) => {
-    console.log("Can't connect to DB");
-  });
+
 //Definición de rutas
 app.use('/api/products', productsRouter);
 app.use('/api/carts', cartRouter);
@@ -89,7 +75,7 @@ app.use('/messages', messagesRouter);
 const messages = [];
 
 
-const io = new Server(httpServer);
+const io = new Server(webServer);
 
 
 const newMessage = {
@@ -116,7 +102,20 @@ io.on('connection', async (socket) => {
 	});
 });
 
+//Me conecto a la base de datos
 
+mongoose
+  .connect(config.mongoUrl, {
+    dbName: config.dbName,
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
+  .then(() => {
+    console.log("DB connected");
+  })
+  .catch((e) => {
+    console.log("Can't connect to DB");
+  });
 
 export { io };
 
