@@ -26,11 +26,12 @@ class CartService {
 	//Método para adquirir un carrito especifico por ID
 	async getCartById(idBuscado) {
 		const result = await this.model.findById(idBuscado).lean().populate('products.product'); // busco el elemento que coincida con el ID indicado y populo los datos de los productos.
+		
 		if (result) {
 			// Si tengo un resultado lo retorno, sino devuelvo error
 			return result.products;
 		} else {
-			return { error: `Error: Cart ID=${idBuscado} not found` };
+			return { error: `No existe un carrito` };
 		}
 	}
 
@@ -40,27 +41,30 @@ class CartService {
 			product: productId,
 			quantity: 1,
 		};
-		const cart = await this.model.findById(cartId); //me quedo con el carrito a modificar
-		const prod = cart.products.find((element) => element.product.toString() === productId); // busco el elemento que coincida con el ID indicado
-		
+		const cart = await this.model.findById(cartId);
+	
+		// Busca el producto en el carrito que coincide con el productId
+		const prod = cart.products.find((element) => element?.product?._id.toString() === productId);
+	
 		if (prod) {
-			prod.quantity += 1;
-			await cart.save(); // Guardo los cambios en el carrito
-			return { status: 'success', message: `Producto actualizado correctamente.` };
+			prod.quantity += 1; // Incrementa la cantidad en 1
+			await cart.save(); // Guarda los cambios en el carrito
+			return { status: 'success', message: `Cantidad del producto actualizada correctamente.` };
 		} else {
 			cart.products.push(newProduct);
-			await cart.save(); // Guardo los cambios en el carrito
+			await cart.save(); // Guarda los cambios en el carrito
 			return { status: 'success', message: `Producto agregado al carrito correctamente.` };
 		}
-
 	}
+	
+	
 
 	//Método para borrar un producto del carrito
 	async deleteProduct(cartId, productId) {
 		const cart = await this.model.findById(cartId); //me quedo con el carrito a modificar
 		const index = cart.products.indexOf(cart.products.find((element) => element.product.toString() === productId)); // busco el elemento que coincida con el ID indicado y retorno index
 		if (index === -1) {
-			return { error: 'Error: Product not found' }; //si no encuentro producto retorno error
+			return { error: 'Error: Producto no encontrado' }; //si no encuentro producto retorno error
 		}
 		cart.products.splice(index, 1); //Elimino elemento del array
 
@@ -91,17 +95,30 @@ class CartService {
 
 	//metodo para modificar la cantidad de productos de un elemento del array de productos
 	async updateProductQuantity(cartId, productId, newQuantity) {
-		const cart = await this.model.findById(cartId); //me quedo con el carrito a modificar
-		const prod = cart.products.find((element) => element.product.toString() === productId); // busco el elemento que coincida con el ID indicado
-		if (prod) {
-			//Si existe sumo una unidad
-			prod.quantity = newQuantity.quantity;
-		} else {
-			return { status: 'error', message: `producto no valido para el carrito` };
+		try {
+			// Busca el carrito con el ID proporcionado y usa populate para obtener los productos relacionados
+			const cart = await this.model.findById(cartId).populate('products.product');
+	
+			if (!cart) {
+				return { status: "error", message: "El carrito no existe." };
+			}
+	
+			// Busca el producto en el carrito que coincide con el productId
+			const product = cart.products.find((element) => element.product._id.toString() === productId);
+	
+			if (product) {
+				// Actualiza la cantidad del producto
+				product.quantity = newQuantity;
+				await cart.save(); // Guarda los cambios en el carrito
+				return { status: 'success', message: `Cantidad del producto actualizada correctamente.` };
+			} else {
+				return { error: 'Producto no encontrado en el carrito' };
+			}
+		} catch (error) {
+			return { error: 'Error al actualizar la cantidad del producto' };
 		}
-		await cart.save(); //guardo cambios
-		return { status: 'sucess', message: `producto agregado correctamente al carrito` }; // retorno el carrito con el producto agregado
 	}
+	
 
 	//Metodo para borrar todos los productos de un carrito determinado
 	async deleteAllProducts(cartId) {

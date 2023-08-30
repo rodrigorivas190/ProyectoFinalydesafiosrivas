@@ -99,6 +99,7 @@ class ProductService {
 		return { status: 'sucess', message: `producto modificado` };
 	}
 
+
 	//Método para eliminar un producto
 	async deleteProduct(idBuscado) {
 		let result = await this.model.find({ _id: idBuscado });

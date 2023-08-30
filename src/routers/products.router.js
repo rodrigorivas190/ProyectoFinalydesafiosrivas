@@ -27,10 +27,16 @@ productsRouter.get('/:pid', async (req, res) => {
 	try {
 		//Recibo un params y muestro el producto con ese ID, como el ID es un string lo paso a entero
 		let product = await ProductListDb.getProductsById(req.params.pid);
-		res.send(product);
-	} catch (error) {
-		res.status(400).send(error);
-	}
+		
+		if ('error' in product) {
+            // Si hay un error en el objeto product, envía el mensaje de error
+            return res.status(404).json({ message: product.error });
+        }
+
+        res.send(product);
+    } catch (error) {
+        res.status(400).send(error);
+    }
 });
 
 //Endpoint que agrega un producto

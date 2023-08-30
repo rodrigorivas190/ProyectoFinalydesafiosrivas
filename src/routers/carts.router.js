@@ -8,16 +8,20 @@ const cartRouter = Router();
 //Instancio una nueva clase de Cart Manager con el archivo ya creado
 const CartList = new CartManager('./carrito.json');
 
+  cartRouter.get("/", async (req, res) => {
+    try {
+        const carts = await CartListDb.getCarts();
+        console.log(carts);
 
-cartRouter.get("/", async (req, res) => {
-	try {
-	  const carts = await CartListDb.getCarts();
-	  console.log(carts);
-	  res.status(200).json(carts);
-	} catch (err) {
-	  res.status(400).json({ error400: "Bad Request" });
-	}
-  });
+        if (carts.length === 0) {
+            return res.status(404).json({ message: "No existen carritos." });
+        }
+
+        res.status(200).json(carts);
+    } catch (err) {
+        res.status(400).json({ error400: "Bad Request" });
+    }
+});
 //Endpoint que agrega un nuevo carrito
 cartRouter.post('/', async (req, res) => {
 	
@@ -33,19 +37,23 @@ cartRouter.post('/', async (req, res) => {
 
 //Endpoint que muestra los productos de un carrito en particular
 cartRouter.get('/:cid', async (req, res) => {
-	
-	try {
-		//Recibo un params y muestro el listado de productos de un carrito determinado
-		let products = await CartListDb.getCartById(req.params.cid);
-		res.send(products);
-	} catch (err) {
-		if (err.message.includes("Cart with id")) {
-		  res.status(404).json({ error404: err.message });
-		}
-	  }
-	
-	
+    try {
+        // Intenta obtener el carrito con el ID especificado
+        let products = await CartListDb.getCartById(req.params.cid);
+
+        if (!products || products.length === 0) {
+            // Si no se encontró el carrito o está vacío, devuelve un mensaje de error
+            return res.status(404).json({ message: 'No existe el carrito con el ID especificado.' });
+        }
+
+        res.send(products);
+    } catch (err) {
+        if (err.message.includes("Cart with id")) {
+            res.status(404).json({ error404: err.message });
+        }
+    }
 });
+
 
 //Endpoint que agrega el producto a un carrito determinado
 cartRouter.post('/:cid/product/:pid', async (req, res) => {

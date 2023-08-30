@@ -78,28 +78,29 @@ export default class ProductManager {
 			// Si tengo un resultado lo retorno, sino devuelvo error
 			return result;
 		} else {
-			return { error: 'Error: Product not found' };
+			return { error: 'Error: Producto no existe' };
 		}
 	}
 
 	//Método para actualizar producto
+
 	async updateProduct(idBuscado, productUpdated) {
 		const productList = await this.getProducts();
-		productList.map((product) => {
-			//recorro el array buscando el prducto indicado, cuando lo encuentro reemplazo valores, menos el ID
-			if (product.id === idBuscado) {
-				product.title = productUpdated.title;
-				product.description = productUpdated.description;
-				product.code = productUpdated.code;
-				product.price = productUpdated.price;
-				product.status = productUpdated.status;
-				product.stock = productUpdated.stock;
-				product.category = productUpdated.category;
-				product.thumbnail = productUpdated.thumbnail;
+	
+		for (let i = 0; i < productList.length; i++) {
+			if (productList[i].id === idBuscado) {
+				productList[i].title = productUpdated.title;
+				productList[i].description = productUpdated.description;
+				productList[i].code = productUpdated.code;
+				productList[i].price = productUpdated.price;
+				productList[i].status = productUpdated.status;
+				productList[i].stock = productUpdated.stock;
+				productList[i].category = productUpdated.category;
+				productList[i].thumbnail = productUpdated.thumbnail;
+				break; // Salir del bucle después de encontrar el producto
 			}
-			return product;
-		});
-
+		}
+	
 		await fs.promises.writeFile(`${this.path}`, JSON.stringify(productList));
 		return productList;
 	}
@@ -109,7 +110,7 @@ export default class ProductManager {
 		const productList = await this.getProducts(); //obtengo lista de productos
 		const index = productList.indexOf(productList.find((elemento) => elemento.id === idBuscado)); //obtengo el índice del elemento a borrar
 		if (index === -1) {
-			return { error: 'Error: Product not found' }; //si no encuentro producto retorno error
+			return { error: 'Error: Producto no existe' }; //si no encuentro producto retorno error
 		}
 
 		const code = productList[index].code;

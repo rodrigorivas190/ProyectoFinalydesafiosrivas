@@ -52,8 +52,6 @@ export default class CartManager {
 		
 	}
 
-
-
 	//Método para adquirir un producto especifico por ID
 	async getCartById(idBuscado) {
 		const cartById = await this.getCarts();
@@ -66,6 +64,7 @@ export default class CartManager {
 			return { error: `Error: Cart ID=${idBuscado} not found` };
 		}
 	}
+	
 
 	//Método agregar un producto al carrito
 	async addProductToCart(cartId, productId) {
@@ -102,4 +101,5 @@ export default class CartManager {
 		// return { status: 'sucess', message: `product ID=${productId} added to cart ID=${cartId}` };
 		return { status: 'success', message: `Producto agregado al carrito correctamente.` };
 	}
+
 }
