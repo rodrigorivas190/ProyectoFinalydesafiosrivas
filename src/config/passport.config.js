@@ -5,7 +5,7 @@ import GitHubStrategy from 'passport-github2';
 import { CartModel } from '../dao/models/cart.model.js';
 import userService from '../dao/service/User.service.js';
 import { hashPassword, comparePassword } from '../utils/encrypt.util.js';
-
+import userModel from '../dao/models/user.model.js';
 const jwtStrategy = Strategy;	
 const jwtExtract = ExtractJwt;
 const LocalStrategy = local.Strategy;
@@ -14,34 +14,41 @@ const LocalStrategy = local.Strategy;
 
 const initializePassport = () => {
 	//Estrategia para registrar
-	passport.use(
-		'register',
-		new LocalStrategy({ passReqToCallback: true, usernameField: 'email' }, async (req, username, password, done) => {
-			const { first_name, last_name, email, cartId } = req.body; // Agrega carId aquí
-			try {
-				let user = await userService.getByEmail(email);
-				if (!user) {
-					return done(null, false, { status: 'error', message: 'user already exists' });
-				}
-				const cart = new CartModel()
-            	await cart.save()
-            	const cartid = cart._id
-				const newUser = {
-					first_name,
-					last_name,
-					email,
-					password: hashPassword(password),
-					cartId: cartid,
-					cartId, // Agrega el carId al nuevo usuario
-				};
-				let result = await userService.createUser(newUser);
-				return done(null, result);
-				
-			} catch (error) {
-				return done('Error al obtener el usuario' + error);
-			}
-		})
-	);
+	passport.use("register", new LocalStrategy(
+        {
+            passReqToCallback: true,
+            usernameField: "email"
+        }, 
+        async(req, username, password, done) => {
+        const {first_name, email, last_name, age} = req.body
+
+    try {
+        const existUser = await userModel.findOne({email: username})
+        if(!existUser){
+            const cart = new CartModel()
+            await cart.save()
+            const cartid = cart._id
+            const newUser ={
+                first_name,
+                last_name,
+                age,
+                email,
+                cartId: cartid,
+                password: hashPassword(password),
+            }
+            console.log(newUser);
+            const userCreated = new userModel(newUser);
+            await userCreated.save()
+            return done(null, userCreated)
+            
+        }
+        console.log(("El usuario ya existe"));
+        return done(null, false)
+        
+    } catch (error) {
+        return done("Error al registrar usuario", error)
+    }
+    }))
 
 	//Estrategia login
 	passport.use(
