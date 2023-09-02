@@ -2,7 +2,7 @@ import passport from 'passport';
 import local from 'passport-local';
 import { Strategy, ExtractJwt } from 'passport-jwt';
 import GitHubStrategy from 'passport-github2';
-
+import { CartModel } from '../dao/models/cart.model.js';
 import userService from '../dao/service/User.service.js';
 import { hashPassword, comparePassword } from '../utils/encrypt.util.js';
 
@@ -17,20 +17,26 @@ const initializePassport = () => {
 	passport.use(
 		'register',
 		new LocalStrategy({ passReqToCallback: true, usernameField: 'email' }, async (req, username, password, done) => {
-			const { first_name, last_name, email } = req.body;
+			const { first_name, last_name, email, cartId } = req.body; // Agrega carId aquí
 			try {
 				let user = await userService.getByEmail(email);
-				if (user) {
+				if (!user) {
 					return done(null, false, { status: 'error', message: 'user already exists' });
 				}
+				const cart = new CartModel()
+            	await cart.save()
+            	const cartid = cart._id
 				const newUser = {
 					first_name,
 					last_name,
 					email,
 					password: hashPassword(password),
+					cartId: cartid,
+					cartId, // Agrega el carId al nuevo usuario
 				};
 				let result = await userService.createUser(newUser);
 				return done(null, result);
+				
 			} catch (error) {
 				return done('Error al obtener el usuario' + error);
 			}
@@ -87,29 +93,38 @@ const initializePassport = () => {
 				callbackURL: 'http://localhost:8080/api/sessions/githubcallback',
 			},
 			async (accessToken, refreshToken, profile, done) => {
-				console.log(profile)
 				try {
 					let user = await userService.getByEmail(profile._json.email);
 					if (!user) {
-						let newUser = {
-							first_name: profile._json.name,
-							last_name: '',
-							email: profile._json.email,
-							password: '',
-							img: profile._json.avatar_url,
-						};
-						user = await userService.createUser(newUser);
-						done(null, user);
-					} else {
-						done(null, user);
-					}
+					const cart = new CartModel()
+					await cart.save()
+					const cartid = cart._id
+					const newUser = {
+					first_name: profile._json.name,
+					last_name: "",
+					cartId: cartid,
+					password:"",
+					email: profile._json.email,
+					img: profile._json.avatar_url,
+				}
+					
+					user = await userService.createUser(newUser);
+					done(null, user);
+				} else {
+				// Actualiza el carId del usuario si es necesario
+				if (profile._json.cartId) {
+					user.cartId = profile._json.cartId;
+					await user.save();
+				}
+					done(null, user);
+				}
 				} catch (error) {
 					done(error, false);
 				}
 			}
 		)
 	);
-
+	
 	passport.serializeUser((user, done) => {
 		done(null, user.id);
 	});

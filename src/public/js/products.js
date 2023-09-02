@@ -1,5 +1,5 @@
 let btnAgregarCarrito = document.querySelectorAll('.btnAgregarCarrito'); // NodeList = [button#1, button#2 .... , button#n]
-const cartId = '64c9d325f54c08f61e2cde00';
+const cartId = '64e6ba8ea08ce3e6f86da671';
 const contenedorCarrito = document.querySelector('#contenedorCarrito'); // contenedor donde se muestran los productos en la venta de carrito
 const btnCarrito = document.querySelector('#btnCarrito'); // al presionar sobre el logo del carrito llamo a la función para mostrar los elementos en el carrito
 const btnVaciarCarrito = document.querySelector('#btnVaciarCarrito'); //boton vaciar carrito
