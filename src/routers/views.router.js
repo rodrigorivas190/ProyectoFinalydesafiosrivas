@@ -1,9 +1,10 @@
 import { Router } from 'express';
 import { io } from '../app.js';
-import ProductListDb from '../dao/service/Product.service.js';
-import CartListDb from '../dao/service/Cart.service.js';
-import { isAuth, isGuest } from '../public/middleware/auth.middleware.js';
-import { middlewarePassportJWT } from '../public/middleware/jwt.middleware.js';
+import { isAuth, isGuest } from '../middleware/auth.middleware.js';
+import { middlewarePassportJWT } from '../middleware/jwt.middleware.js';
+import productController from '../controllers/product.controller.js';
+import cartController from '../controllers/cart.controller.js';
+import { isUser } from '../middleware/isUser.middleware.js';
 
 //Inicializo Router
 const viewsRouter = Router();
@@ -14,8 +15,7 @@ viewsRouter.get('/products', middlewarePassportJWT, async (req, res) => {
 	delete user.password;
 	try {
 		const { limit, page, category, availability, sort } = req.query;
-		let products = await ProductListDb.getProducts(parseInt(limit), parseInt(page), category, sort, availability); //traigo el listado de productos y los renderizo en home
-		//let showProducts = products.payload;
+		let products = await productController.getProducts(parseInt(limit), parseInt(page), category, sort, availability); //traigo el listado de productos y los renderizo en home
 		res.render('home', {
 			products,
 			user,
@@ -28,7 +28,7 @@ viewsRouter.get('/products', middlewarePassportJWT, async (req, res) => {
 
 //Endpoint que muestra los productos en tiempo real
 viewsRouter.get('/realtimeproducts', async (req, res) => {
-	io.emit('real_time_products', await ProductListDb.getProducts());
+	io.emit('real_time_products', await productController.getProducts());
 	try {
 		res.render('realTimeProducts', {
 			//renderizo los productos en tiempo real
@@ -40,13 +40,8 @@ viewsRouter.get('/realtimeproducts', async (req, res) => {
 });
 
 //Endpoint que muestra los mensajes
-viewsRouter.get('/chat', async (req, res) => {
-	// Inicio la conección y envio el listado de productos para rederizarlos en pantalla
-	/*io.on('connection', async (socket) => {
-		//cuando se conecta un cliente le envío el listado de productos
-		socket.emit('real_time_products', await ProductList.getProducts());
-	});*/
-
+viewsRouter.get('/chat', middlewarePassportJWT, isUser, async (req, res) => {
+	
 	try {
 		res.render('chat'); // Renderizo los mensajes en pantalla
 	} catch (error) {
@@ -58,7 +53,7 @@ viewsRouter.get('/chat', async (req, res) => {
 viewsRouter.get('/carts/:cid', async (req, res) => {
 	try {
 		const cartId = req.params.cid;
-		let products = await CartListDb.getCartById(cartId);
+		let products = await cartController.getCartById(cartId);
 		res.render('cart', {
 			products,
 			cartId,
@@ -98,9 +93,5 @@ viewsRouter.get('/', async (req, res) => {
 		res.status(400).send(error);
 	}
 });
-
-
-  
-  
 
 export { viewsRouter };

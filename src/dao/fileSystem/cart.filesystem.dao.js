@@ -4,9 +4,9 @@ import fs from 'fs';
 export default class CartManager {
 	static id = 0; // ID que será vistos por todas las instancias
 
-	constructor(myPath) {
+	constructor() {
 		this.carts = [];
-		this.path = myPath;
+		this.path = './carrito.json';
 		//Si no existe el archivo lo creo de forma sincronica con un array vacío
 		if (!fs.existsSync('./carrito.json')) {
 			fs.promises.writeFile(`${this.path}`, JSON.stringify(this.carts));
@@ -49,57 +49,30 @@ export default class CartManager {
 	async getCarts() {
 		const actualCarts = await fs.promises.readFile(`${this.path}`, 'utf-8');
 		return JSON.parse(actualCarts);
-		
 	}
 
-	//Método para adquirir un producto especifico por ID
+	//Método para adquirir cart especifico por ID
 	async getCartById(idBuscado) {
 		const cartById = await this.getCarts();
 
 		const result = cartById.find((element) => element.id === idBuscado); // busco el elemento que coincida con el ID indicado
-		if (result) {
-			// Si encuentro el ID devuelvo el listado de productos, sino devuelvo error
-			return result.products;
-		} else {
-			return { error: `Error: Cart ID=${idBuscado} not found` };
-		}
+		return result;
 	}
-	
 
 	//Método agregar un producto al carrito
-	async addProductToCart(cartId, productId) {
-		let existe = false; // flag para indicar si el producto ya existe en el carrito
+	async addProductToCart(cartId, newProductArray) {
 		const productCarts = await this.getCarts();
-		const newProduct = {
-			product: productId,
-			quantity: 1,
-		};
-
-		let cartsId = productCarts.map((element) => element.id); // me quedo con todos los códigos del array productos
-		const result = cartsId.find((element) => element === cartId); // busco el elemento que coincida con el ID indicado
-		if (result === undefined) return { error: `Error: Carrito no existe o no encontrado` }; //si no lo encuentra retorno error
 
 		productCarts.map((cart) => {
 			//recorro el array buscando el ID del carrito indicado
 			if (cart.id === cartId) {
-				cart.products.map((prod) => {
-					//por cada carrito busco el producto indicado
-					if (prod.product === productId) {
-						//Si existe sumo una unidad
-						prod.quantity += 1;
-						existe = true; //enciendo flag
-					}
-				});
-				if (!existe) {
-					//Si no axiste el producto lo agrego
-					cart.products.push(newProduct);
-					existe = false;
-				}
+				cart.products = newProductArray;
 			}
 		});
 		await fs.promises.writeFile(`${this.path}`, JSON.stringify(productCarts));
-		// return { status: 'sucess', message: `product ID=${productId} added to cart ID=${cartId}` };
-		return { status: 'success', message: `Producto agregado al carrito correctamente.` };
 	}
 
+	getIndex(cart, productId) {
+		return cart.products.indexOf(cart.products.find((element) => element.product.id.toString() === productId));
+	}
 }

@@ -1,60 +1,53 @@
-const socket = io();
-const chatbox = document.getElementById("chatbox");
-let user = sessionStorage.getItem("user") || "";
+const socket = io(); // se levanta socket del lado del cliente
+const inputMSJ = document.getElementById('msj');
+const botonEnviar = document.getElementById('btnEnviar');
+let user = '';
 
-//SweetAlert
-if (!user) {
-  Swal.fire({
-    title: "Auth",
-    input: "text",
-    text: "Set username",
-    inputValidator: (value) => {
-      return !value.trim() && "Please write a username";
-    },
-    allowOutsideClick: false,
-  }).then((result) => {
-    user = result.value;
-    document.getElementById("username").innerHTML = user;
-    sessionStorage.setItem("user", user);
-    socket.emit("new", user);
-  });
-} else {
-  document.getElementById("username").innerHTML = user;
-  socket.emit("new", user);
-}
-
-//Enviar mensajes
-chatbox.addEventListener("keyup", (event) => {
-  if (event.key === "Enter") {
-    const msn = chatbox.value.trim();
-
-    if (msn.length > 0) {
-      const date = new Date();
-      const hourDate = date.getHours();
-      const minuteDate = date.getMinutes();
-      const hour = `${hourDate}:${minuteDate}`;
-
-      socket.emit("client:message", {
-        user,
-        message: msn,
-        hour: hour,
-      });
-
-      chatbox.value = "";
-    }
-  }
+//Logueo de sweet Alert
+Swal.fire({
+	title: 'Ingrese dirección de email',
+	input: 'email',
+	inputPlaceholder: 'Ingrese su dirección de correo',
+	inputValidator: (value) => {
+		return (
+			!/^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i.test(value) &&
+			'dirección de correo invalida, ingrese nuevamente' //Expresion regular para validar email
+		);
+	},
+	allowOutsideClick: false,
+}).then((result) => {
+	user = result.value; // Guardo el usuario
 });
 
-//Recibir mensajes
-socket.on("server:messages", (data) => {
-  const divLogs = document.getElementById("logs");
-  let messages = "";
+//Funcion para renderizae los mensajes
+function renderMensajes(data) {
+	// Genero el html
+	const html = data
+		.map((elem) => {
+			// Recorro el array de mensajes y genero el html
+			return `<div>
+				<strong>${elem.user}:</strong>
+                <em>${elem.msj}</em>
+            </div>`;
+		})
+		.join(' '); // Convierto el array de strings en un string
 
-  data.forEach((message) => {
-    messages =
-      `<p><b>${message.user}:</b> ${message.message}<i style="font-size: x-small; margin-left: 5px;">${message.hour}</i></p>` +
-      messages;
-  });
+	// Inserto el html en el elemento con id messages
+	document.getElementById('messages').innerHTML = html;
+}
 
-  divLogs.innerHTML = messages;
+//Event Listener para tomar el texto del input y enviarlo al servidor
+inputMSJ.addEventListener('keyup', (event) => {
+	if (event.key === 'Enter') {
+		let msj = inputMSJ.value;
+		if (msj.trim().length > 0) {
+			socket.emit('message', { user, msj });
+			inputMSJ.value = '';
+		}
+	}
+});
+
+//Escucho el evento messages y renderizo los mensajes en pantalla
+socket.on('messages', (data) => {
+	renderMensajes(data);
 });

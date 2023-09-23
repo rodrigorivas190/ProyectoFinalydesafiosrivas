@@ -1,47 +1,32 @@
 //Router de carritos
 import { Router } from 'express';
-import CartManager from '../dao/service/CartManager.js';
-import CartListDb from '../dao/service/Cart.service.js';
+import cartController from '../controllers/cart.controller.js';
+import { middlewarePassportJWT } from '../middleware/jwt.middleware.js';
+import { isUser } from '../middleware/isUser.middleware.js';
+import ticketController from '../controllers/ticket.controller.js';
 
 const cartRouter = Router();
 
-//Instancio una nueva clase de Cart Manager con el archivo ya creado
-const CartList = new CartManager('./carrito.json');
 
-  cartRouter.get("/", async (req, res) => {
-    try {
-        const carts = await CartListDb.getCarts();
-        console.log(carts);
-
-        if (carts.length === 0) {
-            return res.status(404).json({ message: "No existen carritos." });
-        }
-
-        res.status(200).json(carts);
-    } catch (err) {
-        res.status(400).json({ error400: "Bad Request" });
-    }
-});
 //Endpoint que agrega un nuevo carrito
 cartRouter.post('/', async (req, res) => {
 	
 	try {
-		CartListDb.addNewCart();
-		res.status(200).json("A new cart was created");
-		// res.send({ status: 'sucess', message: 'New cart added' });
+		await cartController.addNewCart();
+		res.send({ status: 'sucess', message: 'New cart added' });
 	} catch (error) {
-		// res.status(400).send(error);
-		res.status(400).json({ error400: "Error creating cart" });
+		res.status(400).send(error);
 	}
 });
 
 //Endpoint que muestra los productos de un carrito en particular
 cartRouter.get('/:cid', async (req, res) => {
-    try {
-        // Intenta obtener el carrito con el ID especificado
-        let products = await CartListDb.getCartById(req.params.cid);
-
-        if (!products || products.length === 0) {
+	
+	try {
+		//Recibo un params y muestro el listado de productos de un carrito determinado
+		let products = await cartController.getCartById(req.params.cid);
+		res.send(products);
+		if (!products || products.length === 0) {
             // Si no se encontró el carrito o está vacío, devuelve un mensaje de error
             return res.status(404).json({ message: 'No existe el carrito con el ID especificado.' });
         }
@@ -54,27 +39,25 @@ cartRouter.get('/:cid', async (req, res) => {
     }
 });
 
-
 //Endpoint que agrega el producto a un carrito determinado
-cartRouter.post('/:cid/product/:pid', async (req, res) => {
+cartRouter.post('/:cid/product/:pid', middlewarePassportJWT, isUser, async (req, res) => {
 	
 	try {
 		//Recibo por params el Id de carrito y el ID del producto y lo agrego al carrito indicado
-		let product = await CartListDb.addProductToCart(req.params.cid, req.params.pid);
+		let product = await cartController.addProductToCart(req.params.cid, req.params.pid);
 		res.send(product);
 	} catch (err) {
 		if (err.message.includes("Cart with id")) {
 		  res.status(404).json({ error404: err.message });
 		}
 	}
-
 });
 
 //Endpoint para borrar un producto del carrito
 cartRouter.delete('/:cid/product/:pid', async (req, res) => {
 	try {
 		//Recibo por params el Id de carrito y el ID del producto y lo agrego al carrito indicado
-		let product = await CartListDb.deleteProduct(req.params.cid, req.params.pid);
+		let product = await cartController.deleteProduct(req.params.cid, req.params.pid);
 		res.send(product);
 	} catch (err) {
 		if (err.message.includes("Cart with")) {
@@ -90,7 +73,7 @@ cartRouter.delete('/:cid/product/:pid', async (req, res) => {
 cartRouter.put('/:cid', async (req, res) => {
 	try {
 		//Recibo por params el Id de carrito y el ID del producto y lo agrego al carrito indicado
-		let result = await CartListDb.updateAllProducts(req.params.cid, req.body);
+		let result = await cartController.updateAllProducts(req.params.cid, req.body);
 		res.send(result);
 	} catch (error) {
 		res.status(400).send(error);
@@ -101,7 +84,7 @@ cartRouter.put('/:cid', async (req, res) => {
 cartRouter.put('/:cid/product/:pid', async (req, res) => {
 	try {
 		//Recibo por params el Id de carrito y el ID del producto y lo agrego al carrito indicado
-		let result = await CartListDb.updateProductQuantity(req.params.cid, req.params.pid, req.body);
+		let result = await cartController.addProductToCart(req.params.cid, req.params.pid, req.body);
 		res.send(result);
 	} catch (error) {
 		res.status(400).send(error);
@@ -112,11 +95,23 @@ cartRouter.put('/:cid/product/:pid', async (req, res) => {
 cartRouter.delete('/:cid', async (req, res) => {
 	try {
 		//Recibo por params el Id de carrito
-		let product = await CartListDb.deleteCart(req.params.cid);
+		let product = await cartController.deleteAllProducts(req.params.cid);
 		res.send(product);
 	} catch (error) {
 		res.status(400).send(error);
 	}
 });
 
-export { cartRouter, CartList };
+//Endpoint para obtener el ticket de compra
+cartRouter.post('/:cid/purchase', async (req, res) => {
+	try {
+		const cartId = req.params.cid;
+		const { email } = req.body;
+		let result = await ticketController.createTicket(cartId, email);
+		res.send(result);
+	} catch (error) {
+		res.status(400).send(error);
+	}
+});
+
+export { cartRouter };

@@ -20,6 +20,7 @@ function render(data) {
 					<p>thumbnail: ${elem.thumbnail} </p>
 				`;
 		contenedorProductos.append(div); //agrego div
+		
 	});
 }
 

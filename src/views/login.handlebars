@@ -1,17 +1,26 @@
-<section class=".loginBody">
-    <div class="row g-0">
-        <div class="col-lg-5  d-flex flex-column align-items-end ">
+<section class="loginBody">
+        <style>
+            .loginBody {
+                background-image: url('/assets/images/fondo.jpg');
+                background-size: cover;
+                background-position: center center;
+                background-repeat: no-repeat;
+                height: 100vh;
+            }
+        </style>
+   
+        <div class=" col-lg-6  d-flex flex-column align-items-end vh-100" >
             <div class="align-self-center w-100 px-lg-5 py-lg-4 p-4">
-                <h1 class="font-weight-bold mb-4 fs-3 justify-content: center">Bienvenido a LibreriaLea! Login</h1>
+                <h1 class="font-weight-bold mb-4 text-light fs-3">Bienvenido a LibreriaLea!</h1>
                 <div class="mb-5">
-                    <div class="mb-4 ">
+                    <div class="mb-4 text-light">
                         <label for="InputEmail" class="form-label font-weight-bold">Email</label>
-                        <input type="email" class="text-light form-control  border-0 inputPlaceholder" id="loginEmail"
+                        <input type="email" class="text-light form-control bg-dark-x border-0 inputPlaceholder" id="loginEmail"
                             placeholder="Ingresa tu email" aria-describedby="emailHelp" name="email">
                     </div>
-                    <div class="mb-4 ">
+                    <div class="mb-4 text-light">
                         <label for="InputPassword" class="form-label font-weight-bold ">Contraseña</label>
-                        <input type="password" class="text-light form-control  border-0 mb-2 inputPlaceholder"
+                        <input type="password" class="text-light form-control bg-dark-x border-0 mb-2 inputPlaceholder"
                             placeholder="Ingresa tu contraseña" id="loginPassword" name="password">
                         <a href="" id="emailHelp" class="form-text text-muted text-decoration-none text-light">¿Has olvidado tu
                             contraseña?</a>
@@ -20,7 +29,7 @@
                     <button onclick="login()" class="btn btn-primary w-100" id="btnLogin">Iniciar sesión</button>
                 </div>
 
-                <p class="font-weight-bold text-center text-muted ">O inicia sesión con</p>
+                <p class="font-weight-bold text-center text-muted text-light">O inicia sesión con</p>
                 <div class="d-flex justify-content-center align-item-center m-0">
                     <button type="button" class="btn btn-outline-light flex-grow-1 mx-2" disabled hidden><i
                             class="fab fa-google lead" ></i> Google</button>
@@ -28,7 +37,7 @@
                             class="fab fa-facebook-f lead" ></i> Facebook</button>
                     <div>
                         <a href="api/sessions/github">
-                            <button type="button" class="btn btn-primary flex-grow-1 mx-2" id="btnGitHub">
+                            <button type="button" class="btn btn-outline-light flex-grow-1 mx-2" id="btnGitHub">
                                 <i class="fab fa-github"></i> GitHub</button>
                         </a>
                     </div>
@@ -84,6 +93,10 @@
                 </div>
             </div>
         </div>
-    </>
+    
+    
 </section>
+
+
+</style>
 <script src="/js/login.js"></script>

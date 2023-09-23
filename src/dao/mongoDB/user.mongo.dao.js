@@ -1,6 +1,10 @@
-import userModel from '../models/user.model.js';
+//importo modelo
+import userModel from '../../models/user.model.js';
 
-class UserService {
+//importo el dao para utilizar metodos del carrito
+import cartDAO from './cart.mongo.dao.js';
+
+class UserMongo {
 	constructor() {
 		this.model = userModel;
 	}
@@ -21,9 +25,12 @@ class UserService {
 
 	//método para registrar un usuario
 	async createUser(userData) {
+		let newCartId = await cartDAO.addNewCart();
+		userData.cartId = newCartId;
 		return await this.model.create(userData);
 	}
 }
 
-const userService = new UserService();
-export default userService;
+//instancio nueva clase de User Mongo
+const userMongo = new UserMongo();
+export default userMongo;

@@ -1,14 +1,14 @@
-//Servicio de Mensajes
-import { MessageModel } from '../models/message.model.js';
+//importación de service.
+import MessageService from '../service/message.service.js';
 
-class MessageService {
+class MessageController {
 	constructor() {
-		this.model = MessageModel;
+		this.service = new MessageService();
 	}
 
 	//Método para traer todos los mensajes de la base de datos
 	async getMessages() {
-		return await this.model.find().lean();
+		return await this.service.getMessages();
 	}
 
 	//Método para agregar mensajes a la base de datos
@@ -17,10 +17,12 @@ class MessageService {
 			return { error: 'Error: fields missing' }; //Si falta algun campo, arrojo error
 		}
 
-		await this.model.create(messageToAdd);
+		await this.service.addMessage(messageToAdd);
 		return { status: 'sucess', message: `message added to DB` };
 	}
 }
 
-const MessageListDb = new MessageService();
-export default MessageListDb;
+//Instancio una nueva clase de Message Controller
+const messageController = new MessageController();
+
+export default messageController;

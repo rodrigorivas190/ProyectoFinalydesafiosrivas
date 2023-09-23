@@ -1,17 +1,16 @@
 /*Estilos de los titulos de pantalla productos y real time products*/
-/* h1,
-h2 {
-	color: brown;
-	text-align: center;
-} */
 
-/*h2 {
-	color: black;
+.body_background1 {
+    background-image: url('/assets/images/fondo.jpg'); /* Ruta de la imagen de fondo */
+    background-size: cover; /* Cubre toda el área del elemento */
+    background-position: center center; /* Centra la imagen */
+    background-repeat: no-repeat; /* Evita la repetición de la imagen */
+    height: 100vh; /* Ajusta la altura al 100% del viewport (pantalla) */
+}
 
-	font-size: 1rem;
-}*/
 
 .productsBody {
+	
 	background: linear-gradient(rgba(27, 44, 79, 0.5),rgba(225, 227, 231, 0.5)), url('../assets/images/fondo.jpg') no-repeat center center fixed !important; 
 	background-size: cover !important;
 	margin: 0;
@@ -28,15 +27,15 @@ h2 {
 :root {
 	--dark: #16191c;
 	--dark-x: #1e2126;
-	--light: #ffffff;
+	--light: #f8f5f5;
 }
 
 .grid {
-	display: -ms-grid;
+	display: flex;
 	display: grid;
 	-ms-grid-columns: (minmax(12rem, 1fr)) [auto-fill];
 	grid-template-columns: repeat(auto-fill, minmax(12rem, 1fr));
-	grid-gap: 2.5rem 2.5rem;
+	grid-gap: 5rem 5rem;
 	-webkit-box-align: end;
 	-ms-flex-align: end;
 	align-items: end;
@@ -44,10 +43,14 @@ h2 {
 }
 
 .card {
+	display: flex;
+	display: grid;
 	height: 374px;
 	padding: 0.5rem;
+	-ms-flex-align: end;
 	background-color: white;
 	border-radius: 1rem;
+	width: 100%;
 }
 
 /*Estilos de la pantalla de mensajes*/
@@ -77,13 +80,28 @@ input {
 /*LOGIN*/
 
 .loginBody {
+
 	
-	display: flex;
+	background: linear-gradient(rgba(27, 44, 79, 0.5),rgba(225, 227, 231, 0.5)), url('/assets/images/fondo.jpg') no-repeat center center fixed !important ; 
+	background-size: cover !important;
+	background-repeat: no-repeat;
+	margin: 0;
+	overflow: hidden;
+	font-family: var(--bs-body-font-family);
+	font-size: var(--bs-body-font-size);
+	font-weight: var(--bs-body-font-weight);
+	line-height: var(--bs-body-line-height);
+	color: var(--bs-body-color);
+	text-align: var(--bs-body-text-align);
+	-webkit-text-size-adjust: 100%;
+	-webkit-tap-highlight-color: transparent !important;
+	
+	/* display: flex;
 	flex-wrap: wrap;
 	justify-content: center;
 	font-family: 'League Spartan', sans-serif;
 	font-weight: 300;
-	color: var(--light);
+	color: var(--light); */
 	
 }
 
@@ -136,3 +154,49 @@ input {
     --bs-bg-opacity: 1;
     background-color: rgba(var(--bs-info-rgb),var(--bs-bg-opacity))!important;
 }
+.inputPlaceholder::placeholder {
+	color: grey;
+}
+
+.text-light {
+	color: var(--light) !important;
+}
+
+.bg-dark {
+	background-color: var(--dark) !important;
+}
+
+.bg-light {
+	background-color: var(--light) !important;
+}
+
+.bg-dark-x {
+	background-color: var(--dark-x);
+}
+
+.form-control:focus {
+	background-color: var(--dark-x);
+	outline: none;
+}
+
+.card-header {
+	height: 50px;
+}
+
+.text-justify {
+	text-align: justify;
+}
+
+.dropDownFontsize {
+	font-size: initial;
+}
+
+.tittleFontSize {
+	font-size: small;
+}
+
+.cardImgSize {
+	max-width: 180px;
+	max-height: 200px;
+}
+
