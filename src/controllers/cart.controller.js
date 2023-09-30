@@ -1,9 +1,10 @@
 //importación de service.
-import CartService from '../service/cart.service.js';
+
+import { CartService } from '../repositories/cart/index.js';
 
 class CartController {
 	constructor() {
-		this.service = new CartService();
+		this.service = CartService;
 	}
 
 	//Método para agregar un nuevo carrito

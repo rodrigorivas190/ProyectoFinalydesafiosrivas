@@ -1,9 +1,9 @@
 //importación de service.
-import MessageService from '../service/message.service.js';
+import { MessageService } from '../repositories/message/index.js';
 
 class MessageController {
 	constructor() {
-		this.service = new MessageService();
+		this.service = MessageService;
 	}
 
 	//Método para traer todos los mensajes de la base de datos

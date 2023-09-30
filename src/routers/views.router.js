@@ -41,7 +41,6 @@ viewsRouter.get('/realtimeproducts', async (req, res) => {
 
 //Endpoint que muestra los mensajes
 viewsRouter.get('/chat', middlewarePassportJWT, isUser, async (req, res) => {
-	
 	try {
 		res.render('chat'); // Renderizo los mensajes en pantalla
 	} catch (error) {

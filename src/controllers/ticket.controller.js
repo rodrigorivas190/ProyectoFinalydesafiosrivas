@@ -1,5 +1,5 @@
 //importación de service.
-import TicketService from '../service/ticket.service.js';
+import { TicketService } from '../repositories/ticket/index.js';
 
 //Importación de controllers adicionales
 import cartController from './cart.controller.js';
@@ -10,7 +10,7 @@ import { DateTime } from 'luxon';
 
 class TicketController {
 	constructor() {
-		this.service = new TicketService();
+		this.service = TicketService;
 	}
 
 	//Método para agregar un nuevo ticket

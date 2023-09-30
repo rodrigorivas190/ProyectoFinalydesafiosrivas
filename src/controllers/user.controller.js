@@ -1,9 +1,9 @@
 //importación de service.
-import UserService from '../service/user.service.js';
+import { UserService } from '../repositories/user/index.js';
 
 class UserController {
 	constructor() {
-		this.service = new UserService();
+		this.service = UserService;
 	}
 	//método para traer todos los usuarios
 	async getAll() {

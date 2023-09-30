@@ -6,7 +6,6 @@ import GitHubStrategy from 'passport-github2';
 import { hashPassword, comparePassword } from '../utils/encrypt.util.js';
 import userController from '../controllers/user.controller.js';
 
-
 const jwtStrategy = Strategy;
 const jwtExtract = ExtractJwt;
 const LocalStrategy = local.Strategy;
