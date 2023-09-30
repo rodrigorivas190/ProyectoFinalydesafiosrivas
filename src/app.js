@@ -19,6 +19,7 @@ import { messagesRouter } from './routers/message.router.js';
 import usersRouter from './routers/user.router.js';
 import { sessionRouter } from './routers/sessions.router.js';
 import { mailRouter } from './routers/mail.router.js';
+import { mockingRouter } from './routers/mocking.router.js';
 
 //Import de passport
 import initializePassport from './config/passport.config.js';
@@ -79,6 +80,7 @@ app.use('/api/users', usersRouter);
 app.use('/', viewsRouter);
 app.use('/messages', messagesRouter);
 app.use('/email', mailRouter);
+app.use('/mockingproducts', mockingRouter);
 
 const messages = [];
 
