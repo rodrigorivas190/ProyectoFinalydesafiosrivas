@@ -16,7 +16,7 @@ import { productsRouter } from './routers/products.router.js';
 import { cartRouter } from './routers/carts.router.js';
 import { viewsRouter } from './routers/views.router.js';
 import { messagesRouter } from './routers/message.router.js';
-import usersRouter from './routers/user.router.js';
+import { usersRouter } from './routers/user.router.js';
 import { sessionRouter } from './routers/sessions.router.js';
 import { mailRouter } from './routers/mail.router.js';
 import { mockingRouter } from './routers/mocking.router.js';
@@ -72,6 +72,7 @@ app.use(cookieParser(process.env.COOKIE_HASH));
 initializePassport();
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(errorsManagerMiddleware);
 
 //Definición de rutas
 app.use('/api/products', productsRouter);
@@ -129,4 +130,4 @@ mongoose
   });
 export { io };
 
-app.use(errorsManagerMiddleware);
+

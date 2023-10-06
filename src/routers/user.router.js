@@ -72,4 +72,4 @@ usersRouter.post('/logout', (req, res) => {
 	return res.clearCookie('token').redirect('/login');
 });
 
-export default usersRouter;
+export { usersRouter };
