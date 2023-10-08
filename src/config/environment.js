@@ -6,7 +6,7 @@ let path = '.env';
 
 //recibo por linea de comando las opciones
 if (program.opts().mode === 'prod') {
-	path = '.env.prod';
+	path = '.env';
 }
 
 dotenv.config({ path });

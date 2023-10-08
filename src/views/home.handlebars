@@ -131,10 +131,19 @@
 
 
                 </div>
-                <div class="d-flex flex-column justify-content-center ">
+                {{!-- <div class="d-flex flex-column justify-content-center ">
                     <p class="fw-bold fst-italic fs-5 my-0 text-center">{{this.price}} $ </p>
                     <footer class="footer my-0 text-center"> Stock: {{this.stock}}</footer>
                     <button id="{{this._id}} " class="btnAgregarCarrito btn btn-dark w-100" type="submit">Agregar al carrito</button>
+                </div> --}}
+                 <div class="d-flex flex-column justify-content-center ">
+                    <p class="fw-bold fst-italic fs-5 my-0 text-center">{{this.price}} $ </p>
+                    <footer class="blockquote-footer my-0 text-center">Stock: {{this.stock}}</footer>
+                    {{#if this.stock}}
+                    <button id="{{this._id}} " class="btnAgregarCarrito btn btn-dark w-100" type="submit">Agregar al carrito</button>
+                    {{else}}
+                    <button id="{{this._id}} " class="btnAgregarCarrito btn btn-dark w-100" type="submit" disabled>Sin Stock</button>
+                    {{/if}}
                 </div>
             </div>
         {{/each}}

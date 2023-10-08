@@ -41,7 +41,7 @@ const initializePassport = () => {
 		new LocalStrategy({ usernameField: 'email' }, async (username, password, done) => {
 			try {
 				let user = await userController.getByEmail(username);
-				console.log(user);
+				// console.log(user);
 				if (!user) {
 					return done(null, false, { status: 'error', message: 'user not found' });
 				}

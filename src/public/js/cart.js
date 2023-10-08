@@ -147,11 +147,22 @@ btnFinalizarCompra.addEventListener('click', async () => {
   						}, 3000);
 					}
 					//alert con confirmación de operación
-					Swal.fire('Compra Realizada!', 'Muchas Gracias, vuelva pronto.', 'success');
-					
-  						setTimeout(function() {
-    					location.reload();
-  						}, 5000);
+					Swal.fire({
+						title: 'Compra Realizada!',
+						text: 'Muchas Gracias, vuelva pronto.',
+						icon: 'success',
+						confirmButtonColor: '#212529',
+					}).then((result) => {
+						/* Read more about isConfirmed, isDenied below */
+						if (result.isConfirmed) {
+							window.location.replace('/products');
+
+							
+						}
+  						// setTimeout(function() {
+    					// location.reload();
+  						// }, 5000);
+					});
 				});
 		}
 	});

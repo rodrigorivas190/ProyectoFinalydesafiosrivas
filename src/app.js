@@ -20,6 +20,7 @@ import { usersRouter } from './routers/user.router.js';
 import { sessionRouter } from './routers/sessions.router.js';
 import { mailRouter } from './routers/mail.router.js';
 import { mockingRouter } from './routers/mocking.router.js';
+import { loggerRouter } from './routers/logger.router.js';
 
 //Import de passport
 import initializePassport from './config/passport.config.js';
@@ -30,7 +31,10 @@ import environment from './config/environment.js';
 //import de controllers
 import productController from './controllers/product.controller.js';
 import messageController from './controllers/message.controller.js';
+
+//Middlewares
 import errorsManagerMiddleware from './middleware/errorsManager.middleware.js';
+import { loggerMiddleware } from './middleware/logger.middleware.js';
 
 //Inicializo Express
 const app = express();
@@ -72,6 +76,7 @@ app.use(cookieParser(process.env.COOKIE_HASH));
 initializePassport();
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(loggerMiddleware);
 app.use(errorsManagerMiddleware);
 
 //Definición de rutas
@@ -83,6 +88,7 @@ app.use('/', viewsRouter);
 app.use('/messages', messagesRouter);
 app.use('/email', mailRouter);
 app.use('/mockingproducts', mockingRouter);
+app.use('/loggerTest', loggerRouter);
 
 const messages = [];
 
@@ -129,5 +135,6 @@ mongoose
     console.log("Can't connect to DB");
   });
 export { io };
+
 
 

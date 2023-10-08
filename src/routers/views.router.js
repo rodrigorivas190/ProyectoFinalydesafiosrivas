@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import { io } from '../app.js';
-import { isAuth, isGuest } from '../middleware/auth.middleware.js';
+import { isGuest } from '../middleware/auth.middleware.js';
 import { middlewarePassportJWT } from '../middleware/jwt.middleware.js';
 import productController from '../controllers/product.controller.js';
 import cartController from '../controllers/cart.controller.js';

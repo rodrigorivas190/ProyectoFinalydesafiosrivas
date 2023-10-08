@@ -11,7 +11,6 @@ btnAgregarCarrito.forEach((el) => {
 			.then((data) => {
 				cartId = data.cartId;
 			});
-
 		//fetch para agregar los productos al carrito
 		await fetch(`/api/carts/${cartId}/product/${e.target.id}`, {
 			//agrego endpoint
