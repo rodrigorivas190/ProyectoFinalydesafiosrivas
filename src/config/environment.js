@@ -17,6 +17,7 @@ export default {
 	port: process.env.PORT,
 	mongoUrl: process.env.MONGO_URL,
 	dbName: process.env.DB_NAME,
+	proyectStage: process.env.PROYECT_STAGE,
 	adminName: process.env.ADMIN_EMAIL,
 	adminPassword: process.env.ADMIN_PASSWORD,
 	persistence: process.env.PERSISTENCE,

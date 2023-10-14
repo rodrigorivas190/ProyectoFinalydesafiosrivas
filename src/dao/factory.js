@@ -1,3 +1,4 @@
+// import mongoose from 'mongoose';
 import environment from '../config/environment.js';
 
 //Exportacion de instancias
@@ -9,7 +10,9 @@ export let userDAO;
 
 switch (environment.persistence) {
 	case 'MONGO':
-	
+		//Me conecto a la base de datos
+		// mongoose.connect(environment.mongoUrl);
+
 		//Importacion dinámica de los daos
 		const { default: cartMongo } = await import('./mongoDB/cart.mongo.dao.js');
 		const { default: messageMongo } = await import('./mongoDB/message.mongo.dao.js');
