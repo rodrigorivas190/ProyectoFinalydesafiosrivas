@@ -26,4 +26,9 @@ export default class UserRepository {
 		let userToInsert = new TicketDTO(userData);
 		return await this.dao.createUser(userToInsert);
 	}
+
+	//método para actualizar un usuario
+	async updateUser(newUser) {
+		return await this.dao.updateUser(newUser);
+	}
 }

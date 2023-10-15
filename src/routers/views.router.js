@@ -1,10 +1,11 @@
 import { Router } from 'express';
 import { io } from '../app.js';
-import { isGuest } from '../middleware/auth.middleware.js';
+import { isAuth, isGuest } from '../middleware/auth.middleware.js';
 import { middlewarePassportJWT } from '../middleware/jwt.middleware.js';
 import productController from '../controllers/product.controller.js';
 import cartController from '../controllers/cart.controller.js';
 import { isUser } from '../middleware/isUser.middleware.js';
+import { validateTokenRestorePass } from '../middleware/jwtrestorepass.middleware.js';
 
 //Inicializo Router
 const viewsRouter = Router();
@@ -19,7 +20,7 @@ viewsRouter.get('/products', middlewarePassportJWT, async (req, res) => {
 		res.render('home', {
 			products,
 			user,
-			style: 'index.css', // Envío los estilos css
+			style: 'index.css', 
 		});
 	} catch (error) {
 		res.status(400).send(error);
@@ -32,7 +33,7 @@ viewsRouter.get('/realtimeproducts', async (req, res) => {
 	try {
 		res.render('realTimeProducts', {
 			//renderizo los productos en tiempo real
-			style: 'index.css', // Envío los estilos css
+			style: 'index.css', 
 		});
 	} catch (error) {
 		res.status(400).send(error);
@@ -41,6 +42,7 @@ viewsRouter.get('/realtimeproducts', async (req, res) => {
 
 //Endpoint que muestra los mensajes
 viewsRouter.get('/chat', middlewarePassportJWT, isUser, async (req, res) => {
+	
 	try {
 		res.render('chat'); // Renderizo los mensajes en pantalla
 	} catch (error) {
@@ -56,7 +58,7 @@ viewsRouter.get('/carts/:cid', async (req, res) => {
 		res.render('cart', {
 			products,
 			cartId,
-			style: 'index.css', // Envío los estilos css
+			style: 'index.css', 
 		});
 	} catch (error) {
 		res.status(400).send(error);
@@ -77,7 +79,18 @@ viewsRouter.get('/registerok', async (req, res) => {
 viewsRouter.get('/login', isGuest, async (req, res) => {
 	try {
 		res.render('login', {
-			style: 'index.css', // Envío los estilos css
+			style: 'index.css', 
+		});
+	} catch (error) {
+		res.status(400).send(error);
+	}
+});
+
+//Endpoint que muestra la pantalla de login
+viewsRouter.get('/restorepassview', isGuest, validateTokenRestorePass, async (req, res) => {
+	try {
+		res.render('restorepass', {
+			style: 'index.css', 
 		});
 	} catch (error) {
 		res.status(400).send(error);

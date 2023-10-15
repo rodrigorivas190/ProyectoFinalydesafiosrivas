@@ -29,6 +29,11 @@ class UserMongo {
 		userData.cartId = newCartId;
 		return await this.model.create(userData);
 	}
+
+	//Método para actualizar producto
+	async updateUser(newUser) {
+		await this.model.updateOne({ email: newUser.email }, newUser);
+	}
 }
 
 //instancio nueva clase de User Mongo

@@ -2,11 +2,13 @@
 import { Router } from 'express';
 import cartController from '../controllers/cart.controller.js';
 import { middlewarePassportJWT } from '../middleware/jwt.middleware.js';
-import { isUser } from '../middleware/isUser.middleware.js';
+import { isUserOrPremium } from '../middleware/isUserOrPremium.middleware.js';
+
 import ticketController from '../controllers/ticket.controller.js';
 
 import { generateAddProductToCartErrorInfo } from '../tools/info.js';
 import EErrors from '../tools/EErrors.js';
+
 
 const cartRouter = Router();
 
@@ -23,7 +25,7 @@ cartRouter.post('/', async (req, res, next) => {
 
 //Endpoint que muestra los productos de un carrito en particular
 cartRouter.get('/:cid', async (req, res, next) => {
-	
+
 	try {
 		//Recibo un params y muestro el listado de productos de un carrito determinado
 		let products = await cartController.getCartById(req.params.cid);
@@ -34,7 +36,7 @@ cartRouter.get('/:cid', async (req, res, next) => {
 });
 
 //Endpoint que agrega el producto a un carrito determinado
-cartRouter.post('/:cid/product/:pid', middlewarePassportJWT, isUser, async (req, res, next) => {
+cartRouter.post('/:cid/product/:pid', middlewarePassportJWT, isUserOrPremium, async (req, res, next) => {
 	
 	try {
 		let cartId = req.params.cid;

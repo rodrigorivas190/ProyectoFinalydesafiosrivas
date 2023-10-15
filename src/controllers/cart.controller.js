@@ -1,6 +1,8 @@
 //importación de service.
 
 import { CartService } from '../repositories/cart/index.js';
+import productController from './product.controller.js';
+import userController from './user.controller.js';
 
 class CartController {
 	constructor() {
@@ -25,6 +27,13 @@ class CartController {
 
 	//Método agregar un producto al carrito
 	async addProductToCart(cartId, productId) {
+		const product = await productController.getProductsById(productId);
+		const user = await userController.getByEmail(product[0].owner);
+
+		if (user && role === 'premium' && product[0].owner === user.email) {
+			return { status: 'error', message: 'you cannot add a product created by yourself' }; // retorno el carrito con el producto agregado
+		}
+
 		const newProduct = {
 			product: productId,
 			quantity: 1,
@@ -40,9 +49,10 @@ class CartController {
 			//Si no axiste el producto lo agrego
 			cart.products.push(newProduct);
 		}
-		//console.log(cart.products);
+
 		await this.service.addProductToCart(cartId, cart);
 		return { status: 'sucess', message: `product ID=${productId} added to cart ID=${cartId}` }; // retorno el carrito con el producto agregado
+
 	}
 
 	//Método para borrar un producto del carrito

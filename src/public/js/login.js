@@ -23,7 +23,7 @@ function login() {
 				Swal.fire({
 					icon: 'error',
 					title: 'Oops...',
-					text: 'usuario y/o contraseña incorrectos',
+					text: `${data.message}`,
 				});
 			}
 		});

@@ -37,6 +37,10 @@ const productSchema = new mongoose.Schema({
 		type: Array,
 		require: true,
 	},
+	owner: {
+		type: String,
+		default: 'admin',
+	},
 });
 productSchema.plugin(mongoosePaginate);
 export const ProductModel = mongoose.model('products', productSchema);

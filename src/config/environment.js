@@ -6,7 +6,7 @@ let path = '.env';
 
 //recibo por linea de comando las opciones
 if (program.opts().mode === 'prod') {
-	path = '.env';
+	path = '.env.prod';
 }
 
 dotenv.config({ path });
@@ -27,4 +27,5 @@ export default {
 	clientID: process.env.CLIENTID,
 	clientSecret: process.env.CLIENTSECRET,
 	callbackURL: process.env.CALLBACKURL,
+	restorepasskey: process.env.RESTORE_PASS_KEY,
 };

@@ -22,7 +22,7 @@
                         <label for="InputPassword" class="form-label font-weight-bold ">Contraseña</label>
                         <input type="password" class="text-light form-control bg-dark-x border-0 mb-2 inputPlaceholder"
                             placeholder="Ingresa tu contraseña" id="loginPassword" name="password">
-                        <a href="" id="emailHelp" class="form-text text-muted text-decoration-none text-light">¿Has olvidado tu
+                        <a href="" id="emailHelp" class="form-text text-muted text-decoration-none text-light" data-bs-toggle="modal" data-bs-target="#RecoveryPassBackdrop">¿Has olvidado tu
                             contraseña?</a>
                     </div>
                     <div id="loginError"></div>
@@ -49,7 +49,37 @@
                     Crea una ahora
                 </button>
             </div>
-
+            <!-- Modal restablecer contraseña-->
+            <div class="modal fade" id="RecoveryPassBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+                aria-labelledby="RecoveryPassBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="RecoveryPassBackdropLabel">Restablecer Contraseña</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form action='/email/restorepassword' method='post'>
+                                <div class='row'>
+                                    <div class='col-12'>
+                                        <label for="email2">Correo Electrónico:</label>
+                                        <input type='email' class='form-control font-weight-bold bg-light' placeholder='cosme_fulanito@gmail.com'
+                                            aria-label='Correo' name='email' required />
+                                    </div>
+                                    <div class="col-12 alert alert-primary m-0 p-2 d-flex justify-self-center align-item-center" role="alert">
+                                        <p class="m-0 fst-italic text-center">Se enviara un link al correo indicado para restablecer la contraseña</p>
+                                    </div>
+                                    
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                                    <button type="submit" class="btn btn-primary" id="btnLinkPass">Enviar link</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
             <!-- Modal con formilario de registro -->
             <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"

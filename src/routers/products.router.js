@@ -2,6 +2,7 @@ import { Router } from 'express';
 import { io } from '../app.js';
 import { middlewarePassportJWT } from '../middleware/jwt.middleware.js';
 import { isAdmin } from '../middleware/isAdmin.middleware.js';
+import { isAdminOrPremium } from '../middleware/isAdminOrPremium.middleware.js';
 
 import productController from '../controllers/product.controller.js';
 import CustomError from '../tools/CustomErrors.js';
@@ -12,11 +13,14 @@ import {
 	generateUpdateErrorInfo,
 } from '../tools/info.js';
 import EErrors from '../tools/EErrors.js';
+
 //Inicializo Router
 const productsRouter = Router();
 
 //Endpoint que muestra todos los productos
 productsRouter.get('/', async (req, res, next) => {
+	
+
 	const { limit, page, category, availability, sort } = req.query;
 	try {
 		let showProducts = await productController.getProducts(limit, page, category, sort, availability); //Traigo el listado de productos
@@ -28,6 +32,7 @@ productsRouter.get('/', async (req, res, next) => {
 
 //Endpoint que muestra un producto en particular
 productsRouter.get('/:pid', async (req, res, next) => {
+	
 	try {
 		//Recibo un params y muestro el producto con ese ID, como el ID es un string lo paso a entero
 		let product = await productController.getProductsById(req.params.pid);
@@ -38,7 +43,7 @@ productsRouter.get('/:pid', async (req, res, next) => {
 });
 
 //Endpoint que agrega un producto
-productsRouter.post('/', middlewarePassportJWT, isAdmin, async (req, res, next) => {
+productsRouter.post('/', middlewarePassportJWT, isAdminOrPremium, async (req, res, next) => {
 	try {
 		const productToAdd = req.body;
 		if (
@@ -59,6 +64,8 @@ productsRouter.post('/', middlewarePassportJWT, isAdmin, async (req, res, next) 
 			});
 		}
 
+		productToAdd.owner = req.user.user.email;
+
 		let newProduct = await productController.addProducts(productToAdd); //recibo por body el producto a agregar
 		if (newProduct === EErrors.DUPLICATED_VALUE_ERROR) {
 			CustomError.createError({
@@ -76,7 +83,9 @@ productsRouter.post('/', middlewarePassportJWT, isAdmin, async (req, res, next) 
 });
 
 //Endpoint que modifica un producto
-productsRouter.put('/:pid', middlewarePassportJWT, isAdmin, async (req, res, next) => {
+productsRouter.put('/:pid', middlewarePassportJWT, isAdminOrPremium, async (req, res, next) => {
+	
+
 	try {
 		let idBuscado = req.params.pid;
 		if (!idBuscado) {
@@ -96,15 +105,29 @@ productsRouter.put('/:pid', middlewarePassportJWT, isAdmin, async (req, res, nex
 });
 
 //Endpoint que elimina un producto
-productsRouter.delete('/:pid', middlewarePassportJWT, isAdmin, async (req, res, next) => {
+productsRouter.delete('/:pid', middlewarePassportJWT, isAdminOrPremium, async (req, res, next) => {
+	
 	try {
 		let idBuscado = req.params.pid;
-		let product = await productController.deleteProduct(idBuscado);
+		let prodToDel = await productController.getProductsById(idBuscado);
+		let product;
+
+		if ((req.user.user.role === 'premium' && prodToDel[0].owner === req.user.user.email) || req.user.user.role === 'admin') {
+			product = await productController.deleteProduct(idBuscado);
+		} else {
+			CustomError.createError({
+				name: 'Product Delete error',
+				cause: `User Premium try to delete product with another owner`,
+				message: 'Error trying to delete product',
+				code: EErrors.DELETE_ERROR,
+			});
+		}
+
 		if (!product === EErrors.DELETE_ERROR) {
 			CustomError.createError({
 				name: 'Product Delete error',
 				cause: generateDeleteProductErrorInfo(idBuscado),
-				message: 'Error trying to update product',
+				message: 'Error trying to delete product',
 				code: EErrors.DELETE_ERROR,
 			});
 		}

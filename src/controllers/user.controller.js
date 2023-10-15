@@ -24,6 +24,11 @@ class UserController {
 	async createUser(userData) {
 		return await this.service.createUser(userData);
 	}
+
+	//método para actualizar un usuario
+	async updateUser(newUser) {
+		return await this.service.updateUser(newUser);
+	}
 }
 
 //Instancio una nueva clase de User Controller

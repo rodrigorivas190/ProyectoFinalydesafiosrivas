@@ -60,7 +60,6 @@ class ProductController {
 		let codes = allProducts.map((el) => el.code); // Me quedo con los codigos de productos
 		//evaluo si el codigo del nuevo producto no existe
 		if (!codes.includes(productToAdd.code)) {
-			console.log('agregado');
 			await this.service.addProducts(productToAdd);
 			return { status: 'sucess', message: `product ${productToAdd.code} created` };
 		} else {
