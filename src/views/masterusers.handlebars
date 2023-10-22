@@ -1,8 +1,8 @@
-<body class="products_body--font_family productsBody">
-	<div class="d-flex flex-column align-items-center">
-		<h1 class="products_tittle--font_family">Bienvenido a LibreriaLea!</h1>
-		<h4>Master list of users</h4>
-	</div>
+<body class="body_background1--products_body--font_family productsBody">
+	<section class=" body_background1 -products_body--font_family productsBody ">
+		<h1 class="d-flex flex-column align-items-center products_tittle--font_family">Bienvenido a LibreriaLea!</h1>
+		<h4 class="d-flex flex-column align-items-center products_tittle--font_family">Master list of users</h4>
+	
 
 	<div class="d-flex justify-content-center align-item-center mt-5">
 		<form action='/api/users/logoutmasteruser' method='post'>
@@ -28,8 +28,8 @@
 			Delete All User
 		</button>
 	</div>
-
-	<div class="p-4">
+</section>
+	<div class="body_background1 p-4 ">
 		<table class="table table-striped">
 			<thead>
 				<tr>
@@ -81,7 +81,7 @@
 	</div>
 
 	<!-- Modal para modificar usuarios-->
-		<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+		<div class="body_background1 modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
 			aria-labelledby="staticBackdropLabel" aria-hidden="true">
 			<div class="modal-dialog modal-dialog-centered">
 				<div class="modal-content">
@@ -106,6 +106,15 @@
 				</div>
 			</div>
 		</div>
+		<style>
+    .body_background1 {
+        background-image: url('/assets/images/fondo.jpg');
+        background-size: cover;
+        background-position: center center;
+        background-repeat: no-repeat;
+        
+    }
+</style>
 
 </body>
 <script src="/js/masterusers.js"></script>

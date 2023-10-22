@@ -1,10 +1,9 @@
-<body class="products_body--font_family productsBody">
-	<div class="d-flex flex-column align-items-center">
-		<h1 class="products_tittle--font_family">Bienvenido a LibreriaLea!</h1>
-		<h4>Master list of products</h4>
-	</div>
+<body class=" body_background1--products_body--font_family productsBody">
+	<section class=" body_background1 ">
+		<h1 class="d-flex flex-column align-items-center products_tittle--font_family">Bienvenido a LibreriaLea!</h1>
+		<h4 class="d-flex flex-column align-items-center products_tittle--font_family">Master list of products</h4>
 
-	<div class="d-flex justify-content-center align-item-center mt-5">
+	<div class="d-flex justify-content-center align-item-center mt-5 ">
 		<button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#staticBackdropAddProduct">
 		<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" class="bi bi-plus-circle"
 			viewBox="0 0 16 16">
@@ -28,7 +27,7 @@
 	</div>
 
 	{{!-- Paginación --}}
-	<div class="p-2">
+	<div class=" p-2">
 		<nav aria-label="Page navigation example">
 			<ul class="pagination justify-content-center pagination-sm">
 				{{#if products.hasPrevPage}}
@@ -54,9 +53,9 @@
 			</ul>
 		</nav>
 	</div>
+</section>
 
-
-	<div class="p-4">
+	<div class="body_background1 p-4">
 		<table class="table table-striped">
 			<thead>
 				<tr>
@@ -275,5 +274,6 @@
 	
 	</div>
 </body>
+
 
 <script src="/js/masterproducts.js"></script>

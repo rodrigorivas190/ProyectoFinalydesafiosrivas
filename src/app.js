@@ -34,7 +34,6 @@ import messageController from './controllers/message.controller.js';
 
 //Middlewares
 import errorsManagerMiddleware from './middleware/errorsManager.middleware.js';
-// import { loggerMiddleware } from './middleware/logger.middleware.js';
 import { addLogger, logger } from './middleware/logger.middleware.js'
 
 import swaggerJsDoc from 'swagger-jsdoc';
@@ -96,7 +95,6 @@ initializePassport();
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(errorsManagerMiddleware);
-// app.use(loggerMiddleware);
 app.use(errorsManagerMiddleware);
 
 //Definición de rutas
