@@ -5,6 +5,7 @@ import GitHubStrategy from 'passport-github2';
 
 import { hashPassword, comparePassword } from '../utils/encrypt.util.js';
 import userController from '../controllers/user.controller.js';
+import environment from './environment.js';
 
 const jwtStrategy = Strategy;
 const jwtExtract = ExtractJwt;
@@ -41,7 +42,7 @@ const initializePassport = () => {
 		new LocalStrategy({ usernameField: 'email' }, async (username, password, done) => {
 			try {
 				let user = await userController.getByEmail(username);
-				// console.log(user);
+				console.log(user)
 				if (!user) {
 					return done(null, false, { status: 'error', message: 'user not found' });
 				}
@@ -54,13 +55,13 @@ const initializePassport = () => {
 			}
 		})
 	);
-
+	//estrategia para obtener sesion actual con JWT
 	passport.use(
 		'current',
 		new jwtStrategy(
 			{
 				jwtFromRequest: jwtExtract.fromExtractors([cookieExtractor]),
-				secretOrKey: process.env.JWSECRET,
+				secretOrKey: environment.jwtSecret,
 			},
 			(payload, done) => {
 				done(null, payload);
@@ -80,11 +81,9 @@ const initializePassport = () => {
 		'github',
 		new GitHubStrategy(
 			{
-				
-				clientID: process.env.CLIENTID,
-				clientSecret: process.env.CLIENTSECRET,
-				callbackURL: process.env.CALLBACKURL,
-				
+				clientID: environment.gitHubClientId,
+				clientSecret: environment.gitHubClientSecret,
+				callbackURL: environment.gitHubClientCallback,
 			},
 			async (accessToken, refreshToken, profile, done) => {
 				try {

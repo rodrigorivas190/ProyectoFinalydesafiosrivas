@@ -19,7 +19,7 @@ function render(data) {
 					<p>category: ${elem.category} </p>
 					<p>thumbnail: ${elem.thumbnail} </p>
 				`;
-		contenedorProductos.append(div); //agrego div	
+		contenedorProductos.append(div); //agrego div
 	});
 }
 

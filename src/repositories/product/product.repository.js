@@ -19,7 +19,7 @@ export default class ProductRepository {
 	//Método para agregar productos
 	async addProducts(productToAdd) {
 		let productToInsert = new ProductDTO(productToAdd);
-		await this.dao.addProducts(productToInsert);
+		return await this.dao.addProducts(productToInsert);
 	}
 
 	//Método para adquirir un producto especifico por ID

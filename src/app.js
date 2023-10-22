@@ -1,13 +1,13 @@
 //Imports generales
 import express from 'express';
 import MongoStore from 'connect-mongo';
-import mongoose from 'mongoose';
 import path from 'path';
 import session from 'express-session';
 import passport from 'passport';
 import cookieParser from 'cookie-parser';
 import __dirname from './dirname.util.js';
 import handlebars from 'express-handlebars';
+
 
 import { Server } from 'socket.io';
 
@@ -22,7 +22,6 @@ import { mailRouter } from './routers/mail.router.js';
 import { mockingRouter } from './routers/mocking.router.js';
 import { loggerRouter } from './routers/logger.router.js';
 
-
 //Import de passport
 import initializePassport from './config/passport.config.js';
 
@@ -35,7 +34,12 @@ import messageController from './controllers/message.controller.js';
 
 //Middlewares
 import errorsManagerMiddleware from './middleware/errorsManager.middleware.js';
+// import { loggerMiddleware } from './middleware/logger.middleware.js';
 import { addLogger, logger } from './middleware/logger.middleware.js'
+
+import swaggerJsDoc from 'swagger-jsdoc';
+import swaggerUiExpress from 'swagger-ui-express';
+import mongoose from 'mongoose';
 
 //Inicializo Express
 const app = express();
@@ -45,42 +49,58 @@ const webServer = app.listen(environment.port, () => {
 	logger.info(`✅ Server running at port ${environment.port}`);
 });
 
+//configuración de SWAGGER
+const swaggerOptions = {
+	definition: {
+		openapi: '3.0.1',
+		info: {
+			title: 'Documentación EncontraDeTodo-ecommerce',
+			description: 'en la presente documentación se desarrollará todo lo necesario para dar a conocer lógica y demás aspectos de la API',
+		},
+	},
+	apis: [`${__dirname}/docs/**/*.yaml`],
+};
+
+const specs = swaggerJsDoc(swaggerOptions);
+
+
+
 //Handlebars
-app.engine('handlebars', handlebars.engine()); 
-app.set('views', path.join(__dirname, 'views')); 
-app.set('view engine', 'handlebars'); 
+app.engine('handlebars', handlebars.engine()); // Inicializamos el motor de plantillas de Handlebars
+app.set('views', path.join(__dirname, 'views')); //indicamos ruta de las views
+app.set('view engine', 'handlebars'); //por ultimo, se indica que vamos a utilizar el motor de Handlebars
 
 //seteamos de manera estatica la carpeta public
 app.use(express.static(path.join(__dirname, 'public')));
 
-
 //Middlewares
-app.use(express.json()); 
-app.use(express.urlencoded({ extended: true })); 
+app.use(express.json()); //Middleware que facilita la conversión en formato json de lo que se reciba por body
+app.use(express.urlencoded({ extended: true })); //Middleware para que express pueda reconover los objetos de las request como strings o arrays
 app.use("/static", express.static("/src/public")); 
 //Session
 app.use(
 	session({
 		store: MongoStore.create({
-			mongoUrl: process.env.MONGO_URL,
+			mongoUrl: environment.mongoUrl,
 			dbName: process.env.DB_NAME,
 			mongoOptions: { useNewUrlParser: true, useUnifiedTopology: true },
-			
-			ttl: 1000,
+			ttl: 6000,
 		}),
-		secret: process.env.KEY_SESSION,
+		secret: environment.mongoSessionSecret,
 		resave: true,
 		saveUninitialized: true,
 	})
 );
-app.use(cookieParser(process.env.COOKIE_HASH));
+app.use(cookieParser(environment.cookieHash));
 initializePassport();
 app.use(passport.initialize());
 app.use(passport.session());
-app.use(addLogger);
+app.use(errorsManagerMiddleware);
+// app.use(loggerMiddleware);
 app.use(errorsManagerMiddleware);
 
 //Definición de rutas
+app.use(addLogger);
 app.use('/api/products', productsRouter);
 app.use('/api/carts', cartRouter);
 app.use('/api/sessions', sessionRouter);
@@ -90,6 +110,7 @@ app.use('/messages', messagesRouter);
 app.use('/email', mailRouter);
 app.use('/mockingproducts', mockingRouter);
 app.use('/loggerTest', loggerRouter);
+app.use('/apidocs', swaggerUiExpress.serve, swaggerUiExpress.setup(specs));
 
 const messages = [];
 
@@ -121,21 +142,19 @@ io.on('connection', async (socket) => {
 	});
 });
 
+//Me conecto a la base de datos
+mongoose.connect(environment.mongoUrl);
 
 
-mongoose
-  .connect(process.env.MONGO_URL, {
-    dbName: process.env.DB_NAME,
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
-  .then(() => {
-    console.log("DB connected");
-  })
-  .catch((e) => {
-    console.log("Can't connect to DB");
-  });
+
+
+
 export { io };
+/*
 
+generarIdUnico1 = () => { 
+    return Math.random().toString(30).substring(2);           
+} 
 
+*/
 

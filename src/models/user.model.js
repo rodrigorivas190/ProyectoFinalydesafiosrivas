@@ -19,6 +19,8 @@ const userSchema = new mongoose.Schema({
 		type: String,
 		default: 'user',
 	},
+	documents: Array ,
+	last_connection: String,
 });
 
 const userModel = mongoose.model('users', userSchema);

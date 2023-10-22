@@ -21,14 +21,13 @@ btnRestablecerPass.addEventListener('click', async () => {
 					icon: 'success',
 					confirmButtonColor: '#212529',
 				}).then((result) => {
-					/* Read more about isConfirmed, isDenied below */
 					if (result.isConfirmed) {
 						window.location.replace('/');
 					}
 				});
 			}
 			if (data.status === 'error') {
-				//sino, indico error de logueo
+				//sino, indico error
 				Swal.fire({
 					icon: 'error',
 					title: 'Oops...',

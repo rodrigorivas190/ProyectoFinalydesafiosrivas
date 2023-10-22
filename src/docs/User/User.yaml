@@ -1,0 +1,338 @@
+paths:
+  /api/users:
+    post:
+      summary: Endpoint para registrar usuario
+      tags:
+        - Users
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                first_name:
+                  type: string
+                  description: nombre de usuario.
+                last_name:
+                  type: string
+                  description: apellido de usuario.
+                email:
+                  type: string
+                  description: email de usuario
+                password:
+                  type: string
+                  description: contraseña de usuario
+              example:
+                {
+                  first_name: 'rodrigo',
+                  last_name: 'rivas',
+                  email: 'rodrigomrivas190@gmail.com',
+                  password: "123"
+                }
+      responses:
+        200:
+          description: Usuario Registrado, se redirije a login
+        500:
+          description: Error del servidor
+    get:
+      summary: Endpoint para mostrar todos los usuarios
+      tags:
+        - Users
+      responses:
+        200:
+          description: Listado de usuarios
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    description: Estado success o error.
+                  payload:
+                    type: array
+                    description: array de objetos con todos los usuarios
+                example:
+                  status: success
+                  payload: [{
+                    _id: ObjectId("64cf1b46930aabca7ec6c9ec"),
+                    first_name: Rodrigo,
+                    last_name: Rivas,
+                    email: rodrigomrivas190@gmail.com,
+                    cartId: ObjectId("64c9d325f54c08f61e2cde00"),
+                    role: user,
+                    last_connection: "20/10/2023, 22:05:31" 
+                  }]
+        500:
+          description: Error del servidor
+    delete:
+      summary: Endpoint para borrar todos los usuarios
+      tags:
+        - Users
+      responses:
+        200:
+          description: Elimina los usuarios que no hayan conectado hace más de 2 días.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    description: Estado success o error.
+                  message:
+                    type: string
+                    description: se indica que se han eliminado los usuario
+                example:
+                  status: success
+                  message: users deleted
+        500:
+          description: Error del servidor
+    put:
+      summary: Endpoint para actualizar un usuario
+      tags:
+        - Users
+      responses:
+        200:
+          description: Actualiza un usuario.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    description: Estado success o error.
+                  message:
+                    type: string
+                    description: se indica que se han eliminado los usuario
+                example:
+                  status: success
+                  message: User modified
+        500:
+          description: Error del servidor
+  /api/users/failregister:
+    get:
+      summary: Endpoint para indicar error de registro en passport
+      tags:
+        - Users
+      responses:
+        200:
+          description: Redirije a una pagina indicativa
+        500:
+          description: Error del servidor
+  /api/users/auth:
+    post:
+      summary: Endpoint para autenticar usuario y contraseña
+      tags:
+        - Users
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                  description: email de usuario
+                password:
+                  type: string
+                  description: contraseña de usuario
+              example:
+                {
+                  username: 'rodrigomrivas190@gmail.com',
+                  password: "123"
+                }
+      responses:
+        200:
+          description: Usuario autorizado
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    description: Estado success o error.
+                  message:
+                    type: string
+                    description: se indica que el login ha sido autorizado
+                example:
+                  status: success
+                  message: user login authorized
+        500:
+          description: Error del servidor
+  /api/users/restorepass:
+    post:
+      summary: Endpoint para restablecer contraseña
+      tags:
+        - Users
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  description: email de usuario
+                password:
+                  type: string
+                  description: contraseña de usuario
+              example:
+                {
+                  email: 'rodrigomrivas190@gmail.com',
+                  password: "123"
+                }
+      responses:
+        200:
+          description: Password actualizado
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    description: Estado success o error.
+                  message:
+                    type: string
+                    description: se indica que el password ha sido actualizado
+                example:
+                  status: success
+                  message: Password update correctly
+        500:
+          description: Error del servidor
+  /api/users/faillogin:
+    get:
+      summary: Endpoint para indicar error de login
+      tags:
+        - Users
+      responses:
+        200:
+          description: Redirije a una pagina indicativa
+        500:
+          description: Error del servidor
+  /api/users/logout/{uid}:
+    post:
+      summary: Endpoint para destruir sesion
+      tags:
+        - Users
+      parameters:
+        - in: path
+          name: uid
+          required: true
+          description: ID del usuario que va a cerrar sesion
+          schema:
+            type: string
+      responses:
+        200:
+          description: Redirije a pagina de login, elimina token de autenticación.
+        500:
+          description: Error del servidor
+  /api/users/premium/{uid}:
+    get:
+      summary: Endpoint para cambiar el rol de un usuario
+      tags:
+        - Users
+      parameters:
+        - in: path
+          name: uid
+          required: true
+          description: ID del usuario a cambiar rol
+          schema:
+            type: string
+      responses:
+        200:
+          description: rol modificado
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    description: Estado success o error.
+                  message:
+                    type: string
+                    description: se indica que el rol ha sido modificado
+                example:
+                  status: success
+                  message: user rodrigomrivas190@gmail has change his role to premium
+        500:
+          description: Error del servidor
+  /api/users/{uid}:
+    delete:
+      summary: Endpoint para  eliminar usuario
+      tags:
+        - Users
+      parameters:
+        - in: path
+          name: uid
+          required: true
+          description: ID del usuario a eliminar
+          schema:
+            type: string
+      responses:
+        200:
+          description: Usuario eliminado
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    description: Estado success o error.
+                  message:
+                    type: string
+                    description: se indica que el usuario ha sido eliminado
+                example:
+                  status: success
+                  message: user ID 65320be22b0550f7a52f6ff0 deleted
+        500:
+          description: Error del servidor
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        _id:
+          type: ObjectId
+          description: ID del usuario (autogenerado por MongoDB)
+        first_name:
+          type: string
+          description: nombre del usuario
+        last_name:
+          type: string
+          description: apellido del usuario
+        email:
+          type: string
+          description: email del usuario
+          unique: true
+          required: true
+        age:
+          type: number
+          description: edad del usuario
+        password:
+          type: string
+          description: password del usuario hasheado
+        cartId:
+          type: ObjectId
+          description: ID del carrito asignado al usuario
+        role:
+          type: string
+          description: role asignado al usuario (user, admin o premium)
+          default: user
+      example:
+        _id: ObjectId("65320be22b0550f7a52f6ff0")
+        first_name: Rodrigo
+        last_name: Rivas
+        email: rodrigomrivas190@gmail.com
+        age: 48
+        password: $2b$10$7Pt8XDNlk77RJuPoEA0y1.EGh63LAB.aga6J42hN3lW/MsY73H2JK
+        cartId: ObjectId("64c9d325f54c08f61e2cde00")
+        role: user

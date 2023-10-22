@@ -1,0 +1,279 @@
+<body class="products_body--font_family productsBody">
+	<div class="d-flex flex-column align-items-center">
+		<h1 class="products_tittle--font_family">Bienvenido a LibreriaLea!</h1>
+		<h4>Master list of products</h4>
+	</div>
+
+	<div class="d-flex justify-content-center align-item-center mt-5">
+		<button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#staticBackdropAddProduct">
+		<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" class="bi bi-plus-circle"
+			viewBox="0 0 16 16">
+			<path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+			<path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
+		</svg>
+			Add Product
+		</button>
+					<form action='/api/users/logout/{{user._id}}' method='post'>
+						<button type="submit" class="btn btn-danger mx-2 " id="btnLogOut">
+							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+								class="bi bi-box-arrow-right icon_size py-0" viewBox="0 0 16 16">
+								<path fill-rule="evenodd"
+									d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0v2z" />
+								<path fill-rule="evenodd"
+									d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z" />
+							</svg>
+							logout
+						</button>
+					</form>
+	</div>
+
+	{{!-- Paginación --}}
+	<div class="p-2">
+		<nav aria-label="Page navigation example">
+			<ul class="pagination justify-content-center pagination-sm">
+				{{#if products.hasPrevPage}}
+				<li class="page-item">
+					{{else}}
+				<li class="page-item disabled">
+					{{/if}}
+					<a class="page-link" href="{{products.prevLink}}" aria-label="Previous"><span
+							aria-hidden="true">&laquo;</span></a>
+				</li>
+	
+				<li class="page-item dark" aria-current="page"><a class="page-link" href="#">{{products.page}} de
+						{{products.totalPages}}</a></li>
+	
+				{{#if products.hasNextPage}}
+				<li class="page-item">
+					{{else}}
+				<li class="page-item disabled">
+					{{/if}}
+					<a class="page-link" href="{{products.nextLink}}" aria-label="Next"><span
+							aria-hidden="true">&raquo;</span></a>
+				</li>
+			</ul>
+		</nav>
+	</div>
+
+
+	<div class="p-4">
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th class="text-center" scope="col">#id</th>
+					<th class="text-center" scope="col">Title</th>
+					<th class="text-center" scope="col">Description</th>
+					<th class="text-center" scope="col">Code</th>
+					<th class="text-center" scope="col">Price</th>
+					<th class="text-center" scope="col">Status</th>
+					<th class="text-center" scope="col">Stock</th>
+					<th class="text-center" scope="col">Category</th>
+					<th class="text-center" scope="col">Thumbnail</th>
+					<th class="text-center" scope="col">Owner</th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+				<!-- Por cada producto imprimo una card con los datos-->
+				{{#each products.payload}}
+				<tr>
+					<td>{{this._id}} </td>
+					<td>{{this.title}} </td>
+					<td>{{this.description}}</td>
+					<td>{{this.code}}</td>
+					<td>{{this.price}} </td>
+					<td>{{this.status}} </td>
+					<td>{{this.stock}}</td>
+					<td>{{this.category}}</td>
+					<td>
+						<img class="card-img my-0 cardImgSize" src="{{this.thumbnail}} " alt="{{this.thumbnail}}">
+					</td>
+					<td>{{this.owner}} </td>
+					<td>
+						<div class="d-flex justify-content-center align-items-center">
+							<button type="button" class="btn btn-warning mx-1 btnEditProduct" data-bs-toggle="modal" data-bs-target="#staticBackdrop" id="btnEdit{{this._id}}">
+								<svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" fill="currentColor" class="bi bi-pencil-square"
+									viewBox="0 0 16 16" style="pointer-events: none;">
+									<path
+										d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
+									<path fill-rule="evenodd"
+										d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
+								</svg>
+							</button>
+							<button type="button" class="btn btn-danger mx-1 btnDeleteProduct" id="btnDelete{{this._id}}">
+								<svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" fill="currentColor" class="bi bi-trash3-fill"
+									viewBox="0 0 16 16" style="pointer-events: none;">
+									<path
+										d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z" />
+								</svg>
+							</button>
+						</div>
+					</td>
+				</tr>
+				{{/each}}
+			</tbody>
+		</table>
+	</div>
+
+<!-- Modal para modificar productos -->
+	<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+		aria-labelledby="staticBackdropLabel" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h1 class="modal-title fs-5" id="exampleModalLabel">Update Product</h1>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+					<form>
+						<div class="input-group mb-3">
+							<span class="input-group-text">Title</span>
+							<input type="text" class="form-control" placeholder="Title" aria-label="Title"
+								aria-describedby="Title" id="inputTitle">
+						</div>
+						<div class="input-group mb-3">
+							<span class="input-group-text" >Description</span>
+							<input type="text" class="form-control" placeholder="Description" aria-label="Description"
+								aria-describedby="Description" id="inputDescription">
+						</div>
+						<div class="input-group mb-3">
+							<span class="input-group-text" >Code</span>
+							<input type="text" class="form-control" placeholder="Code" aria-label="Code"
+								aria-describedby="Code" id="inputCode">
+						</div>
+						<div class="input-group mb-3">
+							<span class="input-group-text" >Price</span>
+							<input type="text" class="form-control" placeholder="Price" aria-label="Price"
+								aria-describedby="Price" id="inputPrice">
+						</div>
+						<div class="input-group mb-3">
+							<span class="input-group-text" >Status</span>
+							<input type="text" class="form-control" placeholder="Status" aria-label="Status"
+								aria-describedby="Status" id="inputStatus">
+						</div>
+						<div class="input-group mb-3">
+							<span class="input-group-text" >Stock</span>
+							<input type="text" class="form-control" placeholder="Stock" aria-label="Stock"
+								aria-describedby="Stock" id="inputStock">
+						</div>
+						<div class="input-group mb-3">
+							<span class="input-group-text" >Category</span>
+							<input type="text" class="form-control" placeholder="Category" aria-label="Category"
+								aria-describedby="Category" id="inputCategory">
+						</div>
+						<div class="input-group mb-3">
+							<span class="input-group-text" >Thumbnail</span>
+							<input type="text" class="form-control" placeholder="Thumbnail" aria-label="Thumbnail"
+								aria-describedby="Thumbnail" id="inputThumbnail">
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+							<button type="button" class="btn btn-dark" id="btnSaveUpdatedProduct">Save changes</button>
+						</div>
+					</form>
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+
+<!-- Modal para agregar productos -->
+<div class="modal fade" id="staticBackdropAddProduct" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+	aria-labelledby="staticBackdropAddProductLabel" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h1 class="modal-title fs-5" id="exampleModalLabel">Add Product</h1>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body">
+				<form>
+					<div class="input-group mb-3">
+						<span class="input-group-text">Title</span>
+						<input type="text" class="form-control" placeholder="Title" aria-label="Title"
+							aria-describedby="Title" id="inputTitleAdd" required/>
+					</div>
+					<div class="input-group mb-3">
+						<span class="input-group-text">Description</span>
+						<input type="text" class="form-control" placeholder="Description" aria-label="Description"
+							aria-describedby="Description" id="inputDescriptionAdd" required/>
+					</div>
+					<div class="input-group mb-3">
+						<span class="input-group-text">Code</span>
+						<input type="text" class="form-control" placeholder="Code" aria-label="Code"
+							aria-describedby="Code" id="inputCodeAdd" required/>
+					</div>
+					<div class="input-group mb-3">
+						<span class="input-group-text">Price</span>
+						<input type="text" class="form-control" placeholder="Price" aria-label="Price"
+							aria-describedby="Price" id="inputPriceAdd" required/>
+					</div>
+					<div class="input-group mb-3">
+						<span class="input-group-text">Status</span>
+						<input type="text" class="form-control" placeholder="Status" aria-label="Status"
+							aria-describedby="Status" id="inputStatusAdd" required/>
+					</div>
+					<div class="input-group mb-3">
+						<span class="input-group-text">Stock</span>
+						<input type="text" class="form-control" placeholder="Stock" aria-label="Stock"
+							aria-describedby="Stock" id="inputStockAdd" required/>
+					</div>
+					<div class="input-group mb-3">
+						<span class="input-group-text">Category</span>
+						<input type="text" class="form-control" placeholder="Category" aria-label="Category"
+							aria-describedby="Category" id="inputCategoryAdd" required/>
+					</div>
+					<div class="input-group mb-3">
+						<span class="input-group-text">Thumbnail</span>
+						<input type="text" class="form-control" placeholder="Thumbnail" aria-label="Thumbnail"
+							aria-describedby="Thumbnail" id="inputThumbnailAdd" required/>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+						<button type="button" class="btn btn-dark" id="btnConfirmAddProduct">Add Product</button>
+					</div>
+				</form>
+			</div>
+
+		</div>
+	</div>
+</div>
+
+
+
+	
+	<div class="d-flex justify-content-center">
+		{{!-- Paginación --}}
+		<div class="p-2">
+			<nav aria-label="Page navigation example">
+				<ul class="pagination justify-content-center pagination-sm">
+					{{#if products.hasPrevPage}}
+					<li class="page-item">
+						{{else}}
+					<li class="page-item disabled">
+						{{/if}}
+						<a class="page-link" href="{{products.prevLink}}" aria-label="Previous"><span
+								aria-hidden="true">&laquo;</span></a>
+					</li>
+		
+					<li class="page-item dark" aria-current="page"><a class="page-link" href="#">{{products.page}} de
+							{{products.totalPages}}</a></li>
+		
+					{{#if products.hasNextPage}}
+					<li class="page-item">
+						{{else}}
+					<li class="page-item disabled">
+						{{/if}}
+						<a class="page-link" href="{{products.nextLink}}" aria-label="Next"><span
+								aria-hidden="true">&raquo;</span></a>
+					</li>
+				</ul>
+			</nav>
+		</div>
+	
+	
+	</div>
+</body>
+
+<script src="/js/masterproducts.js"></script>

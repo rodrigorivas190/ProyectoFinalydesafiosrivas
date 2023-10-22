@@ -1,42 +1,58 @@
 <div class="productsBody h-auto w-100">
 
-     <nav class="navbar navbar-expand-sm bg-info">
-         <div class="p-2">
-        <a href="#">
-             <img src="/assets/images/logo.jpg" width="80px" alt="logo"
-                class="d-inline-block align-text-top me-3 header__img" />
-        </a>
-        
-    </div>
+    <nav class="navbar navbar-expand-sm bg-info">
+        <div class="p-2">
+            <a href="#">
+                <img src="/assets/images/logo.jpg" width="80px" alt="logo"
+                    class="d-inline-block align-text-top me-3 header__img" />
+            </a>
+
+        </div>
 
         <div class="container-fluid">
-            <a class="navbar-brand fw-bold text-light ">Hola {{user.first_name}} {{user.last_name}}! rol: {{user.role}}</a>
-                <div class="my-2 me-2 d-flex justify-content-end">
-                    {{!-- Boton para visualizar carrito --}}
-                    <button class="btn btn-outline-light mx-2 position-relative"  aria-current="page" href="#"  type="button"data-bs-toggle="offcanvas" data-bs-target="#offcanvas"
-                        aria-controls="offcanvas" id="btnCarrito">
-                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-cart4" viewBox="0 0 16 16">
-                    <path d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5zM3.14 5l.5 2H5V5H3.14zM6 5v2h2V5H6zm3 0v2h2V5H9zm3 0v2h1.36l.5-2H12zm1.11 3H12v2h.61l.5-2zM11 8H9v2h2V8zM8 8H6v2h2V8zM5 8H3.89l.5 2H5V8zm0 5a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0zm9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0z"/>
-                </svg>
-                {{!-- <span class="position-absolute top-50 start-50 ms-3 translate-middle badge rounded-pill bg-danger" id="countCart">
-                    0
-                </span> --}}
-                </a>
-                        {{!-- Boton para cerrar sesion --}}
+            <a class="navbar-brand fw-bold text-light ">Hola {{user.first_name}} {{user.last_name}}! rol:
+                {{user.role}}</a>
+            <div class="my-2 me-2 d-flex justify-content-end">
+                {{!-- Boton para visualizar carrito --}}
+                <button class="btn btn-outline-light mx-2 position-relative" aria-current="page" href="#" type="button"
+                    data-bs-toggle="offcanvas" data-bs-target="#offcanvas" aria-controls="offcanvas" id="btnCarrito">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
+                        class="bi bi-cart4" viewBox="0 0 16 16">
+                        <path
+                            d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5zM3.14 5l.5 2H5V5H3.14zM6 5v2h2V5H6zm3 0v2h2V5H9zm3 0v2h1.36l.5-2H12zm1.11 3H12v2h.61l.5-2zM11 8H9v2h2V8zM8 8H6v2h2V8zM5 8H3.89l.5 2H5V8zm0 5a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0zm9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0z" />
+                    </svg>
+                    {{!-- <span
+                        class="position-absolute top-50 start-50 ms-3 translate-middle badge rounded-pill bg-danger"
+                        id="countCart">
+                        0
+                    </span> --}}
+                    </a>
+                    {{!-- Boton para cerrar sesion --}}
+                </button>
+                <form action='/api/users/logout/{{user._id}}' method='post'>
+                    <button type="submit" class="btn btn-danger mx-2 " id="btnLogOut">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-box-arrow-right icon_size py-0" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd"
+                                d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0v2z" />
+                            <path fill-rule="evenodd"
+                                d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z" />
+                        </svg>
+                        logout
                     </button>
-                    <form action='/api/users/logout' method='post'>
-                        <button type="submit" class="btn btn-danger mx-2 " id="btnLogOut">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                class="bi bi-box-arrow-right icon_size py-0" viewBox="0 0 16 16">
-                                <path fill-rule="evenodd"
-                                    d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0v2z" />
-                                <path fill-rule="evenodd"
-                                    d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z" />
-                            </svg>
-                            logout
-                        </button>
-                    </form>
-                </div>
+                </form>
+                <form action='/profile' method='get'>
+                    <button type="submit" class="btn btn-outline-light" id="btnProfile">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-person-circle" viewBox="0 0 16 16">
+                            <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
+                            <path fill-rule="evenodd"
+                                d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z" />
+                        </svg>
+                        Profile
+                    </button>
+                </form>
+            </div>
         </div>
     </nav>
 
@@ -49,25 +65,27 @@
                     {{else}}
                 <li class="page-item disabled">
                     {{/if}}
-                    <a class="page-link" href="{{products.prevLink}}" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a>
+                    <a class="page-link" href="{{products.prevLink}}" aria-label="Previous"><span
+                            aria-hidden="true">&laquo;</span></a>
                 </li>
-    
+
                 <li class="page-item dark" aria-current="page"><a class="page-link" href="#">{{products.page}}</a></li>
-    
+
                 {{#if products.hasNextPage}}
                 <li class="page-item">
                     {{else}}
                 <li class="page-item disabled">
                     {{/if}}
-                    <a class="page-link" href="{{products.nextLink}}" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>
+                    <a class="page-link" href="{{products.nextLink}}" aria-label="Next"><span
+                            aria-hidden="true">&raquo;</span></a>
                 </li>
             </ul>
         </nav>
     </div>
 
-    
-        
-        
+
+
+
     {{!-- Offcanvas donde se muestra carrito --}}
     <div class="offcanvas offcanvas-start" data-bs-backdrop="offcanvas" tabindex="-1" id="offcanvas"
         aria-labelledby="staticBackdropLabel">
@@ -79,8 +97,8 @@
                 </div>
                 <div class="row">
                     <button id="btnVaciarCarrito" type="button" class="btn btn-outline-danger btn-sm">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3"
-                            viewBox="0 0 16 16">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-trash3" viewBox="0 0 16 16">
                             <path
                                 d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z" />
                         </svg>
@@ -107,40 +125,43 @@
     <div class="grid p-2 h-100 w-100">
         <!-- Por cada producto imprimo una card con los datos-->
         {{#each products.payload}}
-            <div class="card-shadow card card_producto h-100 d-flex flex-column justify-content-between">
-                <div>
-                    <div class="card-header py-0">
-                        <h5 class="m-0 fw-semibold fs-5 text-center">{{this.title}}</h5>
-                    </div>
-                    <div class="d-flex flex-column justify-content-between align-items-center p-2">
-                        <img class="card-img my-0 cardImgSize" src="{{this.thumbnail}} " alt="{{this.thumbnail}}" >
-                        <p class="fw-bold fst-italic text-justify my-0 tittleFontSize">Codigo {{this.code}}</p>
-                        {{!-- <p class="fw-lighter text-justify my-0">{{this.description}}</p> --}}
-                        <!-- Default dropend button -->
-                        <div class="btn-group dropend">
-                            <button type="button" class="btn btn-outline-dark dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                                Descripcion
-                            </button>
-                            <ul class="dropdown-menu text-justify p-2 dropDownFontsize">
-                                <!-- Dropdown menu links -->
-                                {{this.description}}
-                            </ul>
-                        </div>
-                        
+        <div class="card-shadow card card_producto h-100 d-flex flex-column justify-content-between">
+            <div>
+                <div class="card-header py-0">
+                    <h5 class="m-0 fw-semibold fs-5 text-center">{{this.title}}</h5>
+                </div>
+                <div class="d-flex flex-column justify-content-between align-items-center p-2">
+                    <img class="card-img my-0 cardImgSize" src="{{this.thumbnail}} " alt="{{this.thumbnail}}">
+                    <p class="fw-bold fst-italic text-justify my-0 tittleFontSize">Codigo {{this.code}}</p>
+                    {{!-- <p class="fw-lighter text-justify my-0">{{this.description}}</p> --}}
+                    <!-- Default dropend button -->
+                    <div class="btn-group dropend">
+                        <button type="button" class="btn btn-outline-dark dropdown-toggle" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            Descripcion
+                        </button>
+                        <ul class="dropdown-menu text-justify p-2 dropDownFontsize">
+                            <!-- Dropdown menu links -->
+                            {{this.description}}
+                        </ul>
                     </div>
 
+                </div>
 
-                </div>
-                    <div class="d-flex flex-column justify-content-center ">
-                    <p class="fw-bold fst-italic fs-5 my-0 text-center">{{this.price}} $ </p>
-                    <footer class="blockquote-footer my-0 text-center">Stock: {{this.stock}}</footer>
-                    {{#if this.stock}}
-                    <button id="{{this._id}} " class="btnAgregarCarrito btn btn-dark w-100" type="submit">Agregar al carrito</button>
-                    {{else}}
-                    <button id="{{this._id}} " class="btnAgregarCarrito btn btn-dark w-100" type="submit" disabled>Sin Stock</button>
-                    {{/if}}
-                </div>
+
             </div>
+            <div class="d-flex flex-column justify-content-center ">
+                <p class="fw-bold fst-italic fs-5 my-0 text-center">{{this.price}} $ </p>
+                <footer class="blockquote-footer my-0 text-center">Stock: {{this.stock}}</footer>
+                {{#if this.stock}}
+                <button id="{{this._id}} " class="btnAgregarCarrito btn btn-dark w-100" type="submit">Agregar al
+                    carrito</button>
+                {{else}}
+                <button id="{{this._id}} " class="btnAgregarCarrito btn btn-dark w-100" type="submit" disabled>Sin
+                    Stock</button>
+                {{/if}}
+            </div>
+        </div>
         {{/each}}
     </div>
 
@@ -156,9 +177,9 @@
                     <a class="page-link" href="{{products.prevLink}}" aria-label="Previous"><span
                             aria-hidden="true">&laquo;</span></a>
                 </li>
-    
+
                 <li class="page-item dark" aria-current="page"><a class="page-link" href="#">{{products.page}}</a></li>
-    
+
                 {{#if products.hasNextPage}}
                 <li class="page-item">
                     {{else}}

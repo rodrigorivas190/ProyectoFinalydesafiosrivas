@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import { generateToken, middlewarePassportJWT } from '../middleware/jwt.middleware.js';
 import passport from 'passport';
-import UserDTO from '../dto/user.dto.js';
+import ViewUserDTO from '../dto/viewuser.dto.js';
 
 const sessionRouter = Router();
 
@@ -21,7 +21,7 @@ sessionRouter.get('/githubcallback', passport.authenticate('github', { failureRe
 //Endpoint que valida datos de usuario para loguearse
 sessionRouter.get('/current', middlewarePassportJWT, async (req, res) => {
 	try {
-		let user = new UserDTO(req.user.user);
+		let user = new ViewUserDTO (req.user);
 		return res.send(user);
 	} catch (error) {
 		console.error(error);

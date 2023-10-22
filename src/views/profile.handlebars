@@ -1,0 +1,70 @@
+<div class="w-100 h-100 d-flex  justify-content-center align-items-center productsBody flex-column">
+	<div class="card w-75 h-50">
+		<div class="row g-0 h-100">
+			{{!-- <div class="col-md-4">
+				<img src="src/public/profile/default.jpg" class="img-fluid rounded-start" alt="...">
+			</div> --}}
+			<div class="col-md-8">
+				<div class="card-body">
+					<h5 class="card-title">My profile</h5>
+					<p class="card-text">First Name: {{user.first_name}} </p>
+					<p class="card-text">Last Name: {{user.last_name}} </p>
+					<p class="card-text">Email: {{user.email}}</p>
+					{{!-- <p class="card-text">Age: {{user.age}}</p> --}}
+					<div class="row g-0 h-100">
+						<div class="col-md-3">
+							<p class="card-text">Role: {{user.role}}</p>
+						</div>
+						<div class="col-md-8">
+							<p>Update to premium user? please upload de next files:</p>
+							<!-- Formulario para identificación -->
+							{{#if user.documents.[0].type}}
+							<p>Identification Doc &#x2705;</p>
+							{{else}}
+							<form action="/api/users/{{user._id}}/documents" method="post" enctype="multipart/form-data" class="d-flex ">
+								<input type="file" class="form-control" name="archivo">
+								<input type="hidden" name="tipo" value="identificacion">
+								<button type="submit" class="btn btn-outline-secondary btn-sm mb-2">Upload Identification</button>
+							</form>
+							{{/if}}
+									
+							<!-- Formulario para domicilio -->
+							{{#if user.documents.[1].type}}
+							<p>Adress Doc &#x2705;</p>
+							{{else}}
+							<form action="/api/users/{{user._id}}/documents" method="post" enctype="multipart/form-data" class="input-group">
+								<input type="file" class="form-control" name="archivo">
+								<input type="hidden" name="tipo" value="domicilio">
+								<button type="submit" class="btn btn-outline-secondary btn-sm mb-2">Upload Adress</button>
+							</form>
+							{{/if}}
+			
+							<!-- Formulario para cuenta -->
+							{{#if user.documents.[2].type}}
+							<p>Acount Doc &#x2705;</p>
+							{{else}}
+							<form action="/api/users/{{user._id}}/documents" method="post" enctype="multipart/form-data" class="input-group">
+								<input type="file" class="form-control" name="archivo">
+								<input type="hidden" name="tipo" value="cuenta">
+								<button type="submit" class="btn btn-outline-secondary btn-sm mb-2">Upload Acount</button>
+							</form>
+							{{/if}}
+
+						</div>
+						{{#if user.documents.[0].type}}
+							{{#if user.documents.[1].type}}
+								{{#if user.documents.[2].type}}
+									<button onclick="BePremium()" type="button" class="btn btn-dark mt-3" id="btnBePremium">Update User</button>
+								{{/if}}
+							{{/if}}
+						{{/if}}
+
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+	<button onclick="backToProducts()" type="button" class="btn btn-dark mt-3">Back to Products</button>
+</div>
+<script src="/js/profile.js"></script>

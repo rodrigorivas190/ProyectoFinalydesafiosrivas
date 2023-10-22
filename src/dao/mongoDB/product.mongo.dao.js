@@ -6,25 +6,25 @@ class ProductMongo {
 		this.model = ProductModel;
 	}
 
-	//Método para traer todos los productos de la base de datos
+	//Método para traer todos los productos de la base de datos con paginación
 	async getProducts(query, options) {
 		let products = await this.model.paginate(query, options); // realizo la paginación
 		return products; //retorno estructura
 	}
 
-	//Método para traer todos los productos de la base de datos
+	//Método para traer todos los productos de la base de datos en crudo
 	async getAllProducts() {
 		return await this.model.find().lean(); //retorno estructura
 	}
 
 	//Método para agregar productos a la base de datos
 	async addProducts(productToAdd) {
-		await this.model.create(productToAdd);
+		return await this.model.create(productToAdd);
 	}
 
 	//Método para adquirir un producto especifico por ID
 	async getProductsById(idBuscado) {
-		return this.model.find({ _id: idBuscado }); // busco el elemento que
+		return this.model.findOne({ _id: idBuscado }); // busco el elemento que
 	}
 
 	//Método para actualizar producto

@@ -1,0 +1,241 @@
+paths:
+  /api/products/:
+    get:
+      summary: Endpoint para listar todos los productos
+      # security:
+      #   - bearerAuth: []
+      #     roles:
+      #       - admin
+      tags:
+        - Products
+      responses:
+        200:
+          description: Lista de productos
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Product'
+        400:
+          description: Error de campo invalido o faltante.
+        500:
+          description: Error del servidor
+    post:
+      summary: Endpoint que agrega un producto
+      tags:
+        - Products
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/requestBodies/createProduct'
+      responses:
+        200:
+          description: Producto agregado
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    description: Estado success o error.
+                  message:
+                    type: string
+                    description: se indica el codigo del producto agregado.
+                example:
+                  status: success
+                  message: product M001 created
+        401:
+          description: Debe autenticarse primero
+        500:
+          description: Error del servidor
+  /api/products/{pid}:
+    get:
+      summary: Obtener un producto por su ID
+      tags:
+        - Products
+      parameters:
+        - in: path
+          name: pid
+          required: true
+          description: ID del producto a buscar
+          schema:
+            type: string
+      responses:
+        200:
+          description: Producto encontrado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Product'
+        404:
+          description: Producto no encontrado
+        500:
+          description: Error del servidor
+    put:
+      summary: Actualizar un producto por su ID
+      tags:
+        - Products
+      parameters:
+        - in: path
+          name: pid
+          required: true
+          description: ID del producto a modificar
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/requestBodies/createProduct'
+      responses:
+        200:
+          description: Producto modificado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Product'
+        400:
+          description: Error de campo invalido o faltante.
+        401:
+          description: Debe autenticarse primero
+        500:
+          description: Error del servidor
+    delete:
+      summary: Eliminar un producto por su ID
+      tags:
+        - Products
+      parameters:
+        - in: path
+          name: pid
+          required: true
+          description: ID del producto a eliminar
+          schema:
+            type: string
+      responses:
+        200:
+          description: Producto eliminado
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    description: Estado success o error.
+                  message:
+                    type: string
+                    description: se indica el ID del producto eliminado.
+                example:
+                  status: success
+                  message: product ID:64cf1b46930aabca7ec6c9ec deleted
+        404:
+          description: Producto no encontrado
+        500:
+          description: Error del servidor
+components:
+  schemas:
+    Product:
+      type: object
+      properties:
+        _id:
+          type: ObjectId
+          description: ID del producto (autogenerado por MongoDB)
+        title:
+          type: string
+          description: Nombre del poducto
+          require: true
+        description:
+          type: string
+          description: Descripción del producto
+          require: true
+        code:
+          type: string
+          description: Código de producto, definido por el owner
+          require: true
+          unique: true
+        price:
+          type: number
+          description: precio de producto en $
+          require: true
+        status:
+          type: boolean
+          description: se indica si el producto esta disponible o no
+          require: true
+        stock:
+          type: number
+          description: stock actual de producto
+          require: true
+        category:
+          type: string
+          description: categoría de producto para realizar un filtrado por tipo
+          require: true
+        thumbnail:
+          type: array
+          description: array de imagenes
+          require: true
+        owner:
+          type: string
+          description: mail de usuario que crea el producto
+          default: admin
+      example:
+          _id: ObjectId("64d2ea3dccda932630491583")
+          title: 'ROMPER EL CIRCULO'
+          description: 'Novelas De Amor'
+          code: '987'
+          price: 2540
+          status: true
+          stock: 2
+          category: 'general'
+          thumbnail: ['https://picsum.photos/200']
+          owner: 'rodrigomrivas190@gmail.com'
+  requestBodies:
+    createProduct:
+      type: object
+      properties:
+        title:
+          type: string
+          description: Nombre del poducto
+          require: true
+        description:
+          type: string
+          description: Descripción del producto
+          require: true
+        code:
+          type: string
+          description: Código de producto, definido por el owner
+          require: true
+          unique: true
+        price:
+          type: number
+          description: precio de producto en $
+          require: true
+        status:
+          type: boolean
+          description: se indica si el producto esta disponible o no
+          require: true
+        stock:
+          type: number
+          description: stock actual de producto
+          require: true
+        category:
+          type: string
+          description: categoría de producto para realizar un filtrado por tipo
+          require: true
+        thumbnail:
+          type: array
+          description: array de imagenes
+          require: true
+      example:
+        title: 'ROMPER EL CIRCULO'
+        description: 'Novelas De Amor'
+        code: '987'
+        price: 580
+        status: true
+        stock: 2
+        category: 'general'
+        thumbnail: ['https://picsum.photos/200']

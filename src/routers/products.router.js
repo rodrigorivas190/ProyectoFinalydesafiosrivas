@@ -1,8 +1,7 @@
 import { Router } from 'express';
 import { io } from '../app.js';
 import { middlewarePassportJWT } from '../middleware/jwt.middleware.js';
-import { isAdmin } from '../middleware/isAdmin.middleware.js';
-import { isAdminOrPremium } from '../middleware/isAdminOrPremium.middleware.js';
+import { isAdminOrPremium } from '../middleware/auth.middleware.js';
 
 import productController from '../controllers/product.controller.js';
 import CustomError from '../tools/CustomErrors.js';
@@ -14,17 +13,17 @@ import {
 } from '../tools/info.js';
 import EErrors from '../tools/EErrors.js';
 
+
+
 //Inicializo Router
 const productsRouter = Router();
 
 //Endpoint que muestra todos los productos
 productsRouter.get('/', async (req, res, next) => {
-	
-
 	const { limit, page, category, availability, sort } = req.query;
 	try {
 		let showProducts = await productController.getProducts(limit, page, category, sort, availability); //Traigo el listado de productos
-		res.send(showProducts); //envio la respuesta
+		res.json(showProducts); //envio la respuesta
 	} catch (error) {
 		next(error);
 	}
@@ -32,7 +31,6 @@ productsRouter.get('/', async (req, res, next) => {
 
 //Endpoint que muestra un producto en particular
 productsRouter.get('/:pid', async (req, res, next) => {
-	
 	try {
 		//Recibo un params y muestro el producto con ese ID, como el ID es un string lo paso a entero
 		let product = await productController.getProductsById(req.params.pid);
@@ -46,6 +44,7 @@ productsRouter.get('/:pid', async (req, res, next) => {
 productsRouter.post('/', middlewarePassportJWT, isAdminOrPremium, async (req, res, next) => {
 	try {
 		const productToAdd = req.body;
+
 		if (
 			!productToAdd.title ||
 			!productToAdd.description ||
@@ -63,8 +62,8 @@ productsRouter.post('/', middlewarePassportJWT, isAdminOrPremium, async (req, re
 				code: EErrors.INVALID_TYPES_ERROR,
 			});
 		}
-
-		productToAdd.owner = req.user.user.email;
+		
+		productToAdd.owner = req.user.email;
 
 		let newProduct = await productController.addProducts(productToAdd); //recibo por body el producto a agregar
 		if (newProduct === EErrors.DUPLICATED_VALUE_ERROR) {
@@ -84,8 +83,6 @@ productsRouter.post('/', middlewarePassportJWT, isAdminOrPremium, async (req, re
 
 //Endpoint que modifica un producto
 productsRouter.put('/:pid', middlewarePassportJWT, isAdminOrPremium, async (req, res, next) => {
-	
-
 	try {
 		let idBuscado = req.params.pid;
 		if (!idBuscado) {
@@ -106,13 +103,12 @@ productsRouter.put('/:pid', middlewarePassportJWT, isAdminOrPremium, async (req,
 
 //Endpoint que elimina un producto
 productsRouter.delete('/:pid', middlewarePassportJWT, isAdminOrPremium, async (req, res, next) => {
-	
 	try {
 		let idBuscado = req.params.pid;
 		let prodToDel = await productController.getProductsById(idBuscado);
 		let product;
 
-		if ((req.user.user.role === 'premium' && prodToDel[0].owner === req.user.user.email) || req.user.user.role === 'admin') {
+		if ((req.user.role === 'premium' && prodToDel.owner === req.user.email) || req.user.role === 'admin') {
 			product = await productController.deleteProduct(idBuscado);
 		} else {
 			CustomError.createError({
@@ -122,7 +118,6 @@ productsRouter.delete('/:pid', middlewarePassportJWT, isAdminOrPremium, async (r
 				code: EErrors.DELETE_ERROR,
 			});
 		}
-
 		if (!product === EErrors.DELETE_ERROR) {
 			CustomError.createError({
 				name: 'Product Delete error',
@@ -131,9 +126,12 @@ productsRouter.delete('/:pid', middlewarePassportJWT, isAdminOrPremium, async (r
 				code: EErrors.DELETE_ERROR,
 			});
 		}
-
+		const responseObj = {
+			prodToDel: prodToDel,
+			user: req.user,
+		};
 		io.emit('real_time_products', await productController.getProducts());
-		res.send(product);
+		res.json(responseObj);
 	} catch (error) {
 		next(error);
 	}

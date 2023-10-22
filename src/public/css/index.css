@@ -1,17 +1,22 @@
 /*Estilos de los titulos de pantalla productos y real time products*/
 
 .body_background1 {
-    background-image: url('/assets/images/fondo.jpg'); /* Ruta de la imagen de fondo */
-    background-size: cover; /* Cubre toda el área del elemento */
-    background-position: center center; /* Centra la imagen */
-    background-repeat: no-repeat; /* Evita la repetición de la imagen */
-    height: 100vh; /* Ajusta la altura al 100% del viewport (pantalla) */
+	background-image: url('/assets/images/fondo.jpg');
+	/* Ruta de la imagen de fondo */
+	background-size: cover;
+	/* Cubre toda el área del elemento */
+	background-position: center center;
+	/* Centra la imagen */
+	background-repeat: no-repeat;
+	/* Evita la repetición de la imagen */
+	height: 100vh;
+	/* Ajusta la altura al 100% del viewport (pantalla) */
 }
 
 
 .productsBody {
-	
-	background: linear-gradient(rgba(27, 44, 79, 0.5),rgba(225, 227, 231, 0.5)), url('../assets/images/fondo.jpg') no-repeat center center fixed !important; 
+
+	background: linear-gradient(rgba(27, 44, 79, 0.5), rgba(225, 227, 231, 0.5)), url('../assets/images/fondo.jpg') no-repeat center center fixed !important;
 	background-size: cover !important;
 	margin: 0;
 	font-family: var(--bs-body-font-family);
@@ -81,8 +86,8 @@ input {
 
 .loginBody {
 
-	
-	background: linear-gradient(rgba(27, 44, 79, 0.5),rgba(225, 227, 231, 0.5)), url('/assets/images/fondo.jpg') no-repeat center center fixed !important ; 
+
+	background: linear-gradient(rgba(27, 44, 79, 0.5), rgba(225, 227, 231, 0.5)), url('/assets/images/fondo.jpg') no-repeat center center fixed !important;
 	background-size: cover !important;
 	background-repeat: no-repeat;
 	margin: 0;
@@ -95,14 +100,14 @@ input {
 	text-align: var(--bs-body-text-align);
 	-webkit-text-size-adjust: 100%;
 	-webkit-tap-highlight-color: transparent !important;
-	
+
 	/* display: flex;
 	flex-wrap: wrap;
 	justify-content: center;
 	font-family: 'League Spartan', sans-serif;
 	font-weight: 300;
 	color: var(--light); */
-	
+
 }
 
 .inputPlaceholder::placeholder {
@@ -150,10 +155,12 @@ input {
 	max-width: 180px;
 	max-height: 200px;
 }
+
 .bg-info {
-    --bs-bg-opacity: 1;
-    background-color: rgba(var(--bs-info-rgb),var(--bs-bg-opacity))!important;
+	--bs-bg-opacity: 1;
+	background-color: rgba(var(--bs-info-rgb), var(--bs-bg-opacity)) !important;
 }
+
 .inputPlaceholder::placeholder {
 	color: grey;
 }
@@ -199,4 +206,3 @@ input {
 	max-width: 180px;
 	max-height: 200px;
 }
-

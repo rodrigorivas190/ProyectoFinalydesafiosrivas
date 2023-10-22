@@ -1,6 +1,7 @@
 //importación de service.
 import { ProductService } from '../repositories/product/index.js';
 import EErrors from '../tools/EErrors.js';
+import { logger } from '../middleware/logger.middleware.js';
 
 //variables globales para parametros por defecto
 const LIMITdEFAULT = 10;
@@ -51,25 +52,32 @@ class ProductController {
 			nextLink: !products.hasNextPage ? null : `?limit=${limit}&page=${products.nextPage}` + link, //
 		};
 
+
 		return returnProducts; //retorno estructura
 	}
 
 	//Método para agregar productos a la base de datos
 	async addProducts(productToAdd) {
+	try { 
 		let allProducts = await this.service.getAllProducts(); // me quedo con todos los códigos del array productos
 		let codes = allProducts.map((el) => el.code); // Me quedo con los codigos de productos
 		//evaluo si el codigo del nuevo producto no existe
 		if (!codes.includes(productToAdd.code)) {
-			await this.service.addProducts(productToAdd);
-			return { status: 'sucess', message: `product ${productToAdd.code} created` };
+			let result = await this.service.addProducts(productToAdd);
+			return { status: 'success', payload: result };
 		} else {
 			return EErrors.DUPLICATED_VALUE_ERROR;
 			//return { error: 'Error: product already exist' }; //Si el producto ya existe arrojo error
 		}
-	}
+
+	}catch (error) {
+      logger.error(`Error al agregar los productos: ${error}`);
+      res.status(500).json({ status: 'error', message: 'Internal server error' });
+    }}
 
 	//Método para adquirir un producto especifico por ID
 	async getProductsById(idBuscado) {
+	try { 
 		const result = await this.service.getProductsById(idBuscado); // busco el elemento que coincida con el ID indicado
 
 		if (result) {
@@ -78,16 +86,24 @@ class ProductController {
 		} else {
 			return { error: 'Error: Product not found' };
 		}
-	}
+	}catch (error) {
+      logger.error(`Error al obtener los productos: ${error}`);
+      res.status(500).json({ status: 'error', message: 'Internal server error' });
+    }}
 
 	//Método para actualizar producto
 	async updateProduct(idBuscado, productUpdated) {
+	try { 
 		await this.service.updateProduct(idBuscado, productUpdated);
-		return { status: 'sucess', message: `product ID:${idBuscado} Updated` };
-	}
+		return { status: 'success', message: `product ID:${idBuscado} Updated` };
+	}catch (error) {
+      logger.error(`Error al actualizar los productos: ${error}`);
+      res.status(500).json({ status: 'error', message: 'Internal server error' });
+    }}
 
 	//Método para eliminar un producto
 	async deleteProduct(idBuscado) {
+	try { 
 		let result = await this.service.getProductsById(idBuscado);
 
 		if (result.length == 0) {
@@ -95,10 +111,11 @@ class ProductController {
 		}
 
 		let deleted = await this.service.deleteProduct(idBuscado); //elimino producto seleccionado
-		if (deleted.acknowledged) {
-			return { status: 'sucess', message: `product ID:${idBuscado} deleted` }; //retorno sucess con el producto eliminado
-		}
-	}
+		return { status: 'success', message: `product ID:${idBuscado} deleted` }; //retorno success con el producto eliminado
+	}catch (error) {
+      logger.error(`Error al eliminar los productos: ${error}`);
+      res.status(500).json({ status: 'error', message: 'Internal server error' });
+    }}
 }
 
 //Instancio una nueva clase de Product Controller

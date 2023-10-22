@@ -1,27 +1,40 @@
 //importación de service.
 import { MessageService } from '../repositories/message/index.js';
+import { logger } from '../middleware/logger.middleware.js';
 
 class MessageController {
-	constructor() {
-		this.service = MessageService;
-	}
+  constructor() {
+    this.service = MessageService;
+  }
 
-	//Método para traer todos los mensajes de la base de datos
-	async getMessages() {
-		return await this.service.getMessages();
-	}
+  // Método para traer todos los mensajes de la base de datos
+  async getMessages(req, res) {
+    try {
+      const messages = await this.service.getMessages();
+      res.status(200).json(messages);
+    } catch (error) {
+      logger.error(`Error getting messages: ${error}`);
+      res.status(500).json({ status: 'error', message: 'Internal server error' });
+    }
+  }
 
-	//Método para agregar mensajes a la base de datos
-	async addMessage(messageToAdd) {
-		if (!messageToAdd.user || !messageToAdd.message) {
-			return { error: 'Error: fields missing' }; //Si falta algun campo, arrojo error
-		}
+  // Método para agregar mensajes a la base de datos
+  async addMessage(req, res) {
+    try {
+      const messageToAdd = req.body;
 
-		await this.service.addMessage(messageToAdd);
-		return { status: 'sucess', message: `message added to DB` };
-	}
+      if (!messageToAdd.user || !messageToAdd.message) {
+        return res.status(400).json({ error: 'Error: fields missing' });
+      }
+
+      await this.service.addMessage(messageToAdd);
+      res.status(201).json({ status: 'success', message: `Message added to DB` });
+    } catch (error) {
+      logger.error(`Error adding a message: ${error}`);
+      res.status(500).json({ status: 'error', message: 'Internal server error' });
+    }
+  }
 }
-
 //Instancio una nueva clase de Message Controller
 const messageController = new MessageController();
 

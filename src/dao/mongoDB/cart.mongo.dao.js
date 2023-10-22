@@ -25,7 +25,7 @@ class CartMongo {
 
 	//Método para borrar un producto del carrito
 	async deleteProduct(cartId, productId) {
-		await this.model.findOneAndUpdate({ _id: cartId }, { $pull: { products: { product: productId } } }); //busco el carrito y modifico el campo
+		await this.model.findOneAndUpdate({ _id: cartId }, { $pull: { products: { product: productId } } });
 	}
 
 	//Método para actualizar todo el array de productos
@@ -34,8 +34,8 @@ class CartMongo {
 	}
 
 	//metodo para modificar la cantidad de productos de un elemento del array de productos
-	async updateProductQuantity(cart) {
-		await cart.save(); //guardo cambios
+	async updateProductQuantity(cartId, productId, newQuantity) {
+		return await this.model.findOneAndUpdate({ _id: cartId, 'products.product': productId }, { $set: { 'products.$.quantity': newQuantity } }, { new: true });
 	}
 
 	//Metodo para borrar todos los productos de un carrito determinado
@@ -46,6 +46,11 @@ class CartMongo {
 	//Metodo para obtener el index de un producto dentro del carrito
 	getIndex(cart, productId) {
 		return cart.products.indexOf(cart.products.find((element) => element.product._id.toString() === productId));
+	}
+
+	//Método para eliminar un carrito
+	async deleteCart(idBuscado) {
+		return this.model.deleteOne({ _id: idBuscado });
 	}
 }
 

@@ -6,7 +6,7 @@ export default class CartRepository {
 
 	//Metodo para agregar un nuevo carrtio
 	async addNewCart() {
-		this.dao.addNewCart();
+		return await this.dao.addNewCart();
 	}
 
 	//Método para adquirir un carrito especifico por ID
@@ -31,7 +31,7 @@ export default class CartRepository {
 
 	//metodo para modificar la cantidad de productos de un elemento del array de productos
 	async updateProductQuantity(cartId, productId, newQuantity) {
-		await this.dao.updateProductQuantity(cartId, productId, newQuantity);
+		return await this.dao.updateProductQuantity(cartId, productId, newQuantity);
 	}
 
 	//Metodo para borrar todos los productos de un carrito determinado
@@ -42,5 +42,10 @@ export default class CartRepository {
 	//metodo para obtener el index de un producto dentro del carrito
 	getIndex(cart, productId) {
 		return this.dao.getIndex(cart, productId);
+	}
+
+	//Método para eliminar un carrito
+	async deleteCart(idBuscado) {
+		return this.dao.deleteCart(idBuscado); 
 	}
 }

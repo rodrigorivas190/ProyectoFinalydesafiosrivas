@@ -1,0 +1,390 @@
+paths:
+  /api/carts:
+    post:
+      summary: Endpoint que agrega un nuevo carrito
+      tags:
+        - Carts
+      responses:
+        200:
+          description: Carrito agregado
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    description: Estado success o error.
+                  message:
+                    type: string
+                    description: se indica ok de operación.
+                example:
+                  status: success
+                  message: New cart added
+        500:
+          description: Error del servidor
+  /api/carts/{cid}:
+    get:
+      summary: Endpoint que muestra los productos de un carrito en particular
+      tags:
+        - Carts
+      parameters:
+        - in: path
+          name: cid
+          required: true
+          description: ID del carrito a buscar
+          schema:
+            type: string
+      responses:
+        200:
+          description: Producto encontrado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cart'
+        404:
+          description: Carrito no encontrado
+        500:
+          description: Error del servidor
+    put:
+      summary: Endpoint para actualizar los productos completos de un carrito
+      tags:
+        - Carts
+      parameters:
+        - in: path
+          name: cid
+          required: true
+          description: ID del carrito a buscar
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                products:
+                  type: array
+                  description: listado de productos a actualizar
+                  properties:
+                    product:
+                      type: string
+                      descripction: nuevo ID de producto
+                    quantity:
+                      type: number
+                      description: nueva cantidad de producto
+              example:
+                products: [
+                  {
+                    "product": "64d2ea3dccda932630491583",
+                    "quantity": 2
+                  },
+                  {
+                    "product": "64cf1b46930aabca7ec6c9eb",
+                    "quantity": 20
+                  },
+                  {
+                    "product": "64cf1b46930aabca7ec6c9ec",
+                    "quantity": 3
+                  }
+                ]
+      responses:
+        200:
+          description: carrito actualizado
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    description: Estado success o error.
+                  message:
+                    type: string
+                    description: se indica ok de operación.
+                example:
+                  status: success
+                  message: products from cart ID=64b68bafc6575fad1946999b updated
+        500:
+          description: Error del servidor
+    delete:
+      summary: Endpoint para borrar todos los productos del carrito
+      tags:
+        - Carts
+      parameters:
+        - in: path
+          name: cid
+          required: true
+          description: ID del carrito a buscar
+          schema:
+            type: string
+      responses:
+        200:
+          description: Productos de carrito eliminados
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    description: Estado success o error.
+                  message:
+                    type: string
+                    description: se indica el ID del carrito borrado.
+                example:
+                  status: success
+                  message: products deleted from cart ID=64b69c20f1e9b8983e155a8a 
+        400:
+          description: Error de campo invalido o faltante.
+        500:
+          description: Error del servidor
+  /api/carts/{cid}/product/{pid}:
+    post:
+      summary: Endpoint que agrega un producto a un carrito
+      tags:
+        - Carts
+      parameters:
+        - in: path
+          name: cid
+          required: true
+          description: ID del carrito a buscar
+          schema:
+            type: string
+        - in: path
+          name: pid
+          required: true
+          description: ID del producto a buscar
+          schema:
+            type: string
+      responses:
+        200:
+          description: Producto agregado al carrito
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cart'
+        400:
+          description: Error de campo invalido o faltante.
+        401:
+          description: Debe autenticarse primero
+        500:
+          description: Error del servidor
+    delete:
+      summary: Endpoint para borrar un producto del carrito
+      tags:
+        - Carts
+      parameters:
+        - in: path
+          name: cid
+          required: true
+          description: ID del carrito a buscar
+          schema:
+            type: string
+        - in: path
+          name: pid
+          required: true
+          description: ID del producto a buscar
+          schema:
+            type: string
+      responses:
+        200:
+          description: Producto eliminado del carrito
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    description: Estado success o error.
+                  message:
+                    type: string
+                    description: se indica el codigo del producto agregado.
+                example:
+                  status: success
+                  message: product ID=64cf1b46930aabca7ec6c9ec deleted from cart ID=64c9d325f54c08f61e2cde00 
+        400:
+          description: Error de campo invalido o faltante.
+        401:
+          description: Debe autenticarse primero
+        500:
+          description: Error del servidor
+    put:
+      summary: Endpoint para actualizar las cantidades de un producto dentro de un determinado carrito
+      tags:
+        - Carts
+      parameters:
+        - in: path
+          name: cid
+          required: true
+          description: ID del carrito a buscar
+          schema:
+            type: string
+        - in: path
+          name: pid
+          required: true
+          description: ID del producto a buscar
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                quantity:
+                  type: number
+                  description: cantidad a modificar
+              example:
+                quantity: 50
+      responses:
+        200:
+          description: Cantidad actualizada
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    description: Estado success o error.
+                  message:
+                    type: string
+                    description: se indica el codigo del producto agregado en el carrito indicado
+                example:
+                  status: success
+                  message: product ID=64d2ea3dccda932630491583 added to cart ID=64c9d325f54c08f61e2cde00 
+        500:
+          description: Error del servidor
+  /api/carts/{cid}/purchase:
+    post:
+      summary: Endpoint para obtener el ticket de compra
+      tags:
+        - Carts
+      parameters:
+        - in: path
+          name: cid
+          required: true
+          description: ID del carrito a buscar
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  description: email de usuario que realiza la compra
+              example:
+                email: rodrigomrivas190@gmail.com
+      responses:
+        200:
+          description: ticket generado y enviado por mail
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  notStock:
+                    type: array
+                    description: array con los IDs de los productos sin stock
+                  newTicket:
+                    type: object
+                    description: nuevo ticket con datos de compra
+                    properties:
+                      code:
+                        type: string
+                        description: codigo de ticket generado
+                      purchase_datetime:
+                        type: string
+                        description: fecha y hora de la compra
+                      amount:
+                        type: number
+                        description: total de la compra
+                      purchaser:
+                        type: string
+                        description: email del comprador
+                example:
+                  notStock: [64d2ea3dccda932630491583]
+                  newTicket: {
+                    code: T0000000001,
+                    purchase_datetime: 20/10/2023 11:50pm,
+                    amount: 1000,
+                    purchaser: rodrigomrivas190@gmail.com,
+                  }
+        500:
+          description: Error del servidor
+  /api/carts/delete/{cid}:
+    delete:
+      summary: Endpoint para borrar un carrito en particular
+      tags:
+        - Carts
+      parameters:
+        - in: path
+          name: cid
+          required: true
+          description: ID del carrito a buscar
+          schema:
+            type: string
+      responses:
+        200:
+          description: Carrito eliminado
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    description: Estado success o error.
+                  message:
+                    type: string
+                    description: se indica el ID del carrito eliminado.
+                example:
+                  status: success
+                  message: cart ID 64cf079ef2aab1979519f854 deleted 
+        400:
+          description: Error de campo invalido o faltante.
+        401:
+          description: Debe autenticarse primero
+        500:
+          description: Error del servidor
+components:
+  schemas:
+    Cart:
+      type: object
+      properties:
+        _id:
+          type: ObjectId
+          description: ID del carrito(autogenerado por MongoDB)
+        products:
+          type: array
+          description: array con los productos del carrito
+          properties:
+            product:
+              type: object
+              description: datos del producto populado
+            quantity:
+              type: number
+              description: cantidad del producto indicado
+      example:
+        _id: ObjectId("5f9b2b3b9c4c9b1b2c9b1b2c")
+        products: [{
+          _id: ObjectId("64d2ea3dccda932630491583"),
+          title: 'ROMPER EL CIRCULO',
+          description: 'Novelas De Amor',
+          code: '987',
+          price: 580,
+          status: true,
+          stock: 2,
+          category: 'general',
+          thumbnail: ['https://picsum.photos/200'],
+          owner: 'rodrigomrivas190@gmail.com',
+          quantity: 1
+        }]

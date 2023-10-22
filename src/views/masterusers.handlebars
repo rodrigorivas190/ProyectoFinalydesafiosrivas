@@ -1,0 +1,111 @@
+<body class="products_body--font_family productsBody">
+	<div class="d-flex flex-column align-items-center">
+		<h1 class="products_tittle--font_family">Bienvenido a LibreriaLea!</h1>
+		<h4>Master list of users</h4>
+	</div>
+
+	<div class="d-flex justify-content-center align-item-center mt-5">
+		<form action='/api/users/logoutmasteruser' method='post'>
+			<button type="submit" class="btn btn-danger mx-2 " id="btnLogOutMasterUsers">
+				<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+					class="bi bi-box-arrow-right icon_size py-0" viewBox="0 0 16 16" style="pointer-events: none;">
+					<path fill-rule="evenodd"
+						d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0v2z" />
+					<path fill-rule="evenodd"
+						d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z" />
+				</svg>
+				logout
+			</button>
+		</form>
+		<button type="button" class="btn btn-danger mx-2" id="btnDeleteAllUsers">
+			<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+				class="bi bi-exclamation-triangle" viewBox="0 0 16 16" style="pointer-events: none;">
+				<path
+					d="M7.938 2.016A.13.13 0 0 1 8.002 2a.13.13 0 0 1 .063.016.146.146 0 0 1 .054.057l6.857 11.667c.036.06.035.124.002.183a.163.163 0 0 1-.054.06.116.116 0 0 1-.066.017H1.146a.115.115 0 0 1-.066-.017.163.163 0 0 1-.054-.06.176.176 0 0 1 .002-.183L7.884 2.073a.147.147 0 0 1 .054-.057zm1.044-.45a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566z" />
+				<path
+					d="M7.002 12a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 5.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995z" />
+			</svg>
+			Delete All User
+		</button>
+	</div>
+
+	<div class="p-4">
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th class="text-center" scope="col">#ID</th>
+					<th class="text-center" scope="col">Cart #ID</th>
+					<th class="text-center" scope="col">First Name</th>
+					<th class="text-center" scope="col">Last Name</th>
+					<th class="text-center" scope="col">Email</th>
+					<th class="text-center" scope="col">Role</th>
+					<th class="text-center" scope="col">Last Connection</th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+				<!-- Por cada producto imprimo una card con los datos-->
+				{{#each users}}
+				<tr>
+					<td>{{this._id}} </td>
+					<td>{{this.cartId}} </td>
+					<td>{{this.first_name}} </td>
+					<td>{{this.last_name}} </td>
+					<td>{{this.email}}</td>
+					<td>{{this.role}}</td>
+					<td>{{this.last_connection}}</td>
+					<td>
+						<div class="d-flex justify-content-center align-items-center">
+							<button type="button" class="btn btn-warning mx-1 btnEditUser" data-bs-toggle="modal" data-bs-target="#staticBackdrop" id="btnEdit{{this._id}}">
+								<svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" fill="currentColor" class="bi bi-pencil-square"
+									viewBox="0 0 16 16" style="pointer-events: none;">
+									<path
+										d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
+									<path fill-rule="evenodd"
+										d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
+								</svg>
+							</button>
+							<button type="button" class="btn btn-danger mx-1 btnDeleteUser" id="btnDelete{{this._id}}">
+								<svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" fill="currentColor" class="bi bi-trash3-fill"
+									viewBox="0 0 16 16" style="pointer-events: none;">
+									<path
+										d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z" />
+								</svg>
+							</button>
+						</div>
+					</td>
+				</tr>
+				{{/each}}
+			</tbody>
+		</table>
+	</div>
+
+	<!-- Modal para modificar usuarios-->
+		<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+			aria-labelledby="staticBackdropLabel" aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h1 class="modal-title fs-5" id="exampleModalLabel">Update User Role</h1>
+						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+					</div>
+					<div class="modal-body">
+						<form>
+							<div class="input-group mb-3">
+								<span class="input-group-text" >Role</span>
+								<input type="text" class="form-control" placeholder="Role" aria-label="Role"
+									aria-describedby="Role" id="inputRole">
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+								<button type="button" class="btn btn-dark" id="btnSaveUpdatedUser">Save changes</button>
+							</div>
+						</form>
+					</div>
+
+				</div>
+			</div>
+		</div>
+
+</body>
+<script src="/js/masterusers.js"></script>

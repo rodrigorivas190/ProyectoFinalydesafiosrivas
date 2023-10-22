@@ -101,6 +101,7 @@ btnVaciarCarrito.addEventListener('click', async () => {
 btnFinalizarCompra.addEventListener('click', async () => {
 	let email;
 	let cartId;
+	let unpurchasedProducts = [];
 	//fetch para obtener datos de la sesion actual
 	await fetch('/api/sessions/current')
 		.then((res) => res.json())
@@ -108,7 +109,7 @@ btnFinalizarCompra.addEventListener('click', async () => {
 			email = data.email;
 			cartId = data.cartId;
 		});
-		
+
 	//alert para confirmar operación
 	Swal.fire({
 		title: 'Realmente desea finalizar la compra?',
@@ -126,11 +127,18 @@ btnFinalizarCompra.addEventListener('click', async () => {
 					'Content-Type': 'application/json',
 				},
 				body: JSON.stringify({ email }),
-				
 			})
-			
 				.then((res) => res.json())
 				.then(async (response) => {
+
+					//recupero el listado de productos que no se tenia stock
+					response.notStock.map(async (id)=>{
+						await fetch(`/api/products/${id}`)
+							.then((res) => res.json())
+							.then((data) => {
+								unpurchasedProducts.push(data)
+							});
+					})
 					//envio email solo si tengo productos que pude comprar
 					if (response.newTicket.amount) {
 						await fetch(`/email`, {
@@ -139,29 +147,24 @@ btnFinalizarCompra.addEventListener('click', async () => {
 								'Content-Type': 'application/json',
 							},
 							body: JSON.stringify(response),
-							
 						});
-						
-  						setTimeout(function() {
-   						 location.reload();
-  						}, 3000);
 					}
+					console.log(unpurchasedProducts);
+					console.log(unpurchasedProducts.length)
 					//alert con confirmación de operación
 					Swal.fire({
 						title: 'Compra Realizada!',
-						text: 'Muchas Gracias, vuelva pronto.',
+						text:
+							unpurchasedProducts.length != 0
+								? 'Muchas Gracias, vuelva pronto. Lamentablemente no contamos con el stock solicitado en los productos que quedaron en el carrito'
+								: 'Muchas Gracias, vuelva pronto.',
 						icon: 'success',
 						confirmButtonColor: '#212529',
 					}).then((result) => {
 						/* Read more about isConfirmed, isDenied below */
 						if (result.isConfirmed) {
 							window.location.replace('/products');
-
-							
 						}
-  						// setTimeout(function() {
-    					// location.reload();
-  						// }, 5000);
 					});
 				});
 		}

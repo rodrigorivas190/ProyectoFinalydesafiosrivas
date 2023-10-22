@@ -1,0 +1,35 @@
+:root {
+	--dark: #16191c;
+	--dark-x: #1e2126;
+	--light: #ffffff;
+}
+
+.products_body--font_family{
+	font-family: 'Roboto', sans-serif;
+}
+
+.products_tittle--font_family {
+	font-family: 'Black Ops One', cursive;
+}
+
+.pencil {
+	width: 1.5rem;
+	height: 1.5rem;
+}
+
+.trash {
+	width: 1.5rem;
+	height: 1.5rem;
+}
+
+.pluscircle {
+	width: 1.5rem;
+	height: 1.5rem;
+}
+
+/*Estilos de los titulos de pantalla productos y real time products*/
+
+.productsBody {
+	background-color: rgb(206, 206, 206);
+}
+

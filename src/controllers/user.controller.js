@@ -1,5 +1,6 @@
 //importación de service.
 import { UserService } from '../repositories/user/index.js';
+import { logger } from '../middleware/logger.middleware.js';
 
 class UserController {
 	constructor() {
@@ -21,13 +22,23 @@ class UserController {
 	}
 
 	//método para registrar un usuario
-	async createUser(userData) {
-		return await this.service.createUser(userData);
+	async createUser(newUser) {
+		return await this.service.createUser(newUser);
 	}
 
 	//método para actualizar un usuario
 	async updateUser(newUser) {
-		return await this.service.updateUser(newUser);
+		await this.service.updateUser(newUser);
+	}
+
+	//Método para eliminar un usuario
+	async deleteUser(userId) {
+		return this.service.deleteUser(userId); 
+	}
+
+	//Método para eliminar varios usuario
+	async deleteManyUser(idsToDelete) {
+		return this.service.deleteManyUser(idsToDelete); 
 	}
 }
 

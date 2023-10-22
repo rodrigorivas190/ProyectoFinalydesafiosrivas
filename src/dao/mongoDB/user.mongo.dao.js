@@ -20,19 +20,29 @@ class UserMongo {
 
 	//método para encontrar un usuario por id
 	async getById(userId) {
-		return await this.model.findById(userId);
+		return await this.model.findById(userId).lean();
 	}
 
 	//método para registrar un usuario
-	async createUser(userData) {
+	async createUser(newUser) {
 		let newCartId = await cartDAO.addNewCart();
-		userData.cartId = newCartId;
-		return await this.model.create(userData);
+		newUser.cartId = newCartId;
+		return await this.model.create(newUser);
 	}
 
 	//Método para actualizar producto
 	async updateUser(newUser) {
 		await this.model.updateOne({ email: newUser.email }, newUser);
+	}
+
+	//Método para eliminar un usuario
+	async deleteUser(userId) {
+		return this.model.deleteOne({ _id: userId }); //elimino producto seleccionado
+	}
+
+	//Método para eliminar varios usuario
+	async deleteManyUser(idsToDelete) {
+		return this.model.deleteMany({ _id: { $in: idsToDelete } }); //elimino producto seleccionado
 	}
 }
 

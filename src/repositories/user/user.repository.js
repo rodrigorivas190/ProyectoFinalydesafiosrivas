@@ -1,6 +1,5 @@
 //en esta capa se pueden agregar los DTOs
-
-import TicketDTO from '../../dto/ticket.dto.js';
+import UserDTO from '../../dto/user.dto.js';
 
 export default class UserRepository {
 	constructor(dao) {
@@ -22,13 +21,23 @@ export default class UserRepository {
 	}
 
 	//método para registrar un usuario
-	async createUser(userData) {
-		let userToInsert = new TicketDTO(userData);
+	async createUser(newUser) {
+		let userToInsert = new UserDTO(newUser);
 		return await this.dao.createUser(userToInsert);
 	}
 
 	//método para actualizar un usuario
 	async updateUser(newUser) {
-		return await this.dao.updateUser(newUser);
+		await this.dao.updateUser(newUser);
+	}
+
+	//Método para eliminar un usuario
+	async deleteUser(userId) {
+		return this.dao.deleteUser(userId); //elimino producto seleccionado
+	}
+
+	//Método para eliminar varios usuario
+	async deleteManyUser(idsToDelete) {
+		return this.dao.deleteManyUser(idsToDelete); //elimino producto seleccionado
 	}
 }
