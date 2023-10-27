@@ -7,6 +7,7 @@ import passport from 'passport';
 import cookieParser from 'cookie-parser';
 import __dirname from './dirname.util.js';
 import handlebars from 'express-handlebars';
+import cors from 'cors'; 
 
 
 import { Server } from 'socket.io';
@@ -51,18 +52,34 @@ const webServer = app.listen(environment.port, () => {
 //configuración de SWAGGER
 const swaggerOptions = {
 	definition: {
-		openapi: '3.0.1',
-		info: {
-			title: 'Documentación EncontraDeTodo-ecommerce',
-			description: 'en la presente documentación se desarrollará todo lo necesario para dar a conocer lógica y demás aspectos de la API',
+	  openapi: '3.0.1',
+	  info: {
+		title: 'Documentación EncontraDeTodo-ecommerce',
+		description: 'en la presente documentación se desarrollará todo lo necesario para dar a conocer lógica y demás aspectos de la API',
+	  },
+	  components: {
+		securitySchemes: {
+		  Authorization: {
+			type: 'http',
+			scheme: 'bearer',
+			bearerFormat: 'JWT',
+			value: "Bearer <environment.jwtSecret>",
+		  },
 		},
+	  },
 	},
-	apis: [`${__dirname}/docs/**/*.yaml`],
-};
+	apis: [`${__dirname}/docs/*/.yaml`],
+  };
+  
+  const specs = swaggerJsDoc(swaggerOptions);
 
-const specs = swaggerJsDoc(swaggerOptions);
-
-
+//CORS
+app.use(
+	cors({
+		origin: 'http://127.0.0.1:5173', //`http://localhost:${environment.port}`, // Origen permitido
+		methods: ['GET', 'POST', 'PUT', 'DELETE'], // Métodos permitidos
+	})
+);
 
 //Handlebars
 app.engine('handlebars', handlebars.engine()); // Inicializamos el motor de plantillas de Handlebars
@@ -95,7 +112,7 @@ initializePassport();
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(errorsManagerMiddleware);
-app.use(errorsManagerMiddleware);
+
 
 //Definición de rutas
 app.use(addLogger);

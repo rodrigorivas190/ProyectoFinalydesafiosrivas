@@ -1,0 +1,92 @@
+[
+  {
+    "title": "ROMPER EL CIRCULO",
+    "description": "Novelas De Amor",
+    "price": 2540,
+    "thumbnail": ["https://picsum.photos/200"],
+    "code": "987",
+    "stock": 0,
+    "category": "general",
+    "status": true
+  },
+  {
+    "title": "LAS HUELLAS DEL MAL",
+    "description": "Crímenes Y Misterios",
+    "price": 9875,
+    "thumbnail": ["https://picsum.photos/200"],
+    "code": "789",
+    "stock": 19,
+    "category": "general",
+    "status": true
+  },
+  {
+    "title": "UN CORAZÓN VALIENTE",
+    "description": "Una maldición oscura",
+    "price": 10000,
+    "thumbnail": ["https://picsum.photos/200"],
+    "code": "790",
+    "stock": 23,
+    "category": "general",
+    "status": true
+  },
+  {
+    "title": "INGLES",
+    "description": "AUTOBIOGRAFIA",
+    "price": 12254,
+    "thumbnail": ["https://picsum.photos/200"],
+    "code": "875",
+    "stock": 5,
+    "category": "general",
+    "status": true
+  },
+  {
+    "title": "SIGUE MI VOZ",
+    "description": "Ficción Infantil Y Juvenil",
+    "price": 5856,
+    "thumbnail": ["https://picsum.photos/200"],
+    "code": "66",
+    "stock": 12,
+    "category": "general",
+    "status": true
+  },
+  {
+    "title": "libro11",
+    "description": "libro",
+    "price": 12006,
+    "thumbnail": ["https://picsum.photos/200"],
+    "code": "21444",
+    "stock": 23,
+    "category": "1",
+    "status": true
+  },
+  {
+    "title": "libro16",
+    "description": "libro",
+    "price": 9233,
+    "thumbnail": ["https://picsum.photos/200"],
+    "code": "989",
+    "stock": 3,
+    "category": "general",
+    "status": true
+  },
+  {
+    "title": "HAVENFALL",
+    "description": "Fantasía",
+    "price": 7552,
+    "thumbnail": ["https://picsum.photos/200"],
+    "code": "362",
+    "stock": 24,
+    "category": "general",
+    "status": true
+  },
+  {
+    "title": "Marea Roja",
+    "description": "libro fantastico",
+    "code": "5565",
+    "price": 5874,
+    "status": true,
+    "stock": 251,
+    "category": "general",
+    "thumbnail": ["https://picsum.photos/200"]
+  }
+]

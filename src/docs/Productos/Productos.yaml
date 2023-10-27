@@ -109,6 +109,8 @@ paths:
       summary: Eliminar un producto por su ID
       tags:
         - Products
+      security:
+        - Authorization: [] 
       parameters:
         - in: path
           name: pid
