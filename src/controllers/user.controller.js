@@ -1,6 +1,6 @@
 //importación de service.
 import { UserService } from '../repositories/user/index.js';
-import { logger } from '../middleware/logger.middleware.js';
+
 
 class UserController {
 	constructor() {

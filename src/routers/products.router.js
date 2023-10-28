@@ -102,7 +102,7 @@ productsRouter.put('/:pid', middlewarePassportJWT, isAdminOrPremium, async (req,
 });
 
 //Endpoint que elimina un producto
-productsRouter.delete('/:pid', middlewarePassportJWT, isAdminOrPremium, async (req, res, next) => {
+productsRouter.delete('/:pid', /*middlewarePassportJWT, isAdminOrPremium*/ async (req, res, next) => {
 	try {
 		let idBuscado = req.params.pid;
 		let prodToDel = await productController.getProductsById(idBuscado);
@@ -133,7 +133,7 @@ productsRouter.delete('/:pid', middlewarePassportJWT, isAdminOrPremium, async (r
 		io.emit('real_time_products', await productController.getProducts());
 		res.json(responseObj);
 	} catch (error) {
-		next(error);
+		req.logger.error('Error trying to delete product')
 	}
 });
 

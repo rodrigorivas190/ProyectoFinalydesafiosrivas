@@ -1,6 +1,6 @@
 //importación de service.
 import { TicketService } from '../repositories/ticket/index.js';
-import { logger } from '../middleware/logger.middleware.js';
+
 
 //Importación de controllers adicionales
 import cartController from './cart.controller.js';

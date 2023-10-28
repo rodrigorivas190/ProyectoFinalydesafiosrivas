@@ -19,7 +19,7 @@ const middlewarePassportJWT = async (req, res, next) => {
 		if (!usr) {
 			return res.status(401).json({ status: 'error', message: 'user/password incorrect' });
 		}
-		//req.logger.info(`${dateTime} - Login - User: ${usr.user.first_name} ${usr.user.last_name} ${usr.user.email}`);
+		req.logger.info(`Login - User: ${usr.user.first_name} ${usr.user.last_name} ${usr.user.email}`);
 		if (usr.user.email === environment.adminName){
 			req.user = usr.user;
 		} else {
