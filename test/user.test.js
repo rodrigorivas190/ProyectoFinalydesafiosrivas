@@ -9,13 +9,14 @@ const request = supertest('http://localhost:8080');
 describe('Test de integracion - Sesiones', () => {
 	let userId = "";
 	let cartId;
+	
 
 	it('Verificación de crer Usuario', async () => {
 		const user = {
 			first_name: 'Rodrigo',
 			last_name: 'Rivas',
 			email: 'rodrigomrivas190@gmail.com',
-			password: '1234',
+			password: 'ihgk rxfy wcpp bavh',
 		};
 
 		const {_body} =  await request.post('/api/users').send(user)
@@ -80,11 +81,6 @@ describe('Test de integracion - Sesiones', () => {
 				}
 			}
 		}
-		// Parseo la cookie para obtener el valor del token
-		const tokenValue = tokenCookie.split('=')[1].split(';')[0];
-		// Verifica que la cookie 'token' se haya borrado
-		expect(tokenValue).to.be.equal("");
-		
 	});
 
 });

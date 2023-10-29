@@ -456,3 +456,268 @@
 [34m[LOGGER] info - 2023-10-28 15:40:00 : ✅ Server running at port 8080[39m
 [34m[LOGGER] info - 2023-10-28 15:40:03 : Deslogeo con exito [39m
 [34m[LOGGER] info - 2023-10-28 15:40:11 : ✅ Server running at port 8080[39m
+[34m[LOGGER] info - 2023-10-28 18:15:24 : ✅ Server running at port 8080[39m
+[34m[LOGGER] info - 2023-10-28 18:16:14 : ✅ Server running at port 8080[39m
+[34m[LOGGER] info - 2023-10-28 18:17:10 : ✅ Server running at port 8080[39m
+[34m[LOGGER] info - 2023-10-28 18:17:54 : ✅ Server running at port 8080[39m
+[34m[LOGGER] info - 2023-10-28 18:22:37 : ✅ Server running at port 8080[39m
+[34m[LOGGER] info - 2023-10-28 18:23:57 : ✅ Server running at port 8080[39m
+[34m[LOGGER] info - 2023-10-28 18:24:37 : ✅ Server running at port 8080[39m
+[34m[LOGGER] info - 2023-10-28 19:11:57 : ✅ Server running at port 8080[39m
+[34m[LOGGER] info - 2023-10-28 19:12:28 : Login - User: Coder House rodrigomrivas190@gmail.com[39m
+[34m[LOGGER] info - 2023-10-28 19:12:28 : 10/28/2023, 7:12:28 PM - Admin/Premium Access Coder House rodrigomrivas190@gmail.com[39m
+[35m[LOGGER] error - 2023-10-28 19:12:28 : Error al obtener los productos: undefined[39m
+[34m[LOGGER] info - 2023-10-28 19:12:28 : Login - User: Coder House rodrigomrivas190@gmail.com[39m
+[34m[LOGGER] info - 2023-10-28 19:12:28 : 10/28/2023, 7:12:28 PM - Admin/Premium Access Coder House rodrigomrivas190@gmail.com[39m
+[35m[LOGGER] error - 2023-10-28 19:12:28 : Error al actualizar los productos: undefined[39m
+[35m[LOGGER] error - 2023-10-28 19:12:28 : Error al obtener los productos: undefined[39m
+[35m[LOGGER] error - 2023-10-28 19:12:28 : Error trying to delete product[39m
+[34m[LOGGER] info - 2023-10-28 19:14:18 : ✅ Server running at port 8080[39m
+[34m[LOGGER] info - 2023-10-28 19:23:13 : ✅ Server running at port 8080[39m
+[34m[LOGGER] info - 2023-10-28 19:23:37 : Login - User: Coder House rodrigomrivas190@gmail.com[39m
+[34m[LOGGER] info - 2023-10-28 19:23:37 : 10/28/2023, 7:23:37 PM - Admin/Premium Access Coder House rodrigomrivas190@gmail.com[39m
+[35m[LOGGER] error - 2023-10-28 19:23:37 : Error al obtener los productos: undefined[39m
+[34m[LOGGER] info - 2023-10-28 19:23:38 : Login - User: Coder House rodrigomrivas190@gmail.com[39m
+[34m[LOGGER] info - 2023-10-28 19:23:38 : 10/28/2023, 7:23:38 PM - Admin/Premium Access Coder House rodrigomrivas190@gmail.com[39m
+[35m[LOGGER] error - 2023-10-28 19:23:38 : Error al actualizar los productos: undefined[39m
+[35m[LOGGER] error - 2023-10-28 19:23:38 : Error al obtener los productos: undefined[39m
+[35m[LOGGER] error - 2023-10-28 19:23:38 : Error trying to delete product[39m
+[34m[LOGGER] info - 2023-10-28 19:27:11 : ✅ Server running at port 8080[39m
+[34m[LOGGER] info - 2023-10-28 19:32:17 : ✅ Server running at port 8080[39m
+[34m[LOGGER] info - 2023-10-28 19:32:29 : Login - User: Coder House rodrigomrivas190@gmail.com[39m
+[34m[LOGGER] info - 2023-10-28 19:32:29 : 10/28/2023, 7:32:29 PM - Admin/Premium Access Coder House rodrigomrivas190@gmail.com[39m
+[35m[LOGGER] error - 2023-10-28 19:32:29 : Error al obtener los productos: undefined[39m
+[34m[LOGGER] info - 2023-10-28 19:32:29 : Login - User: Coder House rodrigomrivas190@gmail.com[39m
+[34m[LOGGER] info - 2023-10-28 19:32:29 : 10/28/2023, 7:32:29 PM - Admin/Premium Access Coder House rodrigomrivas190@gmail.com[39m
+[35m[LOGGER] error - 2023-10-28 19:32:29 : Error al actualizar los productos: undefined[39m
+[35m[LOGGER] error - 2023-10-28 19:32:30 : Error al obtener los productos: undefined[39m
+[35m[LOGGER] error - 2023-10-28 19:32:30 : Error trying to delete product[39m
+[34m[LOGGER] info - 2023-10-28 20:19:42 : ✅ Server running at port 8080[39m
+[34m[LOGGER] info - 2023-10-28 20:19:55 : Login - User: Coder House rodrigomrivas190@gmail.com[39m
+[34m[LOGGER] info - 2023-10-28 20:19:55 : 10/28/2023, 8:19:55 PM - Admin/Premium Access Coder House rodrigomrivas190@gmail.com[39m
+[35m[LOGGER] error - 2023-10-28 20:19:55 : Error al obtener los productos: undefined[39m
+[34m[LOGGER] info - 2023-10-28 20:19:56 : Login - User: Coder House rodrigomrivas190@gmail.com[39m
+[34m[LOGGER] info - 2023-10-28 20:19:56 : 10/28/2023, 8:19:56 PM - Admin/Premium Access Coder House rodrigomrivas190@gmail.com[39m
+[35m[LOGGER] error - 2023-10-28 20:19:56 : Error al actualizar los productos: undefined[39m
+[35m[LOGGER] error - 2023-10-28 20:19:56 : Error al obtener los productos: undefined[39m
+[35m[LOGGER] error - 2023-10-28 20:19:56 : Error trying to delete product[39m
+[34m[LOGGER] info - 2023-10-28 20:21:33 : ✅ Server running at port 8080[39m
+[34m[LOGGER] info - 2023-10-28 20:21:48 : ✅ Server running at port 8080[39m
+[34m[LOGGER] info - 2023-10-28 20:22:00 : Login - User: Coder House rodrigomrivas190@gmail.com[39m
+[34m[LOGGER] info - 2023-10-28 20:22:00 : 10/28/2023, 8:22:00 PM - Admin/Premium Access Coder House rodrigomrivas190@gmail.com[39m
+[35m[LOGGER] error - 2023-10-28 20:22:00 : Error al obtener los productos: undefined[39m
+[34m[LOGGER] info - 2023-10-28 20:22:00 : Login - User: Coder House rodrigomrivas190@gmail.com[39m
+[34m[LOGGER] info - 2023-10-28 20:22:00 : 10/28/2023, 8:22:00 PM - Admin/Premium Access Coder House rodrigomrivas190@gmail.com[39m
+[35m[LOGGER] error - 2023-10-28 20:22:00 : Error al actualizar los productos: undefined[39m
+[35m[LOGGER] error - 2023-10-28 20:22:01 : Error al obtener los productos: undefined[39m
+[35m[LOGGER] error - 2023-10-28 20:22:01 : Error trying to delete product[39m
+[34m[LOGGER] info - 2023-10-28 20:23:25 : ✅ Server running at port 8080[39m
+[34m[LOGGER] info - 2023-10-28 20:23:36 : Login - User: Coder House rodrigomrivas190@gmail.com[39m
+[34m[LOGGER] info - 2023-10-28 20:23:36 : 10/28/2023, 8:23:36 PM - Admin/Premium Access Coder House rodrigomrivas190@gmail.com[39m
+[34m[LOGGER] info - 2023-10-28 20:23:38 : Login - User: Coder House rodrigomrivas190@gmail.com[39m
+[34m[LOGGER] info - 2023-10-28 20:23:38 : 10/28/2023, 8:23:38 PM - Admin/Premium Access Coder House rodrigomrivas190@gmail.com[39m
+[35m[LOGGER] error - 2023-10-28 20:23:39 : Error trying to delete product[39m
+[34m[LOGGER] info - 2023-10-28 20:24:48 : ✅ Server running at port 8080[39m
+[34m[LOGGER] info - 2023-10-28 20:25:40 : Login - User: Coder House rodrigomrivas190@gmail.com[39m
+[35m[LOGGER] error - 2023-10-28 20:25:40 : access denied, you do not have permission to be here[39m
+[34m[LOGGER] info - 2023-10-28 20:25:43 : Login - User: Coder House rodrigomrivas190@gmail.com[39m
+[34m[LOGGER] info - 2023-10-28 20:25:43 : 10/28/2023, 8:25:43 PM - Admin/Premium Access Coder House rodrigomrivas190@gmail.com[39m
+[34m[LOGGER] info - 2023-10-28 20:25:44 : Login - User: Coder House rodrigomrivas190@gmail.com[39m
+[34m[LOGGER] info - 2023-10-28 20:25:44 : 10/28/2023, 8:25:44 PM - Admin/Premium Access Coder House rodrigomrivas190@gmail.com[39m
+[35m[LOGGER] error - 2023-10-28 20:25:45 : Error trying to delete product[39m
+[34m[LOGGER] info - 2023-10-28 20:27:18 : ✅ Server running at port 8080[39m
+[34m[LOGGER] info - 2023-10-28 20:27:40 : Login - User: Coder House rodrigomrivas190@gmail.com[39m
+[35m[LOGGER] error - 2023-10-28 20:27:40 : access denied, you do not have permission to be here[39m
+[34m[LOGGER] info - 2023-10-28 20:27:43 : Login - User: Coder House rodrigomrivas190@gmail.com[39m
+[34m[LOGGER] info - 2023-10-28 20:27:43 : 10/28/2023, 8:27:43 PM - Admin/Premium Access Coder House rodrigomrivas190@gmail.com[39m
+[34m[LOGGER] info - 2023-10-28 20:27:44 : Login - User: Coder House rodrigomrivas190@gmail.com[39m
+[34m[LOGGER] info - 2023-10-28 20:27:44 : 10/28/2023, 8:27:44 PM - Admin/Premium Access Coder House rodrigomrivas190@gmail.com[39m
+[35m[LOGGER] error - 2023-10-28 20:27:45 : Error trying to delete product[39m
+[34m[LOGGER] info - 2023-10-28 20:28:06 : ✅ Server running at port 8080[39m
+[34m[LOGGER] info - 2023-10-28 20:28:46 : Login - User: Coder House rodrigomrivas190@gmail.com[39m
+[35m[LOGGER] error - 2023-10-28 20:28:46 : access denied, you do not have permission to be here[39m
+[34m[LOGGER] info - 2023-10-28 20:28:49 : Login - User: Coder House rodrigomrivas190@gmail.com[39m
+[34m[LOGGER] info - 2023-10-28 20:28:49 : 10/28/2023, 8:28:49 PM - Admin/Premium Access Coder House rodrigomrivas190@gmail.com[39m
+[34m[LOGGER] info - 2023-10-28 20:28:50 : Login - User: Coder House rodrigomrivas190@gmail.com[39m
+[34m[LOGGER] info - 2023-10-28 20:28:50 : 10/28/2023, 8:28:50 PM - Admin/Premium Access Coder House rodrigomrivas190@gmail.com[39m
+[35m[LOGGER] error - 2023-10-28 20:28:51 : Error trying to delete product[39m
+[34m[LOGGER] info - 2023-10-28 20:29:56 : ✅ Server running at port 8080[39m
+[34m[LOGGER] info - 2023-10-28 20:30:17 : Login - User: Coder House rodrigomrivas190@gmail.com[39m
+[35m[LOGGER] error - 2023-10-28 20:30:17 : access denied, you do not have permission to be here[39m
+[34m[LOGGER] info - 2023-10-28 20:30:21 : Login - User: Coder House rodrigomrivas190@gmail.com[39m
+[34m[LOGGER] info - 2023-10-28 20:30:21 : 10/28/2023, 8:30:21 PM - Admin/Premium Access Coder House rodrigomrivas190@gmail.com[39m
+[34m[LOGGER] info - 2023-10-28 20:30:22 : Login - User: Coder House rodrigomrivas190@gmail.com[39m
+[34m[LOGGER] info - 2023-10-28 20:30:22 : 10/28/2023, 8:30:22 PM - Admin/Premium Access Coder House rodrigomrivas190@gmail.com[39m
+[35m[LOGGER] error - 2023-10-28 20:30:23 : Error trying to delete product[39m
+[34m[LOGGER] info - 2023-10-28 20:32:55 : ✅ Server running at port 8080[39m
+[34m[LOGGER] info - 2023-10-28 20:33:14 : Login - User: Coder House rodrigomrivas190@gmail.com[39m
+[35m[LOGGER] error - 2023-10-28 20:33:14 : access denied, you do not have permission to be here[39m
+[34m[LOGGER] info - 2023-10-28 20:33:19 : Login - User: Coder House rodrigomrivas190@gmail.com[39m
+[34m[LOGGER] info - 2023-10-28 20:33:19 : 10/28/2023, 8:33:19 PM - Admin/Premium Access Coder House rodrigomrivas190@gmail.com[39m
+[35m[LOGGER] error - 2023-10-28 20:33:20 : Error al obtener los productos: undefined[39m
+[34m[LOGGER] info - 2023-10-28 20:33:20 : Login - User: Coder House rodrigomrivas190@gmail.com[39m
+[34m[LOGGER] info - 2023-10-28 20:33:20 : 10/28/2023, 8:33:20 PM - Admin/Premium Access Coder House rodrigomrivas190@gmail.com[39m
+[35m[LOGGER] error - 2023-10-28 20:33:20 : Error al actualizar los productos: undefined[39m
+[35m[LOGGER] error - 2023-10-28 20:33:21 : Error trying to delete product[39m
+[34m[LOGGER] info - 2023-10-28 20:33:37 : ✅ Server running at port 8080[39m
+[34m[LOGGER] info - 2023-10-28 20:34:04 : Login - User: Coder House rodrigomrivas190@gmail.com[39m
+[35m[LOGGER] error - 2023-10-28 20:34:04 : access denied, you do not have permission to be here[39m
+[34m[LOGGER] info - 2023-10-28 20:34:07 : Login - User: Coder House rodrigomrivas190@gmail.com[39m
+[34m[LOGGER] info - 2023-10-28 20:34:07 : 10/28/2023, 8:34:07 PM - Admin/Premium Access Coder House rodrigomrivas190@gmail.com[39m
+[34m[LOGGER] info - 2023-10-28 20:34:08 : Login - User: Coder House rodrigomrivas190@gmail.com[39m
+[34m[LOGGER] info - 2023-10-28 20:34:08 : 10/28/2023, 8:34:08 PM - Admin/Premium Access Coder House rodrigomrivas190@gmail.com[39m
+[35m[LOGGER] error - 2023-10-28 20:34:09 : Error trying to delete product[39m
+[34m[LOGGER] info - 2023-10-28 20:43:20 : ✅ Server running at port 8080[39m
+[34m[LOGGER] info - 2023-10-28 20:43:44 : Login - User: Coder House rodrigomrivas190@gmail.com[39m
+[35m[LOGGER] error - 2023-10-28 20:43:44 : access denied, you do not have permission to be here[39m
+[34m[LOGGER] info - 2023-10-28 20:43:48 : Login - User: Coder House rodrigomrivas190@gmail.com[39m
+[34m[LOGGER] info - 2023-10-28 20:43:48 : 10/28/2023, 8:43:48 PM - Admin/Premium Access Coder House rodrigomrivas190@gmail.com[39m
+[35m[LOGGER] error - 2023-10-28 20:43:49 : Error trying to delete product[39m
+[34m[LOGGER] info - 2023-10-28 20:44:10 : ✅ Server running at port 8080[39m
+[34m[LOGGER] info - 2023-10-28 20:46:09 : Login - User: Coder House rodrigomrivas190@gmail.com[39m
+[35m[LOGGER] error - 2023-10-28 20:46:09 : access denied, you do not have permission to be here[39m
+[34m[LOGGER] info - 2023-10-28 20:46:13 : Login - User: Coder House rodrigomrivas190@gmail.com[39m
+[34m[LOGGER] info - 2023-10-28 20:46:13 : 10/28/2023, 8:46:13 PM - Admin/Premium Access Coder House rodrigomrivas190@gmail.com[39m
+[34m[LOGGER] info - 2023-10-28 20:46:14 : Login - User: Coder House rodrigomrivas190@gmail.com[39m
+[34m[LOGGER] info - 2023-10-28 20:46:14 : 10/28/2023, 8:46:14 PM - Admin/Premium Access Coder House rodrigomrivas190@gmail.com[39m
+[35m[LOGGER] error - 2023-10-28 20:46:15 : Error trying to delete product[39m
+[34m[LOGGER] info - 2023-10-28 20:46:27 : ✅ Server running at port 8080[39m
+[34m[LOGGER] info - 2023-10-28 20:46:46 : Login - User: Coder House rodrigomrivas190@gmail.com[39m
+[35m[LOGGER] error - 2023-10-28 20:46:46 : access denied, you do not have permission to be here[39m
+[34m[LOGGER] info - 2023-10-28 20:46:49 : Login - User: Coder House rodrigomrivas190@gmail.com[39m
+[34m[LOGGER] info - 2023-10-28 20:46:49 : 10/28/2023, 8:46:49 PM - Admin/Premium Access Coder House rodrigomrivas190@gmail.com[39m
+[34m[LOGGER] info - 2023-10-28 20:46:50 : Login - User: Coder House rodrigomrivas190@gmail.com[39m
+[34m[LOGGER] info - 2023-10-28 20:46:50 : 10/28/2023, 8:46:50 PM - Admin/Premium Access Coder House rodrigomrivas190@gmail.com[39m
+[35m[LOGGER] error - 2023-10-28 20:46:51 : Error trying to delete product[39m
+[34m[LOGGER] info - 2023-10-28 20:48:07 : ✅ Server running at port 8080[39m
+[34m[LOGGER] info - 2023-10-28 20:48:33 : Login - User: Coder House rodrigomrivas190@gmail.com[39m
+[35m[LOGGER] error - 2023-10-28 20:48:33 : access denied, you do not have permission to be here[39m
+[34m[LOGGER] info - 2023-10-28 20:48:36 : Login - User: Coder House rodrigomrivas190@gmail.com[39m
+[34m[LOGGER] info - 2023-10-28 20:48:36 : 10/28/2023, 8:48:36 PM - Admin/Premium Access Coder House rodrigomrivas190@gmail.com[39m
+[34m[LOGGER] info - 2023-10-28 20:48:37 : Login - User: Coder House rodrigomrivas190@gmail.com[39m
+[34m[LOGGER] info - 2023-10-28 20:48:37 : 10/28/2023, 8:48:37 PM - Admin/Premium Access Coder House rodrigomrivas190@gmail.com[39m
+[35m[LOGGER] error - 2023-10-28 20:48:38 : Error trying to delete product[39m
+[34m[LOGGER] info - 2023-10-28 20:58:48 : ✅ Server running at port 8080[39m
+[34m[LOGGER] info - 2023-10-28 21:03:04 : ✅ Server running at port 8080[39m
+[34m[LOGGER] info - 2023-10-28 21:03:13 : ✅ Server running at port 8080[39m
+[34m[LOGGER] info - 2023-10-28 21:04:25 : ✅ Server running at port 8080[39m
+[34m[LOGGER] info - 2023-10-28 21:06:58 : ✅ Server running at port 8080[39m
+[34m[LOGGER] info - 2023-10-28 21:07:24 : Login - User: Coder House rodrigomrivas190@gmail.com[39m
+[35m[LOGGER] error - 2023-10-28 21:07:24 : access denied, you do not have permission to be here[39m
+[34m[LOGGER] info - 2023-10-28 21:07:28 : Login - User: Coder House rodrigomrivas190@gmail.com[39m
+[34m[LOGGER] info - 2023-10-28 21:07:28 : 10/28/2023, 9:07:28 PM - Admin/Premium Access Coder House rodrigomrivas190@gmail.com[39m
+[34m[LOGGER] info - 2023-10-28 21:07:29 : Login - User: Coder House rodrigomrivas190@gmail.com[39m
+[34m[LOGGER] info - 2023-10-28 21:07:29 : 10/28/2023, 9:07:29 PM - Admin/Premium Access Coder House rodrigomrivas190@gmail.com[39m
+[35m[LOGGER] error - 2023-10-28 21:07:30 : Error trying to delete product[39m
+[34m[LOGGER] info - 2023-10-28 21:07:51 : ✅ Server running at port 8080[39m
+[34m[LOGGER] info - 2023-10-28 21:08:14 : Login - User: Coder House rodrigomrivas190@gmail.com[39m
+[35m[LOGGER] error - 2023-10-28 21:08:14 : access denied, you do not have permission to be here[39m
+[34m[LOGGER] info - 2023-10-28 21:08:17 : Login - User: Coder House rodrigomrivas190@gmail.com[39m
+[34m[LOGGER] info - 2023-10-28 21:08:17 : 10/28/2023, 9:08:17 PM - Admin/Premium Access Coder House rodrigomrivas190@gmail.com[39m
+[34m[LOGGER] info - 2023-10-28 21:08:18 : Login - User: Coder House rodrigomrivas190@gmail.com[39m
+[34m[LOGGER] info - 2023-10-28 21:08:18 : 10/28/2023, 9:08:18 PM - Admin/Premium Access Coder House rodrigomrivas190@gmail.com[39m
+[35m[LOGGER] error - 2023-10-28 21:08:19 : Error trying to delete product[39m
+[34m[LOGGER] info - 2023-10-28 21:15:31 : ✅ Server running at port 8080[39m
+[34m[LOGGER] info - 2023-10-28 21:16:17 : Login - User: Coder House rodrigomrivas190@gmail.com[39m
+[35m[LOGGER] error - 2023-10-28 21:16:17 : access denied, you do not have permission to be here[39m
+[34m[LOGGER] info - 2023-10-28 21:16:20 : Login - User: Coder House rodrigomrivas190@gmail.com[39m
+[34m[LOGGER] info - 2023-10-28 21:16:20 : 10/28/2023, 9:16:20 PM - Admin/Premium Access Coder House rodrigomrivas190@gmail.com[39m
+[34m[LOGGER] info - 2023-10-28 21:16:21 : Login - User: Coder House rodrigomrivas190@gmail.com[39m
+[34m[LOGGER] info - 2023-10-28 21:16:21 : 10/28/2023, 9:16:21 PM - Admin/Premium Access Coder House rodrigomrivas190@gmail.com[39m
+[35m[LOGGER] error - 2023-10-28 21:16:22 : Error trying to delete product[39m
+[35m[LOGGER] error - 2023-10-28 21:19:24 : Error trying to delete product[39m
+[34m[LOGGER] info - 2023-10-28 21:20:58 : ✅ Server running at port 8080[39m
+[35m[LOGGER] error - 2023-10-28 21:21:03 : Error trying to delete product[39m
+[34m[LOGGER] info - 2023-10-28 21:22:05 : ✅ Server running at port 8080[39m
+[35m[LOGGER] error - 2023-10-28 21:22:14 : Error trying to delete product[39m
+[34m[LOGGER] info - 2023-10-28 21:23:12 : ✅ Server running at port 8080[39m
+[35m[LOGGER] error - 2023-10-28 21:23:21 : Error trying to delete product[39m
+[35m[LOGGER] error - 2023-10-28 21:24:04 : Error trying to delete product[39m
+[34m[LOGGER] info - 2023-10-28 21:24:46 : Deslogeo con exito[39m
+[34m[LOGGER] info - 2023-10-28 21:24:59 : Login - User: rodrigo RIVAS rodrigorivas190@hotmail.com[39m
+[34m[LOGGER] info - 2023-10-28 21:24:59 : 10/28/2023, 9:24:59 PM - Admin/Premium Access rodrigo RIVAS rodrigorivas190@hotmail.com[39m
+[35m[LOGGER] error - 2023-10-28 21:25:09 : Error trying to delete product[39m
+[34m[LOGGER] info - 2023-10-28 21:25:23 : Deslogeo con exito[39m
+[34m[LOGGER] info - 2023-10-28 21:25:51 : Login - User: Coder House rodrigomrivas190@gmail.com[39m
+[34m[LOGGER] info - 2023-10-28 21:25:51 : 10/28/2023, 9:25:51 PM - Admin/Premium Access Coder House rodrigomrivas190@gmail.com[39m
+[35m[LOGGER] error - 2023-10-28 21:26:06 : Error trying to delete product[39m
+[35m[LOGGER] error - 2023-10-28 21:26:44 : Error trying to delete product[39m
+[35m[LOGGER] error - 2023-10-28 21:27:14 : Error trying to delete product[39m
+[35m[LOGGER] error - 2023-10-28 21:27:46 : Error trying to delete product[39m
+[35m[LOGGER] error - 2023-10-28 21:28:11 : Error trying to delete product[39m
+[34m[LOGGER] info - 2023-10-28 21:31:12 : ✅ Server running at port 8080[39m
+[34m[LOGGER] info - 2023-10-28 21:34:06 : ✅ Server running at port 8080[39m
+[35m[LOGGER] error - 2023-10-28 21:34:23 : Error trying to delete product[39m
+[34m[LOGGER] info - 2023-10-28 21:36:57 : ✅ Server running at port 8080[39m
+[34m[LOGGER] info - 2023-10-28 21:38:36 : ✅ Server running at port 8080[39m
+[34m[LOGGER] info - 2023-10-28 21:39:30 : Login - User: Coder House rodrigomrivas190@gmail.com[39m
+[34m[LOGGER] info - 2023-10-28 21:39:30 : 10/28/2023, 9:39:30 PM - Admin/Premium Access Coder House rodrigomrivas190@gmail.com[39m
+[34m[LOGGER] info - 2023-10-28 21:39:52 : Login - User: Coder House rodrigomrivas190@gmail.com[39m
+[34m[LOGGER] info - 2023-10-28 21:39:52 : 10/28/2023, 9:39:52 PM - Admin/Premium Access Coder House rodrigomrivas190@gmail.com[39m
+[34m[LOGGER] info - 2023-10-28 21:41:00 : Login - User: Coder House rodrigomrivas190@gmail.com[39m
+[35m[LOGGER] error - 2023-10-28 21:41:00 : access denied, you do not have permission to be here[39m
+[34m[LOGGER] info - 2023-10-28 21:41:04 : Login - User: Coder House rodrigomrivas190@gmail.com[39m
+[34m[LOGGER] info - 2023-10-28 21:41:04 : 10/28/2023, 9:41:04 PM - Admin/Premium Access Coder House rodrigomrivas190@gmail.com[39m
+[34m[LOGGER] info - 2023-10-28 21:41:05 : Login - User: Coder House rodrigomrivas190@gmail.com[39m
+[34m[LOGGER] info - 2023-10-28 21:41:05 : 10/28/2023, 9:41:05 PM - Admin/Premium Access Coder House rodrigomrivas190@gmail.com[39m
+[34m[LOGGER] info - 2023-10-28 21:41:06 : Login - User: Coder House rodrigomrivas190@gmail.com[39m
+[34m[LOGGER] info - 2023-10-28 21:41:06 : 10/28/2023, 9:41:06 PM - Admin/Premium Access Coder House rodrigomrivas190@gmail.com[39m
+[34m[LOGGER] info - 2023-10-28 21:42:12 : ✅ Server running at port 8080[39m
+[34m[LOGGER] info - 2023-10-28 21:42:37 : Login - User: Coder House rodrigomrivas190@gmail.com[39m
+[35m[LOGGER] error - 2023-10-28 21:42:37 : access denied, you do not have permission to be here[39m
+[34m[LOGGER] info - 2023-10-28 21:42:41 : Login - User: Coder House rodrigomrivas190@gmail.com[39m
+[34m[LOGGER] info - 2023-10-28 21:42:41 : 10/28/2023, 9:42:41 PM - Admin/Premium Access Coder House rodrigomrivas190@gmail.com[39m
+[34m[LOGGER] info - 2023-10-28 21:42:42 : Login - User: Coder House rodrigomrivas190@gmail.com[39m
+[34m[LOGGER] info - 2023-10-28 21:42:42 : 10/28/2023, 9:42:42 PM - Admin/Premium Access Coder House rodrigomrivas190@gmail.com[39m
+[34m[LOGGER] info - 2023-10-28 21:42:42 : Login - User: Coder House rodrigomrivas190@gmail.com[39m
+[34m[LOGGER] info - 2023-10-28 21:42:42 : 10/28/2023, 9:42:42 PM - Admin/Premium Access Coder House rodrigomrivas190@gmail.com[39m
+[34m[LOGGER] info - 2023-10-28 21:43:37 : ✅ Server running at port 8080[39m
+[34m[LOGGER] info - 2023-10-28 21:43:43 : Login - User: Coder House rodrigomrivas190@gmail.com[39m
+[35m[LOGGER] error - 2023-10-28 21:43:43 : access denied, you do not have permission to be here[39m
+[34m[LOGGER] info - 2023-10-28 21:43:47 : Login - User: Coder House rodrigomrivas190@gmail.com[39m
+[34m[LOGGER] info - 2023-10-28 21:43:47 : 10/28/2023, 9:43:47 PM - Admin/Premium Access Coder House rodrigomrivas190@gmail.com[39m
+[34m[LOGGER] info - 2023-10-28 21:43:48 : Login - User: Coder House rodrigomrivas190@gmail.com[39m
+[34m[LOGGER] info - 2023-10-28 21:43:48 : 10/28/2023, 9:43:48 PM - Admin/Premium Access Coder House rodrigomrivas190@gmail.com[39m
+[34m[LOGGER] info - 2023-10-28 21:43:49 : Login - User: Coder House rodrigomrivas190@gmail.com[39m
+[34m[LOGGER] info - 2023-10-28 21:43:49 : 10/28/2023, 9:43:49 PM - Admin/Premium Access Coder House rodrigomrivas190@gmail.com[39m
+[34m[LOGGER] info - 2023-10-28 21:44:19 : ✅ Server running at port 8080[39m
+[34m[LOGGER] info - 2023-10-28 21:44:29 : Login - User: Coder House rodrigomrivas190@gmail.com[39m
+[35m[LOGGER] error - 2023-10-28 21:44:29 : access denied, you do not have permission to be here[39m
+[34m[LOGGER] info - 2023-10-28 21:44:32 : Login - User: Coder House rodrigomrivas190@gmail.com[39m
+[34m[LOGGER] info - 2023-10-28 21:44:32 : 10/28/2023, 9:44:32 PM - Admin/Premium Access Coder House rodrigomrivas190@gmail.com[39m
+[34m[LOGGER] info - 2023-10-28 21:44:33 : Login - User: Coder House rodrigomrivas190@gmail.com[39m
+[34m[LOGGER] info - 2023-10-28 21:44:33 : 10/28/2023, 9:44:33 PM - Admin/Premium Access Coder House rodrigomrivas190@gmail.com[39m
+[34m[LOGGER] info - 2023-10-28 21:44:34 : Login - User: Coder House rodrigomrivas190@gmail.com[39m
+[34m[LOGGER] info - 2023-10-28 21:44:34 : 10/28/2023, 9:44:34 PM - Admin/Premium Access Coder House rodrigomrivas190@gmail.com[39m
+[34m[LOGGER] info - 2023-10-28 21:45:29 : ✅ Server running at port 8080[39m
+[34m[LOGGER] info - 2023-10-28 21:48:11 : Login - User: Coder House rodrigomrivas190@gmail.com[39m
+[35m[LOGGER] error - 2023-10-28 21:48:11 : access denied, you do not have permission to be here[39m
+[34m[LOGGER] info - 2023-10-28 21:48:14 : Login - User: Coder House rodrigomrivas190@gmail.com[39m
+[34m[LOGGER] info - 2023-10-28 21:48:14 : 10/28/2023, 9:48:14 PM - Admin/Premium Access Coder House rodrigomrivas190@gmail.com[39m
+[34m[LOGGER] info - 2023-10-28 21:48:15 : Login - User: Coder House rodrigomrivas190@gmail.com[39m
+[34m[LOGGER] info - 2023-10-28 21:48:15 : 10/28/2023, 9:48:15 PM - Admin/Premium Access Coder House rodrigomrivas190@gmail.com[39m
+[34m[LOGGER] info - 2023-10-28 21:48:16 : Login - User: Coder House rodrigomrivas190@gmail.com[39m
+[34m[LOGGER] info - 2023-10-28 21:48:16 : 10/28/2023, 9:48:16 PM - Admin/Premium Access Coder House rodrigomrivas190@gmail.com[39m
+[34m[LOGGER] info - 2023-10-28 21:54:04 : ✅ Server running at port 8080[39m
+[34m[LOGGER] info - 2023-10-28 21:54:15 : Login - User: Coder House rodrigomrivas190@gmail.com[39m
+[35m[LOGGER] error - 2023-10-28 21:54:15 : access denied, you do not have permission to be here[39m
+[34m[LOGGER] info - 2023-10-28 21:54:18 : Login - User: Coder House rodrigomrivas190@gmail.com[39m
+[34m[LOGGER] info - 2023-10-28 21:54:18 : 10/28/2023, 9:54:18 PM - Admin/Premium Access Coder House rodrigomrivas190@gmail.com[39m
+[34m[LOGGER] info - 2023-10-28 21:54:20 : Login - User: Coder House rodrigomrivas190@gmail.com[39m
+[34m[LOGGER] info - 2023-10-28 21:54:20 : 10/28/2023, 9:54:20 PM - Admin/Premium Access Coder House rodrigomrivas190@gmail.com[39m
+[34m[LOGGER] info - 2023-10-28 21:54:20 : Login - User: Coder House rodrigomrivas190@gmail.com[39m
+[34m[LOGGER] info - 2023-10-28 21:54:20 : 10/28/2023, 9:54:20 PM - Admin/Premium Access Coder House rodrigomrivas190@gmail.com[39m
+[34m[LOGGER] info - 2023-10-28 21:55:45 : ✅ Server running at port 8080[39m
+[34m[LOGGER] info - 2023-10-28 21:56:01 : Login - User: Coder House rodrigomrivas190@gmail.com[39m
+[34m[LOGGER] info - 2023-10-28 21:56:01 : 10/28/2023, 9:56:01 PM - Admin/Premium Access Coder House rodrigomrivas190@gmail.com[39m
+[34m[LOGGER] info - 2023-10-28 21:56:02 : Login - User: Coder House rodrigomrivas190@gmail.com[39m
+[34m[LOGGER] info - 2023-10-28 21:56:02 : 10/28/2023, 9:56:02 PM - Admin/Premium Access Coder House rodrigomrivas190@gmail.com[39m
+[34m[LOGGER] info - 2023-10-28 21:56:03 : Login - User: Coder House rodrigomrivas190@gmail.com[39m
+[34m[LOGGER] info - 2023-10-28 21:56:03 : 10/28/2023, 9:56:03 PM - Admin/Premium Access Coder House rodrigomrivas190@gmail.com[39m
+[34m[LOGGER] info - 2023-10-28 21:56:40 : ✅ Server running at port 8080[39m
+[34m[LOGGER] info - 2023-10-28 21:56:58 : Login - User: Coder House rodrigomrivas190@gmail.com[39m
+[34m[LOGGER] info - 2023-10-28 21:56:58 : 10/28/2023, 9:56:58 PM - Admin/Premium Access Coder House rodrigomrivas190@gmail.com[39m
+[34m[LOGGER] info - 2023-10-28 21:56:59 : Login - User: Coder House rodrigomrivas190@gmail.com[39m
+[34m[LOGGER] info - 2023-10-28 21:56:59 : 10/28/2023, 9:56:59 PM - Admin/Premium Access Coder House rodrigomrivas190@gmail.com[39m
+[34m[LOGGER] info - 2023-10-28 21:57:00 : Login - User: Coder House rodrigomrivas190@gmail.com[39m
+[34m[LOGGER] info - 2023-10-28 21:57:00 : 10/28/2023, 9:57:00 PM - Admin/Premium Access Coder House rodrigomrivas190@gmail.com[39m

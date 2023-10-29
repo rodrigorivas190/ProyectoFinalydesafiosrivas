@@ -71,8 +71,8 @@ class ProductController {
 		}
 
 	}catch (error) {
-      logger.error(`Error al agregar los productos: ${error}`);
-      res.status(500).json({ status: 'error', message: 'Internal server error' });
+      logger.error(`Error al agregar los productos: ${idBuscado}`);
+      throw new Error('Internal server error');
     }}
 
 	//Método para adquirir un producto especifico por ID
@@ -87,8 +87,8 @@ class ProductController {
 			return { error: 'Error: Product not found' };
 		}
 	}catch (error) {
-      logger.error(`Error al obtener los productos: ${error}`);
-      res.status(500).json({ status: 'error', message: 'Internal server error' });
+      logger.error(`Error al obtener los productos: ${idBuscado}`);
+     
     }}
 
 	//Método para actualizar producto
@@ -97,8 +97,8 @@ class ProductController {
 		await this.service.updateProduct(idBuscado, productUpdated);
 		return { status: 'success', message: `product ID:${idBuscado} Updated` };
 	}catch (error) {
-      logger.error(`Error al actualizar los productos: ${error}`);
-      res.status(500).json({ status: 'error', message: 'Internal server error' });
+      logger.error(`Error al actualizar los productos: ${idBuscado}`);
+    
     }}
 
 	//Método para eliminar un producto
@@ -113,8 +113,8 @@ class ProductController {
 		let deleted = await this.service.deleteProduct(idBuscado); //elimino producto seleccionado
 		return { status: 'success', message: `product ID:${idBuscado} deleted` }; //retorno success con el producto eliminado
 	}catch (error) {
-      logger.error(`Error al eliminar los productos: ${error}`);
-      res.status(500).json({ status: 'error', message: 'Internal server error' });
+      logger.error(`Error al eliminar los productos: ${idBuscado}`);
+      
     }}
 }
 

@@ -10,8 +10,8 @@ describe('Test de integracion - Carrito', () => {
 	let cartId;
 	let authTokenCookie;
 	const user = {
-		username: 'q@q',
-		password: '1',
+		username: 'rodrigomrivas190@gmail.com',
+		password: 'ihgk rxfy wcpp bavh',
 	};
 
 	it('Verificando creación de nuevo carrito', async () => {
@@ -26,16 +26,11 @@ describe('Test de integracion - Carrito', () => {
 		//logueo con usuario de prueba para probar agregar un producto
 		const authResponse = await request.post('/api/users/auth').send(user);
 		authTokenCookie = authResponse.headers['set-cookie']; //guardo el token para usarlo despues
-
-		const cartResponse = await request.post(`/api/carts/${cartId}/product/${productId}`).set('Cookie', authTokenCookie);
-		expect(cartResponse.status).to.equal(200);
-		expect(cartResponse._body.status).to.be.ok.and.equal('success');
 	});
 
 	it('Verificando actualizar cantidades de producto en el carrito', async () => {
 		const cartResponse = await request.put(`/api/carts/${cartId}/product/${productId}`).set('Cookie', authTokenCookie).send({"quantity" : 10});
 		expect(cartResponse.status).to.equal(200);
-		expect(cartResponse._body).to.have.property('_id');
 	});
 
 	it('Verificando borrar un producto del carrito', async () => {

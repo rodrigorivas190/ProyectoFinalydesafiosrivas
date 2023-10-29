@@ -14,7 +14,7 @@ class MessageController {
       res.status(200).json(messages);
     } catch (error) {
       logger.error(`Error getting messages: ${error}`);
-      res.status(500).json({ status: 'error', message: 'Internal server error' });
+      throw new Error('Internal server error');
     }
   }
 
@@ -31,7 +31,7 @@ class MessageController {
       res.status(201).json({ status: 'success', message: `Message added to DB` });
     } catch (error) {
       logger.error(`Error adding a message: ${error}`);
-      res.status(500).json({ status: 'error', message: 'Internal server error' });
+      throw new Error('Internal server error');
     }
   }
 }

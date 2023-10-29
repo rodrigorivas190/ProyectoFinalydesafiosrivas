@@ -17,7 +17,7 @@ class CartController {
 
 	}catch (error) {
     	  logger.error(`Error adding a new cart: ${error}`);
-    	  res.status(500).json({ status: 'error', message: 'Internal server error' });
+    	  throw new Error('Internal server error');
     }}
 
 	//Método para adquirir un carrito especifico por ID
@@ -31,8 +31,8 @@ class CartController {
 			return { error: `Error: Cart ID=${idBuscado} not found` };
 		}
 		}catch (error) {
-    	  logger.error(`Error getting cart by: ${error}`);
-    	  res.status(500).json({ status: 'error', message: 'Internal server error' });
+    	  logger.error(`Error getting cart by: ${idBuscado}`);
+    	  throw new Error('Internal server error');
     }}
 
 	//Método agregar un producto al carrito
@@ -62,7 +62,7 @@ class CartController {
 		
 		}catch (error) {
       	logger.error(`Error adding a product to cart: ${error}`);
-      	res.status(500).json({ status: 'error', message: 'Internal server error' });
+      	throw new Error('Internal server error');
     }}
 	
 
@@ -73,7 +73,7 @@ class CartController {
 		return { status: 'success', message: `product ID=${productId} deleted from cart ID=${cartId}` }; // retorno el carrito con el producto agregado
 	}catch (error) {
       logger.error(`Error deleted a product to cart: ${error}`);
-      res.status(500).json({ status: 'error', message: 'Internal server error' });
+      throw new Error('Internal server error');
     }}
 
 	//Método para actualizar todo el array de productos
@@ -83,7 +83,7 @@ class CartController {
 		return { status: 'success', message: `products from cart ID=${cartId} updated` }; // retorno el carrito con el producto agregado
 	}catch (error) {
       logger.error(`Error update a product: ${error}`);
-      res.status(500).json({ status: 'error', message: 'Internal server error' });
+      throw new Error('Internal server error');
     }}
 
 	//metodo para modificar la cantidad de productos de un elemento del array de productos
@@ -92,7 +92,7 @@ class CartController {
 		return await this.service.updateProductQuantity(cartId, productId, newQuantity);
 	}catch (error) {
       logger.error(`Error modify the quantity of products: ${error}`);
-      res.status(500).json({ status: 'error', message: 'Internal server error' });
+      throw new Error('Internal server error');
     }}
 	
 	//Metodo para borrar todos los productos de un carrito determinado
@@ -102,7 +102,7 @@ class CartController {
 		return { status: 'success', message: `products deleted from cart ID=${cartId}` }; // retorno el carrito con el producto agregado
 	}catch (error) {
       logger.error(`Error products deleted from cart ID: ${error}`);
-      res.status(500).json({ status: 'error', message: 'Internal server error' });
+      throw new Error('Internal server error');
     }}
 
 	//Método para eliminar un carrito
@@ -111,7 +111,7 @@ class CartController {
 		return await this.service.deleteCart(idBuscado);
 	}catch (error) {
       logger.error(`Error deleted cart ID: ${error}`);
-      res.status(500).json({ status: 'error', message: 'Internal server error' });
+      throw new Error('Internal server error');
     }}
 }
 
