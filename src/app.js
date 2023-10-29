@@ -54,7 +54,7 @@ const swaggerOptions = {
 	definition: {
 	  openapi: '3.0.1',
 	  info: {
-		title: 'Documentación EncontraDeTodo-ecommerce',
+		title: 'Documentación LiberiaLea',
 		description: 'en la presente documentación se desarrollará todo lo necesario para dar a conocer lógica y demás aspectos de la API',
 	  },
 	  components: {
@@ -63,23 +63,25 @@ const swaggerOptions = {
 			type: 'http',
 			scheme: 'bearer',
 			bearerFormat: 'JWT',
-			value: "Bearer <environment.jwtSecret>",
+			value: "Bearer <Secret>",
 		  },
 		},
 	  },
 	},
-	apis: [`${__dirname}/docs/*/.yaml`],
+	apis: [`${__dirname}/docs/**/*.yaml`]
+	
   };
   
   const specs = swaggerJsDoc(swaggerOptions);
 
 //CORS
-app.use(
-	cors({
-		origin: 'http://127.0.0.1:5173', //`http://localhost:${environment.port}`, // Origen permitido
-		methods: ['GET', 'POST', 'PUT', 'DELETE'], // Métodos permitidos
-	})
-);
+const corsOptions = {
+	origin: 'http://localhost:8080', // Reemplaza con el origen permitido
+	methods: 'GET,POST,PUT,DELETE',
+	allowedHeaders: 'Content-Type, Authorization',
+  };
+  
+  app.use(cors(corsOptions));
 
 //Handlebars
 app.engine('handlebars', handlebars.engine()); // Inicializamos el motor de plantillas de Handlebars
@@ -165,11 +167,10 @@ mongoose.connect(environment.mongoUrl);
 
 
 export { io };
-/*
 
-generarIdUnico1 = () => { 
-    return Math.random().toString(30).substring(2);           
-} 
 
-*/
+// generarIdUnico1 = () => { 
+//     return Math.random().toString(30).substring(2);           
+// } 
+
 
