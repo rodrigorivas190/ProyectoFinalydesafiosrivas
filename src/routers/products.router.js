@@ -12,7 +12,8 @@ import {
 	generateUpdateErrorInfo,
 } from '../tools/info.js';
 import EErrors from '../tools/EErrors.js';
-
+import userController from '../controllers/user.controller.js';
+import { transport } from './mail.router.js';
 
 
 //Inicializo Router

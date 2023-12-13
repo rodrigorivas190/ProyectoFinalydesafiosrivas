@@ -39,4 +39,7 @@ export default {
 
 	//variables jwt restore pass
 	restorepasskey: process.env.RESTORE_PASS_KEY,
+
+	//variables stripe
+	keyStripePrivate: process.env.KEY_STRIPE_PRIVATE,
 };

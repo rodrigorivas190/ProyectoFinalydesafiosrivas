@@ -1,7 +1,6 @@
 //importación de service.
 import { UserService } from '../repositories/user/index.js';
 
-
 class UserController {
 	constructor() {
 		this.service = UserService;

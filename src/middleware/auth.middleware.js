@@ -1,6 +1,5 @@
 //importación de libreria de dating
 import { DateTime } from 'luxon';
-import { logger } from '../middleware/logger.middleware.js';
 
 
 //Middleware para corroborar si el usuario esta autenticado, sino redirijo a login

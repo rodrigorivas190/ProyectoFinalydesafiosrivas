@@ -4,7 +4,6 @@ import cartController from '../controllers/cart.controller.js';
 import { middlewarePassportJWT } from '../middleware/jwt.middleware.js';
 import { isUserOrPremium } from '../middleware/auth.middleware.js';
 
-
 import ticketController from '../controllers/ticket.controller.js';
 
 import { generateAddProductToCartErrorInfo } from '../tools/info.js';
@@ -12,7 +11,6 @@ import EErrors from '../tools/EErrors.js';
 import { logger } from '../middleware/logger.middleware.js';
 
 const cartRouter = Router();
-
 
 //Endpoint que agrega un nuevo carrito
 cartRouter.post('/', async (req, res, next) => {

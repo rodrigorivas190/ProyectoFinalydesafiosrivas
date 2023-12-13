@@ -751,3 +751,155 @@
 [34m[LOGGER] info - 2023-10-28 23:55:13 : ✅ Server running at port 8080[39m
 [34m[LOGGER] info - 2023-10-29 00:02:37 : ✅ Server running at port 8080[39m
 [34m[LOGGER] info - 2023-10-29 00:03:36 : ✅ Server running at port 8080[39m
+[34m[LOGGER] info - 2023-10-29 19:18:15 : ✅ Server running at port 8080[39m
+[34m[LOGGER] info - 2023-10-29 19:21:54 : ✅ Server running at port 8080[39m
+[34m[LOGGER] info - 2023-10-29 19:22:34 : Deslogeo con exito[39m
+[34m[LOGGER] info - 2023-10-29 19:23:00 : Login - User: rodrigo RIVAS rodrigorivas190@hotmail.com[39m
+[34m[LOGGER] info - 2023-10-29 19:23:08 : Login - User: rodrigo RIVAS rodrigorivas190@hotmail.com[39m
+[34m[LOGGER] info - 2023-10-29 19:23:09 : Login - User: rodrigo RIVAS rodrigorivas190@hotmail.com[39m
+[35m[LOGGER] error - 2023-10-29 19:23:11 : Error adding a product to cart: TypeError: Cannot read properties of null (reading '_id')[39m
+[35m[LOGGER] error - 2023-10-29 19:23:11 : Error al agregar un producto a un carrito[39m
+[34m[LOGGER] info - 2023-10-29 19:23:15 : Login - User: rodrigo RIVAS rodrigorivas190@hotmail.com[39m
+[34m[LOGGER] info - 2023-10-29 19:23:28 : Login - User: rodrigo RIVAS rodrigorivas190@hotmail.com[39m
+[34m[LOGGER] info - 2023-10-29 19:23:29 : Login - User: rodrigo RIVAS rodrigorivas190@hotmail.com[39m
+[35m[LOGGER] error - 2023-10-29 19:23:30 : Error adding a product to cart: TypeError: Cannot read properties of null (reading '_id')[39m
+[35m[LOGGER] error - 2023-10-29 19:23:30 : Error al agregar un producto a un carrito[39m
+[34m[LOGGER] info - 2023-10-29 19:23:35 : Login - User: rodrigo RIVAS rodrigorivas190@hotmail.com[39m
+[34m[LOGGER] info - 2023-10-29 19:23:42 : Login - User: rodrigo RIVAS rodrigorivas190@hotmail.com[39m
+[34m[LOGGER] info - 2023-10-29 19:23:51 : Login - User: rodrigo RIVAS rodrigorivas190@hotmail.com[39m
+[34m[LOGGER] info - 2023-10-29 19:23:52 : Login - User: rodrigo RIVAS rodrigorivas190@hotmail.com[39m
+[34m[LOGGER] info - 2023-10-29 19:23:56 : Login - User: rodrigo RIVAS rodrigorivas190@hotmail.com[39m
+[34m[LOGGER] info - 2023-10-29 19:24:10 : Login - User: rodrigo RIVAS rodrigorivas190@hotmail.com[39m
+[34m[LOGGER] info - 2023-10-29 19:24:19 : Login - User: rodrigo RIVAS rodrigorivas190@hotmail.com[39m
+[34m[LOGGER] info - 2023-10-29 19:24:39 : Deslogeo con exito[39m
+[34m[LOGGER] info - 2023-10-29 19:24:55 : Login - User: rodrigo RIVAS rodrigorivas190@hotmail.com[39m
+[34m[LOGGER] info - 2023-10-29 19:24:55 : 10/29/2023, 7:24:55 PM - Admin/Premium Access rodrigo RIVAS rodrigorivas190@hotmail.com[39m
+[34m[LOGGER] info - 2023-10-29 19:26:11 : Deslogeo con exito[39m
+[34m[LOGGER] info - 2023-11-11 15:25:31 : ✅ Server running at port 8080[39m
+[34m[LOGGER] info - 2023-11-11 15:25:47 : ✅ Server running at port 8080[39m
+[34m[LOGGER] info - 2023-11-11 15:27:03 : Login - User: rodrigo RIVAS rodrigorivas190@hotmail.com[39m
+[34m[LOGGER] info - 2023-11-11 15:27:22 : Deslogeo con exito[39m
+[34m[LOGGER] info - 2023-11-11 15:27:47 : ✅ Server running at port 8080[39m
+[34m[LOGGER] info - 2023-11-11 15:28:16 : Login - User: rodrigo RIVAS rodrigorivas190@hotmail.com[39m
+[34m[LOGGER] info - 2023-11-23 21:21:12 : ✅ Server running at port 8080[39m
+[34m[LOGGER] info - 2023-11-23 21:21:24 : Login - User: rodrigo RIVAS rodrigorivas190@hotmail.com[39m
+[34m[LOGGER] info - 2023-11-23 21:21:28 : Login - User: rodrigo RIVAS rodrigorivas190@hotmail.com[39m
+[34m[LOGGER] info - 2023-11-23 21:21:48 : Login - User: rodrigo RIVAS rodrigorivas190@hotmail.com[39m
+[34m[LOGGER] info - 2023-11-23 21:28:16 : Login - User: rodrigo RIVAS rodrigorivas190@hotmail.com[39m
+[34m[LOGGER] info - 2023-11-23 21:30:05 : Login - User: rodrigo RIVAS rodrigorivas190@hotmail.com[39m
+[34m[LOGGER] info - 2023-11-23 21:30:21 : Login - User: rodrigo RIVAS rodrigorivas190@hotmail.com[39m
+[34m[LOGGER] info - 2023-11-23 21:30:38 : Login - User: rodrigo RIVAS rodrigorivas190@hotmail.com[39m
+[34m[LOGGER] info - 2023-11-23 21:30:55 : Login - User: rodrigo RIVAS rodrigorivas190@hotmail.com[39m
+[34m[LOGGER] info - 2023-11-25 11:34:10 : ✅ Server running at port 8080[39m
+[34m[LOGGER] info - 2023-11-25 11:34:25 : Deslogeo con exito[39m
+[34m[LOGGER] info - 2023-11-25 11:34:38 : Login - User: rodrigo RIVAS rodrigorivas190@hotmail.com[39m
+[34m[LOGGER] info - 2023-11-25 11:34:42 : Login - User: rodrigo RIVAS rodrigorivas190@hotmail.com[39m
+[34m[LOGGER] info - 2023-11-25 11:44:24 : Login - User: rodrigo RIVAS rodrigorivas190@hotmail.com[39m
+[34m[LOGGER] info - 2023-11-25 11:44:31 : Login - User: rodrigo RIVAS rodrigorivas190@hotmail.com[39m
+[34m[LOGGER] info - 2023-11-25 11:44:35 : Login - User: rodrigo RIVAS rodrigorivas190@hotmail.com[39m
+[35m[LOGGER] error - 2023-11-25 14:13:23 : Error al mostrsr un carrito[39m
+[35m[LOGGER] error - 2023-11-25 14:13:38 : Error al mostrsr un carrito[39m
+[35m[LOGGER] error - 2023-11-25 14:13:48 : Error al mostrsr un carrito[39m
+[34m[LOGGER] info - 2023-11-25 14:13:56 : Deslogeo con exito[39m
+[34m[LOGGER] info - 2023-11-25 14:14:24 : Login - User: rodrigo RIVAS rodrigorivas190@hotmail.com[39m
+[34m[LOGGER] info - 2023-11-25 14:14:28 : Login - User: rodrigo RIVAS rodrigorivas190@hotmail.com[39m
+[34m[LOGGER] info - 2023-11-25 14:14:34 : Login - User: rodrigo RIVAS rodrigorivas190@hotmail.com[39m
+[34m[LOGGER] info - 2023-11-25 14:14:42 : Login - User: rodrigo RIVAS rodrigorivas190@hotmail.com[39m
+[34m[LOGGER] info - 2023-11-25 14:14:44 : Login - User: rodrigo RIVAS rodrigorivas190@hotmail.com[39m
+[34m[LOGGER] info - 2023-11-25 14:14:50 : Login - User: rodrigo RIVAS rodrigorivas190@hotmail.com[39m
+[34m[LOGGER] info - 2023-11-25 14:14:59 : Login - User: rodrigo RIVAS rodrigorivas190@hotmail.com[39m
+[34m[LOGGER] info - 2023-11-25 14:15:08 : Login - User: rodrigo RIVAS rodrigorivas190@hotmail.com[39m
+[34m[LOGGER] info - 2023-12-08 21:09:48 : ✅ Server running at port 8080[39m
+[34m[LOGGER] info - 2023-12-08 21:09:56 : Login - User: rodrigo RIVAS rodrigorivas190@hotmail.com[39m
+[34m[LOGGER] info - 2023-12-08 21:10:01 : Login - User: rodrigo RIVAS rodrigorivas190@hotmail.com[39m
+[34m[LOGGER] info - 2023-12-08 21:10:06 : Login - User: rodrigo RIVAS rodrigorivas190@hotmail.com[39m
+[34m[LOGGER] info - 2023-12-08 21:10:18 : Login - User: rodrigo RIVAS rodrigorivas190@hotmail.com[39m
+[34m[LOGGER] info - 2023-12-08 21:10:19 : Login - User: rodrigo RIVAS rodrigorivas190@hotmail.com[39m
+[34m[LOGGER] info - 2023-12-08 21:10:25 : Login - User: rodrigo RIVAS rodrigorivas190@hotmail.com[39m
+[34m[LOGGER] info - 2023-12-08 21:10:30 : Login - User: rodrigo RIVAS rodrigorivas190@hotmail.com[39m
+[34m[LOGGER] info - 2023-12-08 21:10:49 : Login - User: rodrigo RIVAS rodrigorivas190@hotmail.com[39m
+[34m[LOGGER] info - 2023-12-08 21:10:55 : Deslogeo con exito[39m
+[34m[LOGGER] info - 2023-12-10 01:59:56 : ✅ Server running at port 8080[39m
+[34m[LOGGER] info - 2023-12-10 02:00:06 : Login - User: rodrigo RIVAS rodrigorivas190@hotmail.com[39m
+[34m[LOGGER] info - 2023-12-10 02:00:09 : Login - User: rodrigo RIVAS rodrigorivas190@hotmail.com[39m
+[34m[LOGGER] info - 2023-12-10 02:00:17 : Login - User: rodrigo RIVAS rodrigorivas190@hotmail.com[39m
+[34m[LOGGER] info - 2023-12-10 02:00:18 : Login - User: rodrigo RIVAS rodrigorivas190@hotmail.com[39m
+[34m[LOGGER] info - 2023-12-10 02:00:23 : Login - User: rodrigo RIVAS rodrigorivas190@hotmail.com[39m
+[34m[LOGGER] info - 2023-12-10 02:00:27 : Login - User: rodrigo RIVAS rodrigorivas190@hotmail.com[39m
+[34m[LOGGER] info - 2023-12-10 02:00:43 : Login - User: rodrigo RIVAS rodrigorivas190@hotmail.com[39m
+[34m[LOGGER] info - 2023-12-10 02:00:55 : Login - User: rodrigo RIVAS rodrigorivas190@hotmail.com[39m
+[34m[LOGGER] info - 2023-12-10 02:01:27 : Login - User: rodrigo RIVAS rodrigorivas190@hotmail.com[39m
+[34m[LOGGER] info - 2023-12-10 02:01:33 : Login - User: rodrigo RIVAS rodrigorivas190@hotmail.com[39m
+[34m[LOGGER] info - 2023-12-10 02:01:34 : Login - User: rodrigo RIVAS rodrigorivas190@hotmail.com[39m
+[34m[LOGGER] info - 2023-12-10 02:01:39 : Login - User: rodrigo RIVAS rodrigorivas190@hotmail.com[39m
+[34m[LOGGER] info - 2023-12-10 02:01:43 : Login - User: rodrigo RIVAS rodrigorivas190@hotmail.com[39m
+[34m[LOGGER] info - 2023-12-10 02:01:45 : Login - User: rodrigo RIVAS rodrigorivas190@hotmail.com[39m
+[34m[LOGGER] info - 2023-12-10 02:01:53 : Login - User: rodrigo RIVAS rodrigorivas190@hotmail.com[39m
+[34m[LOGGER] info - 2023-12-10 02:03:01 : ✅ Server running at port 8080[39m
+[34m[LOGGER] info - 2023-12-10 02:03:12 : Login - User: rodrigo RIVAS rodrigorivas190@hotmail.com[39m
+[34m[LOGGER] info - 2023-12-10 02:03:23 : Deslogeo con exito[39m
+[34m[LOGGER] info - 2023-12-10 02:03:43 : Login - User: rodrigo RIVAS rodrigorivas190@hotmail.com[39m
+[34m[LOGGER] info - 2023-12-10 02:03:59 : Login - User: rodrigo RIVAS rodrigorivas190@hotmail.com[39m
+[34m[LOGGER] info - 2023-12-10 02:04:04 : Login - User: rodrigo RIVAS rodrigorivas190@hotmail.com[39m
+[34m[LOGGER] info - 2023-12-10 02:04:32 : Login - User: rodrigo RIVAS rodrigorivas190@hotmail.com[39m
+[34m[LOGGER] info - 2023-12-10 02:09:01 : Deslogeo con exito[39m
+[34m[LOGGER] info - 2023-12-10 02:09:06 : Deslogeo con exito[39m
+[34m[LOGGER] info - 2023-12-10 02:09:19 : Login - User: rodrigo RIVAS rodrigorivas190@hotmail.com[39m
+[35m[LOGGER] error - 2023-12-10 02:09:19 : access denied, you do not have permission to be here[39m
+[34m[LOGGER] info - 2023-12-10 02:09:28 : Deslogeo con exito[39m
+[34m[LOGGER] info - 2023-12-10 02:09:37 : Login - User: rodrigo RIVAS rodrigorivas190@hotmail.com[39m
+[34m[LOGGER] info - 2023-12-10 02:09:37 : 12/10/2023, 2:09:37 AM - Admin/Premium Access rodrigo RIVAS rodrigorivas190@hotmail.com[39m
+[34m[LOGGER] info - 2023-12-10 02:10:27 : Login - User: rodrigo RIVAS rodrigorivas190@hotmail.com[39m
+[34m[LOGGER] info - 2023-12-10 02:10:28 : 12/10/2023, 2:10:28 AM - Admin/Premium Access rodrigo RIVAS rodrigorivas190@hotmail.com[39m
+[34m[LOGGER] info - 2023-12-10 02:10:30 : Login - User: rodrigo RIVAS rodrigorivas190@hotmail.com[39m
+[34m[LOGGER] info - 2023-12-10 02:10:30 : 12/10/2023, 2:10:30 AM - Admin/Premium Access rodrigo RIVAS rodrigorivas190@hotmail.com[39m
+[34m[LOGGER] info - 2023-12-10 02:10:41 : Login - User: rodrigo RIVAS rodrigorivas190@hotmail.com[39m
+[34m[LOGGER] info - 2023-12-10 02:10:41 : 12/10/2023, 2:10:41 AM - Admin/Premium Access rodrigo RIVAS rodrigorivas190@hotmail.com[39m
+[34m[LOGGER] info - 2023-12-10 02:10:43 : Login - User: rodrigo RIVAS rodrigorivas190@hotmail.com[39m
+[34m[LOGGER] info - 2023-12-10 02:10:43 : 12/10/2023, 2:10:43 AM - Admin/Premium Access rodrigo RIVAS rodrigorivas190@hotmail.com[39m
+[34m[LOGGER] info - 2023-12-10 02:11:19 : Login - User: rodrigo RIVAS rodrigorivas190@hotmail.com[39m
+[34m[LOGGER] info - 2023-12-10 02:11:19 : 12/10/2023, 2:11:19 AM - Admin/Premium Access rodrigo RIVAS rodrigorivas190@hotmail.com[39m
+[34m[LOGGER] info - 2023-12-10 02:11:22 : Login - User: rodrigo RIVAS rodrigorivas190@hotmail.com[39m
+[34m[LOGGER] info - 2023-12-10 02:11:22 : 12/10/2023, 2:11:22 AM - Admin/Premium Access rodrigo RIVAS rodrigorivas190@hotmail.com[39m
+[34m[LOGGER] info - 2023-12-10 02:13:12 : Login - User: rodrigo RIVAS rodrigorivas190@hotmail.com[39m
+[34m[LOGGER] info - 2023-12-10 02:13:12 : 12/10/2023, 2:13:12 AM - Admin/Premium Access rodrigo RIVAS rodrigorivas190@hotmail.com[39m
+[34m[LOGGER] info - 2023-12-10 02:13:15 : Login - User: rodrigo RIVAS rodrigorivas190@hotmail.com[39m
+[34m[LOGGER] info - 2023-12-10 02:13:15 : 12/10/2023, 2:13:15 AM - Admin/Premium Access rodrigo RIVAS rodrigorivas190@hotmail.com[39m
+[34m[LOGGER] info - 2023-12-10 02:13:27 : Deslogeo con exito[39m
+[34m[LOGGER] info - 2023-12-10 02:13:42 : Login - User: rodrigo RIVAS rodrigorivas190@hotmail.com[39m
+[34m[LOGGER] info - 2023-12-10 02:14:58 : Login - User: rodrigo RIVAS rodrigorivas190@hotmail.com[39m
+[34m[LOGGER] info - 2023-12-10 02:15:05 : Login - User: rodrigo RIVAS rodrigorivas190@hotmail.com[39m
+[34m[LOGGER] info - 2023-12-10 02:15:18 : Login - User: rodrigo RIVAS rodrigorivas190@hotmail.com[39m
+[34m[LOGGER] info - 2023-12-10 02:15:28 : Login - User: rodrigo RIVAS rodrigorivas190@hotmail.com[39m
+[34m[LOGGER] info - 2023-12-10 02:15:44 : Login - User: rodrigo RIVAS rodrigorivas190@hotmail.com[39m
+[34m[LOGGER] info - 2023-12-10 02:15:51 : Login - User: rodrigo RIVAS rodrigorivas190@hotmail.com[39m
+[34m[LOGGER] info - 2023-12-10 02:16:32 : Login - User: rodrigo RIVAS rodrigorivas190@hotmail.com[39m
+[34m[LOGGER] info - 2023-12-10 02:16:38 : Login - User: rodrigo RIVAS rodrigorivas190@hotmail.com[39m
+[34m[LOGGER] info - 2023-12-10 02:16:49 : Login - User: rodrigo RIVAS rodrigorivas190@hotmail.com[39m
+[34m[LOGGER] info - 2023-12-10 02:16:50 : Login - User: rodrigo RIVAS rodrigorivas190@hotmail.com[39m
+[34m[LOGGER] info - 2023-12-10 02:16:56 : Login - User: rodrigo RIVAS rodrigorivas190@hotmail.com[39m
+[34m[LOGGER] info - 2023-12-10 02:17:02 : Login - User: rodrigo RIVAS rodrigorivas190@hotmail.com[39m
+[34m[LOGGER] info - 2023-12-10 02:17:13 : Login - User: rodrigo RIVAS rodrigorivas190@hotmail.com[39m
+[34m[LOGGER] info - 2023-12-10 02:19:35 : Login - User: rodrigo RIVAS rodrigorivas190@hotmail.com[39m
+[34m[LOGGER] info - 2023-12-10 02:20:51 : Login - User: rodrigo RIVAS rodrigorivas190@hotmail.com[39m
+[34m[LOGGER] info - 2023-12-10 02:20:55 : Login - User: rodrigo RIVAS rodrigorivas190@hotmail.com[39m
+[34m[LOGGER] info - 2023-12-10 02:21:41 : Login - User: rodrigo RIVAS rodrigorivas190@hotmail.com[39m
+[34m[LOGGER] info - 2023-12-10 02:21:46 : Login - User: rodrigo RIVAS rodrigorivas190@hotmail.com[39m
+[34m[LOGGER] info - 2023-12-10 02:22:28 : Login - User: rodrigo RIVAS rodrigorivas190@hotmail.com[39m
+[34m[LOGGER] info - 2023-12-10 02:22:32 : Login - User: rodrigo RIVAS rodrigorivas190@hotmail.com[39m
+[34m[LOGGER] info - 2023-12-10 02:22:38 : Login - User: rodrigo RIVAS rodrigorivas190@hotmail.com[39m
+[34m[LOGGER] info - 2023-12-10 02:22:39 : Login - User: rodrigo RIVAS rodrigorivas190@hotmail.com[39m
+[34m[LOGGER] info - 2023-12-10 02:22:46 : Login - User: rodrigo RIVAS rodrigorivas190@hotmail.com[39m
+[34m[LOGGER] info - 2023-12-10 02:34:01 : Login - User: rodrigo RIVAS rodrigorivas190@hotmail.com[39m
+[34m[LOGGER] info - 2023-12-10 02:34:04 : Login - User: rodrigo RIVAS rodrigorivas190@hotmail.com[39m
+[34m[LOGGER] info - 2023-12-10 02:34:26 : Login - User: rodrigo RIVAS rodrigorivas190@hotmail.com[39m
+[34m[LOGGER] info - 2023-12-10 02:34:29 : Login - User: rodrigo RIVAS rodrigorivas190@hotmail.com[39m
+[34m[LOGGER] info - 2023-12-10 02:34:58 : Login - User: rodrigo RIVAS rodrigorivas190@hotmail.com[39m
+[34m[LOGGER] info - 2023-12-10 02:35:03 : Login - User: rodrigo RIVAS rodrigorivas190@hotmail.com[39m
+[34m[LOGGER] info - 2023-12-10 02:35:07 : Login - User: rodrigo RIVAS rodrigorivas190@hotmail.com[39m
+[34m[LOGGER] info - 2023-12-10 02:35:39 : Login - User: rodrigo RIVAS rodrigorivas190@hotmail.com[39m
+[34m[LOGGER] info - 2023-12-10 02:35:43 : Login - User: rodrigo RIVAS rodrigorivas190@hotmail.com[39m
+[34m[LOGGER] info - 2023-12-10 02:35:47 : Login - User: rodrigo RIVAS rodrigorivas190@hotmail.com[39m
+[34m[LOGGER] info - 2023-12-10 02:36:24 : Login - User: rodrigo RIVAS rodrigorivas190@hotmail.com[39m
+[34m[LOGGER] info - 2023-12-10 02:36:40 : Login - User: rodrigo RIVAS rodrigorivas190@hotmail.com[39m
+[34m[LOGGER] info - 2023-12-10 02:36:44 : Login - User: rodrigo RIVAS rodrigorivas190@hotmail.com[39m

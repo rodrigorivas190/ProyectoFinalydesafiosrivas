@@ -26,14 +26,17 @@ function agregarElmentoCarrito(dato) {
 		contenedorCarrito.innerText = ''; // Borro leyenda "Agregue productos al carrito"
 	}
 
+	
 	if (!dato.length) {
 		contenedorCarrito.innerHTML = ''; //borro prodcutos de la vista
 		contenedorCarrito.innerText = 'Agregue productos al carrito';
 		btnVaciarCarrito.disabled = true; //desactivo boton de vaciar carrito si el mismo esta vacio
 		btnFinalizarCompra.hidden = true; // escondo boton para finalizar compra.
+		checkout.hidden = true;
 	} else {
 		btnVaciarCarrito.disabled = false; //sino vuelvo a activar
 		btnFinalizarCompra.hidden = false; // y mostrar boton
+		checkout.hidden = false;
 	}
 
 	dato.forEach((elemento) => {
@@ -153,7 +156,7 @@ btnFinalizarCompra.addEventListener('click', async () => {
 					console.log(unpurchasedProducts.length)
 					//alert con confirmación de operación
 					Swal.fire({
-						title: 'Compra Realizada!',
+						title: 'Enviaremos su orden por mail!, Realice el pago para terminar la compra!',
 						text:
 							unpurchasedProducts.length != 0
 								? 'Muchas Gracias, vuelva pronto. Lamentablemente no contamos con el stock solicitado en los productos que quedaron en el carrito'

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+  <style>
+
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f8f8f8;
+    }
+    .body_background1 {
+		background-image: url('/assets/images/fondo.jpg');
+		background-size: cover;
+		background-position: center center;
+		background-repeat: no-repeat;
+		height: 100vh;
+	}
+
+    .container {
+      max-width: 600px;
+      margin: 50px auto;
+      text-align: center;
+    }
+
+    header, footer , content {
+      background-color: #e74c3c;
+      color: white;
+      padding: 10px;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 2em;
+    }
+
+    .content {
+      margin: 20px 0;
+    }
+
+    p {
+      font-size: 1.2em;
+      line-height: 1.5;
+      color: white;
+      text-align: center;
+    }
+  </style>
+  <title>Error en el Pago</title>
+</head>
+<body>
+  <div class="body_background1">
+    <header>
+      <h1 class="animated shake">¡Error en el Pago!</h1>
+    </header>
+    <section class="content">
+      <p class="animated fadeIn">Lamentablemente, el pago no se completó con éxito.</p>
+      <p class="animated fadeIn">Hemos decidido sacar los productos del carrito. Si tienes alguna pregunta, no dudes en contactarnos.</p>
+    </section>
+    <footer>
+      <p class="animated tada">Lamentamos cualquier inconveniente. ¡Esperamos poder ayudarte pronto!</p>
+    </footer>
+<div class="d-flex justify-content-center my-2">
+  <button type="button" class="btn btn-dark btn-sm" onclick="window.location.href='/products';">
+    Seguir comprando
+  </button>
+</div>
+  </div>
+
+
+</body>
+</html>

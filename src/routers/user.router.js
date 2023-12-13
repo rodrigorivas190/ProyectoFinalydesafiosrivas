@@ -26,7 +26,6 @@ usersRouter.post('/', passport.authenticate('register', { failureRedirect: 'fail
 	res.send({ status: 'success', payload: newUser});
 	//res.redirect('/registerok');
 }catch (error) {
-		// console.error(error);
 		logger.error(`Error de autenticacion`);
 		res.status(500).json({ status: 'error', message: 'Internal server error' });
 	}
@@ -80,7 +79,6 @@ usersRouter.post('/auth', async (req, res) => {
 			.send({ status: 'success', message: 'user login authorized' });
 		
 	} catch (error) {
-		// console.error(error);
 		logger.error(`Error de autenticacion`);
 		res.status(500).json({ status: 'error', message: 'Internal server error' });
 	}
@@ -137,7 +135,6 @@ usersRouter.get('/premium/:uid', async (req, res) => {
 		userController.updateUser(user); // actualizo usuario
 		res.json({ status: 'success', message: `user ${user.email} has change his role to ${user.role}` });
 	} catch (error) {
-		// console.error(error);
 		logger.error(`Error al cambiar el rol de los usuarios`);
 		res.status(500).json({ status: 'error', message: 'Internal server error' });
 	}
@@ -150,7 +147,6 @@ usersRouter.delete('/:uid', async (req, res) => {
 		await userController.deleteUser(userId);
 		res.json({ status: 'success', message: `user ID${userId} deleted` });
 	} catch (error) {
-		// console.error(error);
 		logger.error(`Error al eliminar los usuarios`);
 		res.status(500).json({ status: 'error', message: 'Internal server error' });
 	}
@@ -178,7 +174,6 @@ usersRouter.post('/:uid/documents', uploadGeneric(documentsFolderPath).array('ar
 		}
 		res.redirect('/profile');
 	} catch (error) {
-		// console.error(error);
 		logger.error(`Error al guardar documentos`);
 		res.status(500).json({ status: 'error', message: 'Internal server error' });
 	}
@@ -193,7 +188,6 @@ usersRouter.get('/', async (req, res) => {
 		})		
 		res.json({ status: 'success', payload: users });
 	} catch (error) {
-		// console.error(error);
 		logger.error(`Error al mostrar los usuarios`);
 		res.status(500).json({ status: 'error', message: 'Internal server error' });
 	}
@@ -220,7 +214,6 @@ usersRouter.delete('/', async (req, res) => {
 		const usersDeleted= await userController.deleteManyUser(usersNotConnectedInPeriod)
 		res.json({ status: 'success', message: 'users deleted' });
 	} catch (error) {
-		// console.error(error);
 		logger.error(`Error al filtrar los usuarios`);
 		res.status(500).json({ status: 'error', message: 'Internal server error' });
 	}
@@ -233,7 +226,6 @@ usersRouter.put('/', async (req, res) => {
 		await userController.updateUser(user);		
 		res.json({ status: 'success', message: "User modified"});
 	} catch (error) {
-		// console.error(error);
 		logger.error(`Error al actualizar un usuario`);
 		res.status(500).json({ status: 'error', message: 'Internal server error' });
 	}
@@ -248,7 +240,6 @@ usersRouter.get('/:id', async (req, res) => {
 		
 		res.json({ status: 'success', payload: viewUser});
 	} catch (error) {
-		// console.error(error);
 		logger.error(`Error al traer un usuario`);
 		res.status(500).json({ status: 'error', message: 'Internal server error' });
 	}

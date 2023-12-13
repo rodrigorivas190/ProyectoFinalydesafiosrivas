@@ -1,16 +1,13 @@
+<div class="body_background1"  >
 <div class="w-100 h-100 d-flex  justify-content-center align-items-center productsBody flex-column">
 	<div class="card w-75 h-50">
 		<div class="row g-0 h-100">
-			{{!-- <div class="col-md-4">
-				<img src="src/public/profile/default.jpg" class="img-fluid rounded-start" alt="...">
-			</div> --}}
 			<div class="col-md-8">
 				<div class="card-body">
 					<h5 class="card-title">My profile</h5>
 					<p class="card-text">First Name: {{user.first_name}} </p>
 					<p class="card-text">Last Name: {{user.last_name}} </p>
 					<p class="card-text">Email: {{user.email}}</p>
-					{{!-- <p class="card-text">Age: {{user.age}}</p> --}}
 					<div class="row g-0 h-100">
 						<div class="col-md-3">
 							<p class="card-text">Role: {{user.role}}</p>
@@ -67,4 +64,14 @@
 	</div>
 	<button onclick="backToProducts()" type="button" class="btn btn-dark mt-3">Back to Products</button>
 </div>
+</div>
 <script src="/js/profile.js"></script>
+<style>
+	.body_background1 {
+		background-image: url('/assets/images/fondo.jpg');
+		background-size: cover;
+		background-position: center center;
+		background-repeat: no-repeat;
+		height: 100vh;
+	}
+</style>

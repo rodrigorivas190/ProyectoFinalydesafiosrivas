@@ -9,7 +9,6 @@ import __dirname from './dirname.util.js';
 import handlebars from 'express-handlebars';
 import cors from 'cors'; 
 
-
 import { Server } from 'socket.io';
 
 //import de rutas
@@ -22,6 +21,8 @@ import { sessionRouter } from './routers/sessions.router.js';
 import { mailRouter } from './routers/mail.router.js';
 import { mockingRouter } from './routers/mocking.router.js';
 import { loggerRouter } from './routers/logger.router.js';
+import paymentRouter from './routers/payment.router.js';
+import indexRoutes from './routers/payment.router.js';
 
 //Import de passport
 import initializePassport from './config/passport.config.js';
@@ -95,6 +96,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.json()); //Middleware que facilita la conversión en formato json de lo que se reciba por body
 app.use(express.urlencoded({ extended: true })); //Middleware para que express pueda reconover los objetos de las request como strings o arrays
 app.use("/static", express.static("/src/public")); 
+app.use(express.static(path.resolve("src/public")));
+app.use(express.urlencoded({ extended: false }));
 //Session
 app.use(
 	session({
@@ -114,10 +117,10 @@ initializePassport();
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(errorsManagerMiddleware);
-
+app.use(addLogger);
+app.use(cors())
 
 //Definición de rutas
-app.use(addLogger);
 app.use('/api/products', productsRouter);
 app.use('/api/carts', cartRouter);
 app.use('/api/sessions', sessionRouter);
@@ -128,6 +131,8 @@ app.use('/email', mailRouter);
 app.use('/mockingproducts', mockingRouter);
 app.use('/loggerTest', loggerRouter);
 app.use('/apidocs', swaggerUiExpress.serve, swaggerUiExpress.setup(specs));
+app.use("/api/payment", paymentRouter)
+app.use(indexRoutes);
 
 const messages = [];
 
