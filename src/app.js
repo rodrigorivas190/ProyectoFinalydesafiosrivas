@@ -77,8 +77,8 @@ const swaggerOptions = {
 
 //CORS
 const corsOptions = {
-	// origin: 'http://localhost:8080', // Reemplaza con el origen permitido
-	origin: 'https://proyectofinalydesafiosrivas-production-f97c.up.railway.app',
+	origin: 'http://localhost:8080', // Reemplaza con el origen permitido
+	// origin: 'https://proyectofinalydesafiosrivas-production-f97c.up.railway.app',
 	methods: 'GET,POST,PUT,DELETE',
 	allowedHeaders: 'Content-Type, Authorization',
   };
