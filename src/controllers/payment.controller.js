@@ -33,8 +33,8 @@ export const createSession = async (req, res) => {
         },
       ],
       mode: "payment",
-      success_url: "http://proyectofinalydesafiosrivas-production-f97c.up.railway.app/success",
-      cancel_url: "http://proyectofinalydesafiosrivas-production-f97c.up.railway.app/cancel",
+      success_url: "https://proyectofinalydesafiosrivas-production-f97c.up.railway.app/success",
+      cancel_url: "https://proyectofinalydesafiosrivas-production-f97c.up.railway.app/cancel",
     });
 
     console.log(session);

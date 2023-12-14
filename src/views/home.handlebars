@@ -197,7 +197,7 @@
 <script>
     const checkout = document.getElementById('checkout');
     checkout.addEventListener('click', async () => {
-        const res = await fetch('http://localhost:8080/create-checkout-session', {
+        const res = await fetch('https://proyectofinalydesafiosrivas-production-f97c.up.railway.app/create-checkout-session', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
