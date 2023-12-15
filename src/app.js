@@ -97,8 +97,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.json()); //Middleware que facilita la conversión en formato json de lo que se reciba por body
 app.use(express.urlencoded({ extended: true })); //Middleware para que express pueda reconover los objetos de las request como strings o arrays
 app.use("/static", express.static("/src/public")); 
-app.use(express.static(path.resolve("src/public")));
-app.use(express.urlencoded({ extended: false }));
+// app.use(express.static(path.resolve("src/public")));
+// app.use(express.urlencoded({ extended: false }));
 //Session
 app.use(
 	session({
