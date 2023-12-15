@@ -33,12 +33,11 @@ export const createSession = async (req, res) => {
         },
       ],
       mode: "payment",
-      success_url: "https://proyectofinalydesafiosrivas-production.up.railway.app/success",
-      cancel_url: "https://proyectofinalydesafiosrivas-production.up.railway.app/cancel",
+      // success_url: "https://proyectofinalydesafiosrivas-production.up.railway.app/success",
+      // cancel_url: "https://proyectofinalydesafiosrivas-production.up.railway.app/cancel",
+      success_url: "http://localhost:8080/success",
+      cancel_url: "http://localhost:8080/cancel",
     });
-    // app.listen(8080, () => {
-    //   console.log("Server is live on Port 8080!");
-    // });
     console.log(session);
     return res.json({ url: session.url });
   } catch (error) {

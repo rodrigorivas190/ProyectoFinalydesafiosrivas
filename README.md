@@ -62,6 +62,16 @@ Proyecto desarrollando un servidor implementando base de datos implementando Mon
 ### El router "/email" implementa
 
 -   POST: _/_ - envia email de confirmación de compra
+- 
+### Masterproducts
+http://localhost:8080/loginmasterproducts
+
+### Masterusers
+http://localhost:8080/loginmasterusers
+
+
+### Inicio de logueo
+http://localhost:8080/login
 
 ## Correr de forma local
 

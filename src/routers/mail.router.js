@@ -4,7 +4,7 @@ import jwt from 'jsonwebtoken';
 import environment from '../config/environment.js';
 
 const mailRouter = Router();
-const RESTORE_PASS_URL = 'https://proyectofinalydesafiosrivas-production.up.railway.app/restorepassview';
+const RESTORE_PASS_URL = 'http://localhost:8080/restorepassview';
 
 export const transport = nodemailer.createTransport({
 	service: 'gmail',
